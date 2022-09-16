@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 
-public class _test : MonoBehaviour
+public class PlayerCombat : MonoBehaviour
 {
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -16,5 +14,10 @@ public class _test : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Attack()
+    {
+        print("Attacking");
     }
 }
