@@ -2,40 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using HutongGames.PlayMaker;
 
-public class Player_Input : MonoBehaviour
+public class InputHandler : MonoBehaviour
 {
     
     [SerializeField] PlayerInput input;
+    [SerializeField] PlayMakerFSM playerControllerFSM;
+    FsmVector2 movementInput;
 
    // private InputAction jumpAction;
     private InputAction moveAction;
     private InputAction attackAction;
 
-    PlayerController controller;
 
     void Awake()
     {
-        controller = GetComponent<PlayerController>();
         input = GetComponent<PlayerInput>();
         moveAction = input.actions["Move"];
         attackAction = input.actions["Attack"];
     }
 
-    private void OnEnable() {
+    private void OnEnable() 
+    {
         attackAction.performed += Attack;
     }
 
-    private void OnDisable() {
+    private void OnDisable() 
+    {
         attackAction.performed -= Attack;
     }
 
-    void Attack(InputAction.CallbackContext context){
-        controller.Attack();
+    private void Start() {
+    movementInput = FsmVariables.GlobalVariables.FindFsmVector2("movementInput");
     }
+
     // Update is called once per frame
     void Update()
     {
-        controller.Movement(moveAction.ReadValue<Vector2>());
+        movementInput.Value = moveAction.ReadValue<Vector2>();
+    }
+
+    void Attack(InputAction.CallbackContext context)
+    {
+        playerControllerFSM.SendEvent("ATTACKCOMMAND");
     }
 }
