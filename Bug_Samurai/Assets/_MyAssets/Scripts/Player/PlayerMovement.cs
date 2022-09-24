@@ -6,14 +6,22 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float velocity = 3;
     Rigidbody2D rb;
+    Animator animator;
     void Awake(){
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     //Method called by the playerControllerFSM in the Idle/Moving State
     public void PlayerMovement_Move(Vector2 move){
         //print(move);
         rb.velocity = new Vector2(move.x,0) * velocity;
+        if(move.x !=0){
+            animator.SetFloat("Speed",1);
+        }
+        else{
+            animator.SetFloat("Speed",0);
+        }
     }
 
     public void AttackMovement(){
