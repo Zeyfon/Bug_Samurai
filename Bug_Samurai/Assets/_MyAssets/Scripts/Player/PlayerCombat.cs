@@ -7,6 +7,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] AudioClip attackAudio1;
     [SerializeField] AudioClip attackAudio2;
     [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] PlayerSword playerSword;
 
     bool isAttacking = false;
   
@@ -49,5 +50,13 @@ public class PlayerCombat : MonoBehaviour
     }
     public void PlayAttackAudio1(){
         audioSource.PlayOneShot(attackAudio1);
+    }
+
+    public void EnableSwordCollider(){
+        playerSword.EnableSwordCollider();
+    }
+
+    public void DisableSwordCollider(){
+        playerSword.DisableSwordCollider();
     }
 }
