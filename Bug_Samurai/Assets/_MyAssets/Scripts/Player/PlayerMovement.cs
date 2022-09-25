@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     public void Flip(Vector2 move)
     {
         float xInput = move.x;
-        print(transform.rotation.eulerAngles.y);
+        //print(transform.rotation.eulerAngles.y);
     //The use of this method implies that you can Flip
     //If Flip is not allow please put that instruction outside this method
     //print(xInput + "   " + transform.rotation.eulerAngles.y +"  " + transform.localEulerAngles.y + "  "  +transform.right.x);
