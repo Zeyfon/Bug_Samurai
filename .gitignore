@@ -20,6 +20,7 @@
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 *.cs.meta
+/*.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 #[Aa]ssets/AssetStoreTools*
@@ -71,9 +72,16 @@ crashlytics-build.properties
 # Packed Addressables
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
+User Layout Settings
+*.dwlt
+
 Temp/
 
 /Assets/PlayMaker/
+/Assets/Plugins/PlayMaker
+/Assets/PlayMaker/PlayMaker.meta
+
+
 /Assets/iTween/
 /Assets/Gizmos/
 /Assets/Photon Unity Networking
