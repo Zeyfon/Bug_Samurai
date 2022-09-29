@@ -5,17 +5,21 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float velocity = 3;
+    [SerializeField] AudioClip runningAudio;
     Rigidbody2D rb;
     Animator animator;
+    AudioSource audioSource;
     void Awake(){
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioSource =GetComponent<AudioSource>();    
     }
 
     //Method called by the playerControllerFSM in the Idle/Moving State
     public void PlayerMovement_Move(Vector2 move){
         //print(move);
         rb.velocity = new Vector2(move.x,0) * velocity;
+        print(move.x + "  " + rb.velocity);
         if(move.x !=0){
             animator.SetFloat("Speed",1);
         }
@@ -51,6 +55,10 @@ public class PlayerMovement : MonoBehaviour
                 currentRotation.eulerAngles = rotation;
                 transform.rotation = currentRotation;
         }
+    }
+
+    public void RunningSound(){
+        audioSource.PlayOneShot(runningAudio);
     }
 
 }
