@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4263014545824279775}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 4263014547066302610}
   - component: {fileID: 3311820765414111989}
   - component: {fileID: 6652043800639665629}
+  - component: {fileID: 4348607679873020835}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -128,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552511cd580c58d418e3940f7e76d25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioGetDamaged: {fileID: 8300000, guid: e91e06c385d1b1645bca2cef09c8668c, type: 3}
+  audioGetDamaged: {fileID: 8300000, guid: a17bd737e8d8cc3479e3f82c3a1e468a, type: 3}
 --- !u!82 &3311820765414111989
 AudioSource:
   m_ObjectHideFlags: 0
@@ -237,6 +238,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83218849586cbeb4c80c4200e7c04985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &4348607679873020835
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4263014547066302614}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 12a714953a3642c4e9328ce75a4b6699, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4263014547470637493
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +331,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -243740708, guid: 565ce465e5270c3448e0bdfb5073af00, type: 3}
+  m_Sprite: {fileID: -1181746703, guid: 565ce465e5270c3448e0bdfb5073af00, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
