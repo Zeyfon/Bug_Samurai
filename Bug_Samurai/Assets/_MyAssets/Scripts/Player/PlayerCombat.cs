@@ -46,10 +46,10 @@ public class PlayerCombat : MonoBehaviour
     }
 
     public void PlayAttackAudio2(){
-        audioSource.PlayOneShot(attackAudio2);
+        audioSource.PlayOneShot(attackAudio2, 0.5f);
     }
     public void PlayAttackAudio1(){
-        audioSource.PlayOneShot(attackAudio1);
+        audioSource.PlayOneShot(attackAudio1, 0.5f);
     }
 
     public void EnableSwordCollider(){
