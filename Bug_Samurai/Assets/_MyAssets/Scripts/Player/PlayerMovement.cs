@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float velocity = 3;
     [SerializeField] AudioClip runningAudio;
+    [Range(0,1)]
+    [SerializeField] float volumeRunning = 0.5f;
     Rigidbody2D rb;
     Animator animator;
     AudioSource audioSource;
@@ -58,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void RunningSound(){
-        audioSource.PlayOneShot(runningAudio);
+        audioSource.PlayOneShot(runningAudio, volumeRunning);
     }
 
 }

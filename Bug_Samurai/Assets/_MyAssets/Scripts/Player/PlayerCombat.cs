@@ -5,7 +5,11 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] AudioClip attackAudio1;
+    [Range(0,1)]
+    [SerializeField] float volumeAttack1 = 0.5f;
     [SerializeField] AudioClip attackAudio2;
+    [Range(0,1)]
+    [SerializeField] float volumeAttack2 = 0.5f;
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] PlayerSword playerSword;
 
@@ -46,10 +50,10 @@ public class PlayerCombat : MonoBehaviour
     }
 
     public void PlayAttackAudio2(){
-        audioSource.PlayOneShot(attackAudio2, 0.5f);
+        audioSource.PlayOneShot(attackAudio2, volumeAttack1);
     }
     public void PlayAttackAudio1(){
-        audioSource.PlayOneShot(attackAudio1, 0.5f);
+        audioSource.PlayOneShot(attackAudio1, volumeAttack2);
     }
 
     public void EnableSwordCollider(){
