@@ -129,7 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552511cd580c58d418e3940f7e76d25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioGetDamaged: {fileID: 8300000, guid: a17bd737e8d8cc3479e3f82c3a1e468a, type: 3}
+  audioGetDamaged: {fileID: 8300000, guid: 2432cf1603e3951439cbe7ce2276ad1d, type: 3}
+  volumeDamaged: 0.5
 --- !u!82 &3311820765414111989
 AudioSource:
   m_ObjectHideFlags: 0
