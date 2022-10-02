@@ -9,11 +9,13 @@ public class InputHandler : MonoBehaviour
     
     [SerializeField] PlayerInput input;
     [SerializeField] PlayMakerFSM playerControllerFSM;
+    [SerializeField] PlayMakerFSM enemyControllerFSM;
     FsmVector2 movementInput;
 
    // private InputAction jumpAction;
     private InputAction moveAction;
     private InputAction attackAction;
+    private InputAction abilitateEnemy;
 
 
     void Awake()
@@ -21,16 +23,20 @@ public class InputHandler : MonoBehaviour
         input = GetComponent<PlayerInput>();
         moveAction = input.actions["Move"];
         attackAction = input.actions["Attack"];
+        abilitateEnemy = input.actions["AbilitateEnemy"];
     }
 
     private void OnEnable() 
     {
         attackAction.performed += Attack;
+        abilitateEnemy.performed += EnableEnemy;
+
     }
 
     private void OnDisable() 
     {
         attackAction.performed -= Attack;
+            abilitateEnemy.performed -= EnableEnemy;
     }
 
     private void Start() {
@@ -46,5 +52,8 @@ public class InputHandler : MonoBehaviour
     void Attack(InputAction.CallbackContext context)
     {
         playerControllerFSM.SendEvent("ATTACKCOMMAND");
+    }
+    void EnableEnemy(InputAction.CallbackContext context){
+        enemyControllerFSM.SendEvent("CHASEPLAYER");
     }
 }
