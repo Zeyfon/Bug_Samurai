@@ -535,6 +535,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 168957160224950877, guid: f9b8e0c219d7d654782485a11217a7b0, type: 3}
+      propertyPath: audioDamage
+      value: 
+      objectReference: {fileID: 8300000, guid: 2432cf1603e3951439cbe7ce2276ad1d, type: 3}
     - target: {fileID: 4263014547066302609, guid: f9b8e0c219d7d654782485a11217a7b0, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -648,5 +652,17 @@ PrefabInstance:
       propertyPath: enemyControllerFSM
       value: 
       objectReference: {fileID: 801590703}
+    - target: {fileID: 8719784565756384727, guid: b672dc359daa095429a41555022ecd01, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719784565756384727, guid: b672dc359daa095429a41555022ecd01, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5649926
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719784565756384727, guid: b672dc359daa095429a41555022ecd01, type: 3}
+      propertyPath: m_Color.r
+      value: 0.33610716
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b672dc359daa095429a41555022ecd01, type: 3}

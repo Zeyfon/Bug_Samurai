@@ -31,7 +31,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void AttackMovement(){
-        rb.velocity = new Vector2(0,0);
+        rb.velocity = new Vector2(0,rb.velocity.y);
+    }
+
+    public void DamagedMovement(){
+                rb.velocity = new Vector2(0,rb.velocity.y);
     }
 
     public void Flip(Vector2 move)
