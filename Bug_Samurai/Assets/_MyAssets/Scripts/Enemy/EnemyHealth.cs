@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
+    [SerializeField] PlayMakerFSM enemyControllerFSM;
     [SerializeField] AudioClip audioGetDamaged;
     [Range(0,1)]
     [SerializeField] float volumeDamaged = 0.5f;
@@ -17,8 +18,10 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     }
 
     public void Damage(){
+        print("Enemy got damaged");
+        enemyControllerFSM.SendEvent("DAMAGED");
         animator.SetInteger("Damaged",1);
-        
+        animator.SetInteger("Attack",0);
     }
 
     public void DamagedSound(){

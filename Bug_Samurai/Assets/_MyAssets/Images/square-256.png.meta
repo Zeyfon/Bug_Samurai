@@ -121,9 +121,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 1
-        width: 254
-        height: 254
+        y: 0
+        width: 255
+        height: 255
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,10 +141,10 @@ TextureImporter:
       name: square-256_1
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 0
-        width: 256
-        height: 256
+        width: 255
+        height: 255
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,6 +154,27 @@ TextureImporter:
       bones: []
       spriteID: 50fc059dc4d6d0f46bf20d6a2eb53800
       internalID: -1181746703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: square-256_Left_Center_Pivot
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 254
+        height: 254
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd0ab5f2836325f439c0e3f1ea71038c
+      internalID: 473471586
       vertices: []
       indices: 
       edges: []
@@ -171,6 +192,7 @@ TextureImporter:
     nameFileIdTable:
       square-256_Pivot_Centered: -243740708
       square-256_1: -1181746703
+      square-256_Left_Center_Pivot: 473471586
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
