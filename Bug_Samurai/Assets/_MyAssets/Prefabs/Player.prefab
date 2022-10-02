@@ -342,8 +342,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114c99b5cb90d8944b082243026c8501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAudio1: {fileID: 8300000, guid: e91e06c385d1b1645bca2cef09c8668c, type: 3}
-  attackAudio2: {fileID: 8300000, guid: e91e06c385d1b1645bca2cef09c8668c, type: 3}
+  attackAudio1: {fileID: 8300000, guid: d2a2da07ffbe080428bc02a1103ab2f6, type: 3}
+  volumeAttack1: 0.5
+  attackAudio2: {fileID: 8300000, guid: cf2a2a9bbd4164c499eb669b4fe3899f, type: 3}
+  volumeAttack2: 0.5
   playerMovement: {fileID: 2191504155436253058}
   playerSword: {fileID: 892241159958938163}
 --- !u!114 &2191504155436253058
@@ -359,7 +361,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 3
-  runningAudio: {fileID: 8300000, guid: aacc6def2024f3a4a846623c3144d752, type: 3}
+  runningAudio: {fileID: 8300000, guid: 4331fd034f2e8a84581ba8dbf9b42303, type: 3}
+  volumeRunning: 0.5
 --- !u!114 &5659728997865879991
 MonoBehaviour:
   m_ObjectHideFlags: 0
