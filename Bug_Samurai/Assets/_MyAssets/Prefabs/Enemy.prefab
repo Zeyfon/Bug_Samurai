@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4263014545824279774}
   - component: {fileID: 529915250297299762}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 4348607679873020835}
   - component: {fileID: 7677572561601583799}
   - component: {fileID: 168957160224950877}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1430,6 +1430,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCollider: {fileID: 529915250297299762}
+  audioAttack: {fileID: 8300000, guid: 2432cf1603e3951439cbe7ce2276ad1d, type: 3}
+  volumeAttack: 0.7
 --- !u!1 &4263014547470637493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,7 +1442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4263014547470637492}
   - component: {fileID: 4263014547470637495}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1523,7 +1525,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6420388488340162204}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1556,7 +1558,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1521897692247969069}
   - component: {fileID: 4973268692614176993}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1640,7 +1642,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1592986619843705245}
   - component: {fileID: 8623356395623695669}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ArmSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

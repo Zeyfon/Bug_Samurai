@@ -6,18 +6,17 @@ public class EnemyCombat : MonoBehaviour
 {
 
     [SerializeField] Collider2D attackCollider;
+    [SerializeField] AudioClip audioAttack;
+    [Range(0,1)]
+    [SerializeField] float volumeAttack = 0.5f;
     Animator animator;
+    AudioSource audioSource;
     bool isAttacking=false;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Attack(){
@@ -46,9 +45,11 @@ public class EnemyCombat : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other) {
         if(other.CompareTag("Player")){
-            //other.GetComponent<IDamageable>().Damage();
+            other.GetComponent<IDamageable>().Damage();
             attackCollider.enabled=false;
         }
     }
-
+    public void AttackSound(){
+        audioSource.PlayOneShot(audioAttack, volumeAttack);
+    }
 }
