@@ -1498,7 +1498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerControllerFSM: {fileID: 5659728997865879991}
-  audioDamage: {fileID: 8300000, guid: a17bd737e8d8cc3479e3f82c3a1e468a, type: 3}
+  audioDamage: {fileID: 8300000, guid: f882b951de9648f4fb0bf51b5d0623fa, type: 3}
   volumeDamage: 0.5
 --- !u!1 &4755680749052540439
 GameObject:
