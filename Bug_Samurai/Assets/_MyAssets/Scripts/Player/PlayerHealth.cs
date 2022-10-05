@@ -11,15 +11,24 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     Animator animator;
     bool canMoveAfterDamage = false;
     AudioSource audioSource;
+
+    PlayerCombat playerCombat;
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
+        playerCombat = GetComponent<PlayerCombat>();
     }
 
-    public void Damage(){
+    public void Damage(Transform attackerTransform){
         print("Damaged Received");
+        if(playerCombat.CanDoSheatAttack() && animator.GetInteger("Attack") != 0){
+            print("SheatAttack");
+            playerCombat.SheatAttack(attackerTransform);
+            return;
+        }
+        playerCombat.SetIsAttacking(false);
         canMoveAfterDamage=false;
         playerControllerFSM.SendEvent("DAMAGED");
         animator.SetInteger("Damaged",1);

@@ -44,5 +44,6 @@ public class PlayerDamageBehavior : StateMachineBehaviour
     override public void OnStateMachineExit(Animator animator, int stateMachinePathHash)
     {
        animator.SetInteger("Damaged",0);
+       animator.SetInteger("Attack",0);
     }
 }

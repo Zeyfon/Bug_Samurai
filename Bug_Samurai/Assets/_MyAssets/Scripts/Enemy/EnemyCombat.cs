@@ -45,7 +45,7 @@ public class EnemyCombat : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other) {
         if(other.CompareTag("Player")){
-            other.GetComponent<IDamageable>().Damage();
+            other.GetComponent<IDamageable>().Damage(transform);
             attackCollider.enabled=false;
         }
     }

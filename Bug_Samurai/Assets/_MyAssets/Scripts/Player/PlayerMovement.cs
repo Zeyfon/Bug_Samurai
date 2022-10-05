@@ -20,8 +20,8 @@ public class PlayerMovement : MonoBehaviour
     //Method called by the playerControllerFSM in the Idle/Moving State
     public void PlayerMovement_Move(Vector2 move){
         //print(move);
-        rb.velocity = new Vector2(move.x,rb.velocity.y) * velocity;
-        print(move.x + "  " + rb.velocity);
+        rb.velocity = new Vector2(move.x* velocity,rb.velocity.y) ;
+        //print(move.x + "  " + rb.velocity);
         if(move.x !=0){
             animator.SetFloat("Speed",1);
         }
