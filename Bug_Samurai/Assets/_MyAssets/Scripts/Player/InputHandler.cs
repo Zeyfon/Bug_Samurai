@@ -11,11 +11,16 @@ public class InputHandler : MonoBehaviour
     [SerializeField] PlayMakerFSM playerControllerFSM;
     [SerializeField] PlayMakerFSM enemyControllerFSM;
     FsmVector2 movementInput;
+    FsmBool isSheatPosturefsm;
+    bool isPostureButtonPressed = false;
+
 
    // private InputAction jumpAction;
     private InputAction moveAction;
     private InputAction attackAction;
     private InputAction abilitateEnemy;
+    private InputAction sheatPosture;
+
 
 
     void Awake()
@@ -24,12 +29,14 @@ public class InputHandler : MonoBehaviour
         moveAction = input.actions["Move"];
         attackAction = input.actions["Attack"];
         abilitateEnemy = input.actions["AbilitateEnemy"];
+        sheatPosture = input.actions["SheatPosture"];
     }
 
     private void OnEnable() 
     {
         attackAction.performed += Attack;
         abilitateEnemy.performed += EnableEnemy;
+        sheatPosture.performed += SheatPosture;
 
     }
 
@@ -41,6 +48,8 @@ public class InputHandler : MonoBehaviour
 
     private void Start() {
     movementInput = FsmVariables.GlobalVariables.FindFsmVector2("movementInput");
+    isSheatPosturefsm = FsmVariables.GlobalVariables.FindFsmBool("isSheatPostureButtonPressed");
+
     }
 
     // Update is called once per frame
@@ -55,5 +64,11 @@ public class InputHandler : MonoBehaviour
     }
     void EnableEnemy(InputAction.CallbackContext context){
         enemyControllerFSM.SendEvent("CHASEPLAYER");
+    }
+
+    void SheatPosture(InputAction.CallbackContext context){
+        isPostureButtonPressed = !isPostureButtonPressed;
+        //print(isPostureButtonPressed);
+        isSheatPosturefsm.Value = isPostureButtonPressed;
     }
 }

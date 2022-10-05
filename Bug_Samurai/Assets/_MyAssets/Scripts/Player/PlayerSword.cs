@@ -23,7 +23,7 @@ public class PlayerSword : MonoBehaviour
         print("An object was found :"+ other.gameObject.name);
         if (other.TryGetComponent(out IDamageable iDamageable)){
                 if(!damageables.Contains(iDamageable)){
-                    iDamageable.Damage();
+                    iDamageable.Damage(transform.parent.parent.transform);
                     damageables.Add(iDamageable);
                 }
             print("Damege done to ");

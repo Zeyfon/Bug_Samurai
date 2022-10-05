@@ -17,11 +17,10 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void Damage(){
+    public void Damage(Transform attackerTransform){
         print("Enemy got damaged");
         enemyControllerFSM.SendEvent("DAMAGED");
         animator.SetInteger("Damaged",1);
-        animator.SetInteger("Attack",0);
     }
 
     public void DamagedSound(){

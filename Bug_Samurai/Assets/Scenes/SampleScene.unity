@@ -596,6 +596,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1892958101206381320, guid: b672dc359daa095429a41555022ecd01, type: 3}
+      propertyPath: audioSheatAttack
+      value: 
+      objectReference: {fileID: 8300000, guid: cf2a2a9bbd4164c499eb669b4fe3899f, type: 3}
     - target: {fileID: 4447915170263853104, guid: b672dc359daa095429a41555022ecd01, type: 3}
       propertyPath: m_Name
       value: Body
