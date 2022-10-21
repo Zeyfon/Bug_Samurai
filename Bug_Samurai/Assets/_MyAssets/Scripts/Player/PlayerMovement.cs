@@ -67,4 +67,14 @@ public class PlayerMovement : MonoBehaviour
         audioSource.PlayOneShot(runningAudio, volumeRunning);
     }
 
+    public void Evade(Vector2 movement){
+        //If movement is pointing forward 
+            //Do a forward evasion
+        //else 
+            //Do a backward evasion
+
+    }
+    public bool ISEvading(){
+        return true;
+    }
 }

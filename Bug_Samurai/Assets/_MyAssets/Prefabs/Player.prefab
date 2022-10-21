@@ -409,6 +409,8 @@ MonoBehaviour:
   playerMovement: {fileID: 2191504155436253058}
   playerSword: {fileID: 892241159958938163}
   sheatAttackMaxTime: 2
+  audioSheatAttack: {fileID: 0}
+  volumeSheatAttack: 0.5
   playerControllerFSM: {fileID: 5659728997865879991}
 --- !u!114 &2191504155436253058
 MonoBehaviour:
@@ -512,7 +514,7 @@ MonoBehaviour:
         x: 518.2422
         y: 219.17969
         width: 175
-        height: 64
+        height: 80
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
@@ -540,6 +542,15 @@ MonoBehaviour:
           isSystemEvent: 0
           isGlobal: 0
         toState: SheatPosture 2
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: EVADE
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Evade
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
@@ -2049,6 +2060,200 @@ MonoBehaviour:
         - getObjectData
         paramDataPos: 000000000000000000000000000000000000000000000000000000000100000001000000000000000000000000000000010000000000000002000000
         paramByteDataSize: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    - name: Evade
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 828.03125
+        y: 404.85938
+        width: 118
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: ACTIONENDED
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Reset Values
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.CallMethodAdvanced
+        - HutongGames.PlayMaker.Actions.CallMethodAdvanced
+        - HutongGames.PlayMaker.Actions.BoolTest
+        customNames:
+        - 
+        - 
+        - 
+        actionEnabled: 010101
+        actionIsOpen: 010101
+        actionStartIndex: 00000000080000000f000000
+        actionHashCodes: 6d6181036d618103a4c8bf00
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: Evade
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: ISEvading
+        fsmObjectParams:
+        - useVariable: 1
+          name: movementComponent
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          typeName: PlayerMovement
+          value: {fileID: 2191504155436253058}
+        - useVariable: 1
+          name: movementComponent
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          typeName: PlayerMovement
+          value: {fileID: 2191504155436253058}
+        fsmVarParams:
+        - variableName: movementInput
+          objectType: UnityEngine.Object
+          useVariable: 1
+          type: 5
+          floatValue: 0
+          intValue: 0
+          boolValue: 0
+          stringValue: 
+          vector4Value: {x: 0, y: 0, z: 0, w: 0}
+          objectReference: {fileID: 0}
+          arrayValue:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            type: -1
+            objectTypeName: 
+            floatValues: []
+            intValues: 
+            boolValues: 
+            stringValues: []
+            vector4Values: []
+            objectReferences: []
+        - variableName: 
+          objectType: 
+          useVariable: 0
+          type: -1
+          floatValue: 0
+          intValue: 0
+          boolValue: 0
+          stringValue: 
+          vector4Value: {x: 0, y: 0, z: 0, w: 0}
+          objectReference: {fileID: 0}
+          arrayValue:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            type: -1
+            objectTypeName: 
+            floatValues: []
+            intValues: 
+            boolValues: 
+            stringValues: []
+            vector4Values: []
+            objectReferences: []
+        - variableName: isEvading
+          objectType: UnityEngine.Object
+          useVariable: 1
+          type: 2
+          floatValue: 0
+          intValue: 0
+          boolValue: 0
+          stringValue: 
+          vector4Value: {x: 0, y: 0, z: 0, w: 0}
+          objectReference: {fileID: 0}
+          arrayValue:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            type: -1
+            objectTypeName: 
+            floatValues: []
+            intValues: 
+            boolValues: 
+            stringValues: []
+            vector4Values: []
+            objectReferences: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams:
+        - useVariable: 1
+          name: isEvading
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams:
+        - 
+        - ACTIONENDED
+        byteData: 00000000000000010000000001
+        arrayParamSizes: 0100000000000000
+        arrayParamTypes:
+        - HutongGames.PlayMaker.FsmVar
+        - HutongGames.PlayMaker.FsmVar
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 18000000120000000c000000270000002700000001000000010000000700000018000000120000000c0000002700000001000000010000000700000011000000170000001700000001000000
+        paramName:
+        - behaviour
+        - methodName
+        - parameters
+        - 
+        - storeResult
+        - manualUI
+        - everyFrame
+        - updateType
+        - behaviour
+        - methodName
+        - parameters
+        - storeResult
+        - manualUI
+        - everyFrame
+        - updateType
+        - boolVariable
+        - isTrue
+        - isFalse
+        - everyFrame
+        paramDataPos: 0000000000000000000000000000000001000000000000000100000002000000010000000100000001000000020000000600000007000000080000000000000000000000010000000c000000
+        paramByteDataSize: 00000000000000000000000000000000000000000100000001000000040000000000000000000000000000000000000001000000010000000400000000000000000000000000000001000000
     events:
     - name: FINISHED
       isSystemEvent: 1
@@ -2062,10 +2267,13 @@ MonoBehaviour:
     - name: DAMAGED
       isSystemEvent: 0
       isGlobal: 0
+    - name: DISABLESHEATPOSTURE
+      isSystemEvent: 0
+      isGlobal: 0
     - name: ENABLESHEATPOSTURE
       isSystemEvent: 0
       isGlobal: 0
-    - name: DISABLESHEATPOSTURE
+    - name: EVADE
       isSystemEvent: 0
       isGlobal: 0
     - name: SHEATATTACK
@@ -2086,13 +2294,19 @@ MonoBehaviour:
       intVariables: []
       boolVariables:
       - useVariable: 1
+        name: canMoveAfterDamage
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
+      - useVariable: 1
         name: isAttacking
         tooltip: 
         showInInspector: 0
         networkSync: 0
         value: 0
       - useVariable: 1
-        name: canMoveAfterDamage
+        name: isEvading
         tooltip: 
         showInInspector: 0
         networkSync: 0
@@ -2145,7 +2359,7 @@ MonoBehaviour:
       enumVariables: []
       categories:
       - 
-      variableCategoryIDs: 00000000000000000000000000000000000000000000000000000000
+      variableCategoryIDs: 0000000000000000000000000000000000000000000000000000000000000000
     description: 
     docUrl: 
     showStateLabel: 0

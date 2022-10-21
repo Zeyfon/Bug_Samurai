@@ -20,6 +20,7 @@ public class InputHandler : MonoBehaviour
     private InputAction attackAction;
     private InputAction abilitateEnemy;
     private InputAction sheatPosture;
+    private InputAction evasionAction;
 
 
 
@@ -30,6 +31,7 @@ public class InputHandler : MonoBehaviour
         attackAction = input.actions["Attack"];
         abilitateEnemy = input.actions["AbilitateEnemy"];
         sheatPosture = input.actions["SheatPosture"];
+        evasionAction = input.actions["Evasion"];
     }
 
     private void OnEnable() 
@@ -37,13 +39,15 @@ public class InputHandler : MonoBehaviour
         attackAction.performed += Attack;
         abilitateEnemy.performed += EnableEnemy;
         sheatPosture.performed += SheatPosture;
+        evasionAction.performed += Evasion;
 
     }
 
     private void OnDisable() 
     {
         attackAction.performed -= Attack;
-            abilitateEnemy.performed -= EnableEnemy;
+        abilitateEnemy.performed -= EnableEnemy;
+        sheatPosture.performed += SheatPosture;
     }
 
     private void Start() {
@@ -70,5 +74,9 @@ public class InputHandler : MonoBehaviour
         isPostureButtonPressed = !isPostureButtonPressed;
         //print(isPostureButtonPressed);
         isSheatPosturefsm.Value = isPostureButtonPressed;
+    }
+
+    void Evasion(InputAction.CallbackContext context){
+        playerControllerFSM.SendEvent("EVADE");
     }
 }
