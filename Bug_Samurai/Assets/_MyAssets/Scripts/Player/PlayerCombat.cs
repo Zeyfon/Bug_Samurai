@@ -5,19 +5,34 @@ using HutongGames.PlayMaker;
 
 public class PlayerCombat : MonoBehaviour
 {
+
+    [Header("Connection Classes")]
+    [SerializeField] PlayMakerFSM playerControllerFSM;
+    [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] PlayerSword playerSword;
+
+    [Header("Sheat Attack Counter Time")]
+    [Range(0,2)]
+    [SerializeField] float sheatAttackMaxTime = 2.0f;
+
+    [Header("Audios with Volumes")]
     [SerializeField] AudioClip attackAudio1;
     [Range(0,1)]
     [SerializeField] float volumeAttack1 = 0.5f;
     [SerializeField] AudioClip attackAudio2;
     [Range(0,1)]
     [SerializeField] float volumeAttack2 = 0.5f;
-    [SerializeField] PlayerMovement playerMovement;
-    [SerializeField] PlayerSword playerSword;
-    [SerializeField] float sheatAttackMaxTime = 2.0f;
+
+
     [SerializeField] AudioClip audioSheatAttack;
     [Range(0,1)]
     [SerializeField] float volumeSheatAttack = 0.5f;
-    [SerializeField] PlayMakerFSM playerControllerFSM;
+
+    [Header("Slash VFXs")]
+    [SerializeField] GameObject combotAttack1VFX;
+    [SerializeField] GameObject combotAttack2VFX;
+    [SerializeField] GameObject sheatAttackVFX;
+
 
     bool isAttacking = false;
   
@@ -132,5 +147,26 @@ public class PlayerCombat : MonoBehaviour
 
     public void SetIsAttacking(bool state){
         isAttacking = state;
+    }
+
+    public void PlayComboAttack1VFX(){
+        GameObject vfx = GameObject.Instantiate(combotAttack1VFX, transform.position, Quaternion.identity);
+        StartCoroutine(DestroyObject(vfx));
+    }
+    public void PlayComboAttack2VFX(){
+        GameObject vfx = GameObject.Instantiate(combotAttack2VFX, transform.position, Quaternion.identity);
+        StartCoroutine(DestroyObject(vfx));
+    }    
+    public void PlaySheatAttackVFX(){
+        GameObject vfx = GameObject.Instantiate(sheatAttackVFX, transform.position, Quaternion.identity);
+        StartCoroutine(DestroyObject(vfx));
+    }
+
+    IEnumerator DestroyObject(GameObject vfx){
+        ParticleSystem particles = vfx.GetComponent<ParticleSystem>();
+        while(particles.isPlaying){
+            yield return null;
+        }
+        Destroy(vfx);
     }
 }
