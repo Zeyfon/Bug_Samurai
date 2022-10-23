@@ -325,7 +325,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -402,14 +402,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114c99b5cb90d8944b082243026c8501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerControllerFSM: {fileID: 5659728997865879991}
+  playerMovement: {fileID: 2191504155436253058}
+  playerSword: {fileID: 892241159958938163}
+  sheatAttackMaxTime: 1
   attackAudio1: {fileID: 8300000, guid: d2a2da07ffbe080428bc02a1103ab2f6, type: 3}
   volumeAttack1: 0.5
   attackAudio2: {fileID: 8300000, guid: cf2a2a9bbd4164c499eb669b4fe3899f, type: 3}
   volumeAttack2: 0.5
-  playerMovement: {fileID: 2191504155436253058}
-  playerSword: {fileID: 892241159958938163}
-  sheatAttackMaxTime: 2
-  playerControllerFSM: {fileID: 5659728997865879991}
+  audioSheatAttack: {fileID: 8300000, guid: cf2a2a9bbd4164c499eb669b4fe3899f, type: 3}
+  volumeSheatAttack: 0.5
+  combotAttack1VFX: {fileID: 956851184923464942, guid: 2caf88cf1c55e58489e87893a96dd7a4, type: 3}
+  combotAttack2VFX: {fileID: 8205096379538595028, guid: 111dd7adf10886f46be1f42dc626827d, type: 3}
+  sheatAttackVFX: {fileID: 2753802828734506385, guid: b4eff3447db65c6408ea797b0487f772, type: 3}
 --- !u!114 &2191504155436253058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,9 +427,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b251460464ae6ba43bd469dc233a7578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ghostPlayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
   velocity: 3
   runningAudio: {fileID: 8300000, guid: 4331fd034f2e8a84581ba8dbf9b42303, type: 3}
   volumeRunning: 0.5
+  evadeBackwardImpulse: 25
+  evadeForwardConstantSpeed: 15
+  evadeFrontalAudio: {fileID: 8300000, guid: f882b951de9648f4fb0bf51b5d0623fa, type: 3}
+  evadeFrontalVolume: 0.5
+  evadeBackwardAudio: {fileID: 8300000, guid: f882b951de9648f4fb0bf51b5d0623fa, type: 3}
+  evadeBackwardVolume: 0.5
 --- !u!114 &5659728997865879991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,7 +529,7 @@ MonoBehaviour:
         x: 518.2422
         y: 219.17969
         width: 175
-        height: 64
+        height: 80
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
@@ -540,6 +557,15 @@ MonoBehaviour:
           isSystemEvent: 0
           isGlobal: 0
         toState: SheatPosture 2
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: EVADE
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Start Evade
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
@@ -1505,14 +1531,16 @@ MonoBehaviour:
       actionData:
         actionNames:
         - HutongGames.PlayMaker.Actions.CallMethodAdvanced
+        - HutongGames.PlayMaker.Actions.CallMethodAdvanced
         - HutongGames.PlayMaker.Actions.NextFrameEvent
         customNames:
         - 
         - 
-        actionEnabled: 0101
-        actionIsOpen: 0101
-        actionStartIndex: 0000000007000000
-        actionHashCodes: 6d61810388611604
+        - 
+        actionEnabled: 010101
+        actionIsOpen: 010101
+        actionStartIndex: 00000000070000000e000000
+        actionHashCodes: 6d6181036d61810388611604
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams: []
@@ -1529,6 +1557,12 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: ResetAnimationValues
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: ResetLayerMasks
         fsmObjectParams:
         - useVariable: 1
           name: combatComponent
@@ -1537,7 +1571,38 @@ MonoBehaviour:
           networkSync: 0
           typeName: PlayerCombat
           value: {fileID: 1892958101206381320}
+        - useVariable: 1
+          name: movementComponent
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          typeName: PlayerMovement
+          value: {fileID: 2191504155436253058}
         fsmVarParams:
+        - variableName: 
+          objectType: 
+          useVariable: 0
+          type: -1
+          floatValue: 0
+          intValue: 0
+          boolValue: 0
+          stringValue: 
+          vector4Value: {x: 0, y: 0, z: 0, w: 0}
+          objectReference: {fileID: 0}
+          arrayValue:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            type: -1
+            objectTypeName: 
+            floatValues: []
+            intValues: 
+            boolValues: 
+            stringValues: []
+            vector4Values: []
+            objectReferences: []
         - variableName: 
           objectType: 
           useVariable: 0
@@ -1574,13 +1639,14 @@ MonoBehaviour:
         fsmQuaternionParams: []
         stringParams:
         - FINISHED
-        byteData: 000000000000
-        arrayParamSizes: 00000000
+        byteData: 000000000000000002000000
+        arrayParamSizes: 0000000000000000
         arrayParamTypes:
+        - HutongGames.PlayMaker.FsmVar
         - HutongGames.PlayMaker.FsmVar
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 18000000120000000c0000002700000001000000010000000700000017000000
+        paramDataType: 18000000120000000c0000002700000001000000010000000700000018000000120000000c0000002700000001000000010000000700000017000000
         paramName:
         - behaviour
         - methodName
@@ -1589,9 +1655,16 @@ MonoBehaviour:
         - manualUI
         - everyFrame
         - updateType
+        - behaviour
+        - methodName
+        - parameters
+        - storeResult
+        - manualUI
+        - everyFrame
+        - updateType
         - sendEvent
-        paramDataPos: 0000000000000000000000000000000000000000010000000200000000000000
-        paramByteDataSize: 0000000000000000000000000000000001000000010000000400000000000000
+        paramDataPos: 000000000000000000000000000000000000000001000000020000000100000001000000010000000100000006000000070000000800000000000000
+        paramByteDataSize: 000000000000000000000000000000000100000001000000040000000000000000000000000000000000000001000000010000000400000000000000
     - name: ReadySheatAttack
       description: 
       colorIndex: 0
@@ -2049,6 +2122,597 @@ MonoBehaviour:
         - getObjectData
         paramDataPos: 000000000000000000000000000000000000000000000000000000000100000001000000000000000000000000000000010000000000000002000000
         paramByteDataSize: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    - name: Start Evade
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 862.3203
+        y: 357.0547
+        width: 143
+        height: 48
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FRONTALEVADE
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Frontal Evade
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: BACKWARDEVADE
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Backward Evade
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.CallMethodAdvanced
+        - HutongGames.PlayMaker.Actions.CallMethodAdvanced
+        - HutongGames.PlayMaker.Actions.IntCompare
+        - HutongGames.PlayMaker.Actions.IntCompare
+        customNames:
+        - 
+        - 
+        - 
+        - 
+        actionEnabled: 01010101
+        actionIsOpen: 01010101
+        actionStartIndex: 00000000080000000f00000015000000
+        actionHashCodes: 6d6181036d61810309faa10209faa102
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: StartEvade
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: GetEvadingState
+        fsmObjectParams:
+        - useVariable: 1
+          name: movementComponent
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          typeName: PlayerMovement
+          value: {fileID: 2191504155436253058}
+        - useVariable: 1
+          name: movementComponent
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          typeName: PlayerMovement
+          value: {fileID: 2191504155436253058}
+        fsmVarParams:
+        - variableName: movementInput
+          objectType: UnityEngine.Object
+          useVariable: 1
+          type: 5
+          floatValue: 0
+          intValue: 0
+          boolValue: 0
+          stringValue: 
+          vector4Value: {x: 0, y: 0, z: 0, w: 0}
+          objectReference: {fileID: 0}
+          arrayValue:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            type: -1
+            objectTypeName: 
+            floatValues: []
+            intValues: 
+            boolValues: 
+            stringValues: []
+            vector4Values: []
+            objectReferences: []
+        - variableName: 
+          objectType: 
+          useVariable: 0
+          type: -1
+          floatValue: 0
+          intValue: 0
+          boolValue: 0
+          stringValue: 
+          vector4Value: {x: 0, y: 0, z: 0, w: 0}
+          objectReference: {fileID: 0}
+          arrayValue:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            type: -1
+            objectTypeName: 
+            floatValues: []
+            intValues: 
+            boolValues: 
+            stringValues: []
+            vector4Values: []
+            objectReferences: []
+        - variableName: evadeState
+          objectType: UnityEngine.Object
+          useVariable: 1
+          type: 1
+          floatValue: 0
+          intValue: 0
+          boolValue: 0
+          stringValue: 
+          vector4Value: {x: 0, y: 0, z: 0, w: 0}
+          objectReference: {fileID: 0}
+          arrayValue:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            type: -1
+            objectTypeName: 
+            floatValues: []
+            intValues: 
+            boolValues: 
+            stringValues: []
+            vector4Values: []
+            objectReferences: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams:
+        - useVariable: 1
+          name: evadeState
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
+        - useVariable: 1
+          name: evadeState
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 2
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams:
+        - FRONTALEVADE
+        - 
+        - 
+        - BACKWARDEVADE
+        - 
+        - 
+        byteData: 0000000000000001000000000101
+        arrayParamSizes: 0100000000000000
+        arrayParamTypes:
+        - HutongGames.PlayMaker.FsmVar
+        - HutongGames.PlayMaker.FsmVar
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 18000000120000000c000000270000002700000001000000010000000700000018000000120000000c00000027000000010000000100000007000000100000001000000017000000170000001700000001000000100000001000000017000000170000001700000001000000
+        paramName:
+        - behaviour
+        - methodName
+        - parameters
+        - 
+        - storeResult
+        - manualUI
+        - everyFrame
+        - updateType
+        - behaviour
+        - methodName
+        - parameters
+        - storeResult
+        - manualUI
+        - everyFrame
+        - updateType
+        - integer1
+        - integer2
+        - equal
+        - lessThan
+        - greaterThan
+        - everyFrame
+        - integer1
+        - integer2
+        - equal
+        - lessThan
+        - greaterThan
+        - everyFrame
+        paramDataPos: 00000000000000000000000000000000010000000000000001000000020000000100000001000000010000000200000006000000070000000800000000000000010000000000000001000000020000000c00000002000000030000000300000004000000050000000d000000
+        paramByteDataSize: 000000000000000000000000000000000000000001000000010000000400000000000000000000000000000000000000010000000100000004000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000001000000
+    - name: Frontal Evade
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 849.5078
+        y: 441.02344
+        width: 118
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: ACTIONENDED
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Reset Values
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.CallMethodAdvanced
+        - HutongGames.PlayMaker.Actions.CallMethodAdvanced
+        - HutongGames.PlayMaker.Actions.IntCompare
+        customNames:
+        - 
+        - 
+        - 
+        actionEnabled: 010101
+        actionIsOpen: 010101
+        actionStartIndex: 00000000070000000e000000
+        actionHashCodes: 6d6181036d61810309faa102
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: ApplyFrontaEvadeForce
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: GetEvadingState
+        fsmObjectParams:
+        - useVariable: 1
+          name: movementComponent
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          typeName: PlayerMovement
+          value: {fileID: 2191504155436253058}
+        - useVariable: 1
+          name: movementComponent
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          typeName: PlayerMovement
+          value: {fileID: 2191504155436253058}
+        fsmVarParams:
+        - variableName: 
+          objectType: 
+          useVariable: 0
+          type: -1
+          floatValue: 0
+          intValue: 0
+          boolValue: 0
+          stringValue: 
+          vector4Value: {x: 0, y: 0, z: 0, w: 0}
+          objectReference: {fileID: 0}
+          arrayValue:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            type: -1
+            objectTypeName: 
+            floatValues: []
+            intValues: 
+            boolValues: 
+            stringValues: []
+            vector4Values: []
+            objectReferences: []
+        - variableName: evadeState
+          objectType: UnityEngine.Object
+          useVariable: 1
+          type: 1
+          floatValue: 0
+          intValue: 0
+          boolValue: 0
+          stringValue: 
+          vector4Value: {x: 0, y: 0, z: 0, w: 0}
+          objectReference: {fileID: 0}
+          arrayValue:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            type: -1
+            objectTypeName: 
+            floatValues: []
+            intValues: 
+            boolValues: 
+            stringValues: []
+            vector4Values: []
+            objectReferences: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams:
+        - useVariable: 1
+          name: evadeState
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 5
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams:
+        - ACTIONENDED
+        - 
+        - 
+        byteData: 00010200000000010200000001
+        arrayParamSizes: 0000000000000000
+        arrayParamTypes:
+        - HutongGames.PlayMaker.FsmVar
+        - HutongGames.PlayMaker.FsmVar
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 18000000120000000c0000002700000001000000010000000700000018000000120000000c00000027000000010000000100000007000000100000001000000017000000170000001700000001000000
+        paramName:
+        - behaviour
+        - methodName
+        - parameters
+        - storeResult
+        - manualUI
+        - everyFrame
+        - updateType
+        - behaviour
+        - methodName
+        - parameters
+        - storeResult
+        - manualUI
+        - everyFrame
+        - updateType
+        - integer1
+        - integer2
+        - equal
+        - lessThan
+        - greaterThan
+        - everyFrame
+        paramDataPos: 000000000000000000000000000000000000000001000000020000000100000001000000010000000100000006000000070000000800000000000000010000000000000001000000020000000c000000
+        paramByteDataSize: 0000000000000000000000000000000001000000010000000400000000000000000000000000000000000000010000000100000004000000000000000000000000000000000000000000000001000000
+    - name: Backward Evade
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 842.4453
+        y: 492.8672
+        width: 128
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: ACTIONENDED
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Reset Values
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.CallMethodAdvanced
+        - HutongGames.PlayMaker.Actions.CallMethodAdvanced
+        - HutongGames.PlayMaker.Actions.IntCompare
+        customNames:
+        - 
+        - 
+        - 
+        actionEnabled: 010101
+        actionIsOpen: 010101
+        actionStartIndex: 00000000070000000e000000
+        actionHashCodes: 6d6181036d61810309faa102
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: ApplyBackwardEvadeForce
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: GetEvadingState
+        fsmObjectParams:
+        - useVariable: 1
+          name: movementComponent
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          typeName: PlayerMovement
+          value: {fileID: 2191504155436253058}
+        - useVariable: 1
+          name: movementComponent
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          typeName: PlayerMovement
+          value: {fileID: 2191504155436253058}
+        fsmVarParams:
+        - variableName: 
+          objectType: 
+          useVariable: 0
+          type: -1
+          floatValue: 0
+          intValue: 0
+          boolValue: 0
+          stringValue: 
+          vector4Value: {x: 0, y: 0, z: 0, w: 0}
+          objectReference: {fileID: 0}
+          arrayValue:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            type: -1
+            objectTypeName: 
+            floatValues: []
+            intValues: 
+            boolValues: 
+            stringValues: []
+            vector4Values: []
+            objectReferences: []
+        - variableName: evadeState
+          objectType: UnityEngine.Object
+          useVariable: 1
+          type: 1
+          floatValue: 0
+          intValue: 0
+          boolValue: 0
+          stringValue: 
+          vector4Value: {x: 0, y: 0, z: 0, w: 0}
+          objectReference: {fileID: 0}
+          arrayValue:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            type: -1
+            objectTypeName: 
+            floatValues: []
+            intValues: 
+            boolValues: 
+            stringValues: []
+            vector4Values: []
+            objectReferences: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams:
+        - useVariable: 1
+          name: evadeState
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 5
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams:
+        - ACTIONENDED
+        - 
+        - 
+        byteData: 00000200000000010200000001
+        arrayParamSizes: 0000000000000000
+        arrayParamTypes:
+        - HutongGames.PlayMaker.FsmVar
+        - HutongGames.PlayMaker.FsmVar
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 18000000120000000c0000002700000001000000010000000700000018000000120000000c00000027000000010000000100000007000000100000001000000017000000170000001700000001000000
+        paramName:
+        - behaviour
+        - methodName
+        - parameters
+        - storeResult
+        - manualUI
+        - everyFrame
+        - updateType
+        - behaviour
+        - methodName
+        - parameters
+        - storeResult
+        - manualUI
+        - everyFrame
+        - updateType
+        - integer1
+        - integer2
+        - equal
+        - lessThan
+        - greaterThan
+        - everyFrame
+        paramDataPos: 000000000000000000000000000000000000000001000000020000000100000001000000010000000100000006000000070000000800000000000000010000000000000001000000020000000c000000
+        paramByteDataSize: 0000000000000000000000000000000001000000010000000400000000000000000000000000000000000000010000000100000004000000000000000000000000000000000000000000000001000000
     events:
     - name: FINISHED
       isSystemEvent: 1
@@ -2062,13 +2726,22 @@ MonoBehaviour:
     - name: DAMAGED
       isSystemEvent: 0
       isGlobal: 0
-    - name: ENABLESHEATPOSTURE
-      isSystemEvent: 0
-      isGlobal: 0
     - name: DISABLESHEATPOSTURE
       isSystemEvent: 0
       isGlobal: 0
+    - name: ENABLESHEATPOSTURE
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: EVADE
+      isSystemEvent: 0
+      isGlobal: 0
     - name: SHEATATTACK
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: FRONTALEVADE
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: BACKWARDEVADE
       isSystemEvent: 0
       isGlobal: 0
     globalTransitions:
@@ -2083,8 +2756,20 @@ MonoBehaviour:
       colorIndex: 0
     variables:
       floatVariables: []
-      intVariables: []
+      intVariables:
+      - useVariable: 1
+        name: evadeState
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
       boolVariables:
+      - useVariable: 1
+        name: canMoveAfterDamage
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
       - useVariable: 1
         name: isAttacking
         tooltip: 
@@ -2092,7 +2777,7 @@ MonoBehaviour:
         networkSync: 0
         value: 0
       - useVariable: 1
-        name: canMoveAfterDamage
+        name: isEvading
         tooltip: 
         showInInspector: 0
         networkSync: 0
@@ -2145,7 +2830,7 @@ MonoBehaviour:
       enumVariables: []
       categories:
       - 
-      variableCategoryIDs: 00000000000000000000000000000000000000000000000000000000
+      variableCategoryIDs: 000000000000000000000000000000000000000000000000000000000000000000000000
     description: 
     docUrl: 
     showStateLabel: 0
