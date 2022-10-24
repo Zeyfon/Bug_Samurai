@@ -43,12 +43,14 @@ public class EnemyCombat : MonoBehaviour
         return isAttacking;
     }
 
-    private void OnTriggerStay2D(Collider2D other) {
-        if(other.CompareTag("Player")){
-            other.GetComponent<IDamageable>().Damage(transform);
-            attackCollider.enabled=false;
-        }
-    }
+    //TODO Change this feature to only attack the player with the Attack Collider attached
+    //to the AttackCollider gameObject
+    // private void OnTriggerStay2D(Collider2D other) {
+    //     if(other.CompareTag("Player")){
+    //         other.GetComponent<IDamageable>().Damage(transform);
+    //         attackCollider.enabled=false;
+    //     }
+    // }
     public void AttackSound(){
         audioSource.PlayOneShot(audioAttack, volumeAttack);
     }
