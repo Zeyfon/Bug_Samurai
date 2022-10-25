@@ -21,7 +21,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         playerCombat = GetComponent<PlayerCombat>();
     }
 
-    public void Damage(Transform attackerTransform){
+    public void Damage(Transform attackerTransform, AttackTypes attackTypes){
         print("Damaged Received");
         if(playerCombat.CanDoSheatAttack() && animator.GetInteger("Attack") != 0){
             print("SheatAttack");

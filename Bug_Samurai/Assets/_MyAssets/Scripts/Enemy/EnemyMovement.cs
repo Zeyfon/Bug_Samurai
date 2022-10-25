@@ -32,14 +32,14 @@ public class EnemyMovement : MonoBehaviour
     }
 
     void LookAtPlayer(Transform playerTransform){
-        print("Looking at Player");
+        //print("Looking at Player");
         if(IsPlayerAtBack(playerTransform)){
             Flip();
         }
     }
 
     bool IsPlayerAtBack(Transform playerTransform){
-        print("Checking if player is at back");
+        //print("Checking if player is at back");
         //print(transform.position.x-playerTransform.position.x + "  " +  transform.rotation.eulerAngles.y);
         if(transform.position.x-playerTransform.position.x>0 && transform.rotation.eulerAngles.y==0){
             return true;
@@ -61,7 +61,7 @@ public class EnemyMovement : MonoBehaviour
                 Vector3 rotation = new Vector3(0, 0, 0);
                 currentRotation.eulerAngles = rotation;
                 transform.rotation = currentRotation;
-                print("Enemy rotated");
+                //print("Enemy rotated");
         }
         else if (transform.rotation.eulerAngles.y == 0)
         {
@@ -69,7 +69,7 @@ public class EnemyMovement : MonoBehaviour
                 Vector3 rotation = new Vector3(0, 180, 0);
                 currentRotation.eulerAngles = rotation;
                 transform.rotation = currentRotation;
-                print("Enemy rotated");
+                //print("Enemy rotated");
         }
     }
 
@@ -78,6 +78,6 @@ public class EnemyMovement : MonoBehaviour
         //rb.velocity = new Vector2(2,0);
         //rb.velocity = new Vector2(Vector2.right.x,0)*speed;
         rb.velocity = new Vector2(transform.right.x,rb.velocity.y)*speed;
-        print("Enemy is moving");
+        //print("Enemy is moving");
     }
 }

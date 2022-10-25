@@ -129,6 +129,7 @@ public class PlayerCombat : MonoBehaviour
     }
 
     public void SheatAttack(Transform attackerTransform){
+        print("The attacker is " +attackerTransform);
         this.attackerTransform = attackerTransform;
         playerControllerFSM.SendEvent("SHEATATTACK");
     }
@@ -138,7 +139,7 @@ public class PlayerCombat : MonoBehaviour
     }
 
     public void SheatAttackDamage(){
-        attackerTransform.GetComponent<IDamageable>().Damage(transform);
+        attackerTransform.GetComponent<IDamageable>().Damage(transform,AttackTypes.SpecialAttack);
     }
 
     public void SheatAttackSound(){
