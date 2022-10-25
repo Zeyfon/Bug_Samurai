@@ -2211,13 +2211,6 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.21666667
-    functionName: PlayComboAttack2VFX
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 0.23333333
     functionName: EnableSwordCollider
     data: 
@@ -2227,6 +2220,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.25
     functionName: PlayAttackAudio2
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.33333334
+    functionName: PlayComboAttack2VFX
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

@@ -412,9 +412,9 @@ MonoBehaviour:
   volumeAttack2: 0.5
   audioSheatAttack: {fileID: 8300000, guid: cf2a2a9bbd4164c499eb669b4fe3899f, type: 3}
   volumeSheatAttack: 0.5
-  combotAttack1VFX: {fileID: 956851184923464942, guid: 2caf88cf1c55e58489e87893a96dd7a4, type: 3}
-  combotAttack2VFX: {fileID: 8205096379538595028, guid: 111dd7adf10886f46be1f42dc626827d, type: 3}
-  sheatAttackVFX: {fileID: 2753802828734506385, guid: b4eff3447db65c6408ea797b0487f772, type: 3}
+  combotAttack1VFX: {fileID: 6792073445626459971, guid: 85f3e3eeb46cd754092b6561cfdb822d, type: 3}
+  combotAttack2VFX: {fileID: 7864041025692017803, guid: 83f3b83127f98594ca476f2119817f02, type: 3}
+  sheatAttackVFX: {fileID: 3183103670429015080, guid: 5ad16c75c8ae2934cbb9b699a7120f47, type: 3}
 --- !u!114 &2191504155436253058
 MonoBehaviour:
   m_ObjectHideFlags: 0
