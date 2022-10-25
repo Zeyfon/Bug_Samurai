@@ -13,12 +13,20 @@ public class DetectionCollider : MonoBehaviour
 
 
     private void OnTriggerEnter2D(Collider2D other) {
-        print(other.gameObject.name);
-        isPlayerDetected = true;
+
+        if(other.CompareTag("Player")){
+            print(other.gameObject.name);
+            isPlayerDetected = true;
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        print(other.gameObject.name);
-        isPlayerDetected = false;
+
+        if(other.CompareTag("Player")){
+            isPlayerDetected = false;
+            print(other.gameObject.name);
+        }
+
     }
 }

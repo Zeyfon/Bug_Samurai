@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyCombat : MonoBehaviour
 {
 
-    [SerializeField] Collider2D attackCollider;
+    [SerializeField] AttackCollider attackCollider;
     [SerializeField] AudioClip audioAttack;
     [Range(0,1)]
     [SerializeField] float volumeAttack = 0.5f;
@@ -26,12 +26,12 @@ public class EnemyCombat : MonoBehaviour
     }
 
     public void AttackColliderEnable(){
-        attackCollider.enabled=true;
+        attackCollider.EnableCollider();
     }
 
 
     public void AttackColliderDisable(){
-        attackCollider.enabled=false;
+        attackCollider.DisableCollider();
     }
 
     public void AttackEnded(){
@@ -47,7 +47,7 @@ public class EnemyCombat : MonoBehaviour
     //to the AttackCollider gameObject
     // private void OnTriggerStay2D(Collider2D other) {
     //     if(other.CompareTag("Player")){
-    //         other.GetComponent<IDamageable>().Damage(transform);
+    //         other.GetComponent<IDamageable>().Damage(transform, AttackTypes.NormalAttack);
     //         attackCollider.enabled=false;
     //     }
     // }
