@@ -30,8 +30,11 @@ public class PlayerCombat : MonoBehaviour
 
     [Header("Slash VFXs")]
     [SerializeField] GameObject combotAttack1VFX;
+    [SerializeField] Transform vfx1Transform;
     [SerializeField] GameObject combotAttack2VFX;
+    [SerializeField] Transform vfxTransform;
     [SerializeField] GameObject sheatAttackVFX;
+    [SerializeField] Transform vfxSheatAttackTransform;
 
 
     bool isAttacking = false;
@@ -151,16 +154,19 @@ public class PlayerCombat : MonoBehaviour
     }
 
     public void PlayComboAttack1VFX(){
-        GameObject vfx = GameObject.Instantiate(combotAttack1VFX, transform.position, Quaternion.identity);
+        GameObject vfx = GameObject.Instantiate(combotAttack1VFX, vfx1Transform.position, vfx1Transform.rotation);
+        vfx.transform.localScale = vfx1Transform.localScale;
         StartCoroutine(DestroyObject(vfx));
     }
     public void PlayComboAttack2VFX(){
-        GameObject vfx = GameObject.Instantiate(combotAttack2VFX, transform.position, Quaternion.identity);
+        GameObject vfx = GameObject.Instantiate(combotAttack2VFX, vfxTransform.position, vfxTransform.rotation);
+        vfxTransform.localScale = vfxTransform.localScale;
         StartCoroutine(DestroyObject(vfx));
     }    
     public void PlaySheatAttackVFX(){
-        GameObject vfx = GameObject.Instantiate(sheatAttackVFX, transform.position, Quaternion.identity);
-        StartCoroutine(DestroyObject(vfx));
+        GameObject vfx = GameObject.Instantiate(sheatAttackVFX, vfxSheatAttackTransform.position, vfxTransform.rotation);
+        vfxSheatAttackTransform.localScale = vfxSheatAttackTransform.localScale;
+        StartCoroutine(DestroyObject(vfx)); 
     }
 
     IEnumerator DestroyObject(GameObject vfx){
