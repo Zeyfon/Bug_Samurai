@@ -11,6 +11,8 @@ public class EnemyCombat : MonoBehaviour
     [SerializeField] float volumeAttack = 0.5f;
     [SerializeField] GameObject attackSignal;
     [SerializeField] Transform attackSignalOriginTransform;
+    [SerializeField] GameObject attackVFX;
+    [SerializeField] Transform attackVFXOriginTransform;
     Animator animator;
     AudioSource audioSource;
     bool isAttacking=false;
@@ -56,6 +58,12 @@ public class EnemyCombat : MonoBehaviour
     // }
     public void AttackSound(){
         audioSource.PlayOneShot(audioAttack, volumeAttack);
+    }
+    
+    public void PlayAttackVFX(){
+        GameObject vfx = GameObject.Instantiate(attackVFX, attackVFXOriginTransform.position, attackVFXOriginTransform.rotation);
+        vfx.transform.localScale = attackVFXOriginTransform.localScale;
+        StartCoroutine(DestroyObject(vfx)); 
     }
 
     public void PlayAttackSignal(){
