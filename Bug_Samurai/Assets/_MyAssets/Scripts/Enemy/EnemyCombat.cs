@@ -9,6 +9,8 @@ public class EnemyCombat : MonoBehaviour
     [SerializeField] AudioClip audioAttack;
     [Range(0,1)]
     [SerializeField] float volumeAttack = 0.5f;
+    [SerializeField] GameObject attackSignal;
+    [SerializeField] Transform attackSignalOriginTransform;
     Animator animator;
     AudioSource audioSource;
     bool isAttacking=false;
@@ -31,6 +33,7 @@ public class EnemyCombat : MonoBehaviour
 
 
     public void AttackColliderDisable(){
+        print("Wants to disable collider");
         attackCollider.DisableCollider();
     }
 
@@ -53,5 +56,19 @@ public class EnemyCombat : MonoBehaviour
     // }
     public void AttackSound(){
         audioSource.PlayOneShot(audioAttack, volumeAttack);
+    }
+
+    public void PlayAttackSignal(){
+        GameObject vfx = GameObject.Instantiate(attackSignal, attackSignalOriginTransform.position, attackSignalOriginTransform.rotation);
+        vfx.transform.localScale = attackSignalOriginTransform.localScale;
+        StartCoroutine(DestroyObject(vfx)); 
+    }
+
+    IEnumerator DestroyObject(GameObject gameObject){
+        ParticleSystem particles = gameObject.GetComponent<ParticleSystem>();
+        while(particles.isPlaying){
+            yield return null;
+        }
+        Destroy(gameObject);
     }
 }
