@@ -13,14 +13,33 @@ public class EnemyCombat : MonoBehaviour
     [SerializeField] Transform attackSignalOriginTransform;
     [SerializeField] GameObject attackVFX;
     [SerializeField] Transform attackVFXOriginTransform;
+
+    [SerializeField] AudioClip defenseAudio;
+    [Range(0,1)]
+    [SerializeField] float defenseVolume = 0.5f;
+    [Range(0,5)]
+    [SerializeField] float maxDefenseTime = 2f;
     Animator animator;
     AudioSource audioSource;
     bool isAttacking=false;
+
+    int defense = 0;
+    float defenseTime =0;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+    }
+
+    void Update(){
+        if(defense>0){
+            defenseTime+=Time.deltaTime;
+        }
+        if(defenseTime>maxDefenseTime){
+            defense = 10;
+            animator.SetInteger("Defense",defense);
+        }
     }
 
     public void Attack(){
@@ -78,5 +97,29 @@ public class EnemyCombat : MonoBehaviour
             yield return null;
         }
         Destroy(gameObject);
+    }
+
+    public void Defense(){
+        defenseTime = 0;
+        if(defense >0){
+            defense = 5;
+        }
+        else{
+            defense =1;
+        }
+        animator.SetInteger("Defense",defense);
+        audioSource.PlayOneShot(defenseAudio,defenseVolume);
+    }
+
+    public int GetDefenseInteger(){
+        defense = animator.GetInteger("Defense");
+        return defense; 
+    }
+
+
+    public void ResetCombatVariables(){
+        defense = 0;
+        defenseTime =0;
+        animator.SetInteger("Defense", defense);
     }
 }

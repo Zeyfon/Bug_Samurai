@@ -9,7 +9,6 @@ public class InputHandler : MonoBehaviour
     
     [SerializeField] PlayerInput input;
     [SerializeField] PlayMakerFSM playerControllerFSM;
-    [SerializeField] PlayMakerFSM enemyControllerFSM;
     FsmVector2 movementInput;
     FsmBool isSheatPosturefsm;
     bool isPostureButtonPressed = false;
@@ -18,7 +17,6 @@ public class InputHandler : MonoBehaviour
    // private InputAction jumpAction;
     private InputAction moveAction;
     private InputAction attackAction;
-    private InputAction abilitateEnemy;
     private InputAction sheatPosture;
     private InputAction evasionAction;
 
@@ -29,7 +27,6 @@ public class InputHandler : MonoBehaviour
         input = GetComponent<PlayerInput>();
         moveAction = input.actions["Move"];
         attackAction = input.actions["Attack"];
-        abilitateEnemy = input.actions["AbilitateEnemy"];
         sheatPosture = input.actions["SheatPosture"];
         evasionAction = input.actions["Evasion"];
     }
@@ -37,7 +34,6 @@ public class InputHandler : MonoBehaviour
     private void OnEnable() 
     {
         attackAction.performed += Attack;
-        abilitateEnemy.performed += EnableEnemy;
         sheatPosture.performed += SheatPosture;
         evasionAction.performed += Evasion;
 
@@ -46,7 +42,6 @@ public class InputHandler : MonoBehaviour
     private void OnDisable() 
     {
         attackAction.performed -= Attack;
-        abilitateEnemy.performed -= EnableEnemy;
         sheatPosture.performed += SheatPosture;
     }
 
@@ -65,9 +60,6 @@ public class InputHandler : MonoBehaviour
     void Attack(InputAction.CallbackContext context)
     {
         playerControllerFSM.SendEvent("ATTACKCOMMAND");
-    }
-    void EnableEnemy(InputAction.CallbackContext context){
-        enemyControllerFSM.SendEvent("CHASEPLAYER");
     }
 
     void SheatPosture(InputAction.CallbackContext context){
