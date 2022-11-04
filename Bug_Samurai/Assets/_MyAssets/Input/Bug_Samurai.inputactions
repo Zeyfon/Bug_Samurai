@@ -33,15 +33,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "AbilitateEnemy",
-                    "type": "Button",
-                    "id": "56195dc3-3955-49f3-9919-4129c4c77a5e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "SheatPosture",
                     "type": "Button",
                     "id": "95141c6c-e4c1-40fd-8d8b-9186a005a9fd",
@@ -278,17 +269,6 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7ac9c93c-343f-4a04-aadd-01257776f813",
-                    "path": "<Keyboard>/p",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "",
-                    "action": "AbilitateEnemy",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

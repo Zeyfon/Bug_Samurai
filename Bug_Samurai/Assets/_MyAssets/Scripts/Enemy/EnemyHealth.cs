@@ -10,12 +10,10 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [SerializeField] float volumeDamaged = 0.5f;
     [Range(0,3)]
     [SerializeField] float stunnedTime = 2f;
-    [SerializeField] AudioClip defenseAudio;
-    [Range(0,1)]
-    [SerializeField] float defenseVolume = 0.5f;
+
     AudioSource audioSource;
     Animator animator;
-    int defense = 0;
+
     float stunTimer = 0;
     float stunMaxTimer = 0;
 
@@ -61,15 +59,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         else
             return false;
     }
-
-    public void Defense(){
-        defense =1;
-        animator.SetInteger("Defense",defense);
-        audioSource.PlayOneShot(defenseAudio,defenseVolume);
-    }
-
-    public int GetDefenseInteger(){
-        defense = animator.GetInteger("Defense");
-        return defense; 
+    public void ResetHealthVariables(){
+        
     }
 }
