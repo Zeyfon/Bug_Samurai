@@ -11,6 +11,12 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [Range(0,3)]
     [SerializeField] float stunnedTime = 2f;
 
+    [Range(0,1)]
+    [SerializeField] float damageVisualTime = 0.5f;
+    [SerializeField] SpriteRenderer bodyRenderer;
+    [SerializeField] Material normalMaterial;
+    [SerializeField] Material damageMaterial;
+
     AudioSource audioSource;
     Animator animator;
 
@@ -21,6 +27,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
+        SetMaterial(normalMaterial);
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -29,10 +36,32 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         stunTimer += Time.deltaTime;
     }
 
+    void SetMaterial(Material material){
+        bodyRenderer.material = material;
+    }
+
     public void Damage(Transform attackerTransform, AttackTypes attackType){
-        this.attackType = attackType;
-        print("Enemy got damaged");
-        enemyControllerFSM.SendEvent("ATTACKED");
+        if(attackType == AttackTypes.SpecialAttack){
+            Interrupt();
+        }
+        VisualDamage();
+    }
+
+    void Interrupt(){
+        SheatAttackDamaged();
+        animator.SetInteger("Damage",1);
+        enemyControllerFSM.SendEvent("INTERRUPTED");
+    }
+
+    void VisualDamage(){
+        PlayDamageSound();
+        StartCoroutine(VisualDamageCoroutine());
+    }
+
+    IEnumerator VisualDamageCoroutine(){
+        SetMaterial(damageMaterial);
+        yield return new WaitForSeconds(damageVisualTime);
+        SetMaterial(normalMaterial);
     }
 
     public void SheatAttackDamaged(){
@@ -49,7 +78,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         animator.SetInteger("Damaged",1);
     }
 
-    public void DamagedSound(){
+    public void PlayDamageSound(){
         audioSource.PlayOneShot(audioGetDamaged, volumeDamaged);
     }
 
