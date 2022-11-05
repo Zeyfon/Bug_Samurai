@@ -16,6 +16,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [SerializeField] SpriteRenderer bodyRenderer;
     [SerializeField] Material normalMaterial;
     [SerializeField] Material damageMaterial;
+    [SerializeField] EnemyType enemyType;
 
     AudioSource audioSource;
     Animator animator;
@@ -24,6 +25,12 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     float stunMaxTimer = 0;
 
     AttackTypes attackType;
+
+    enum EnemyType{
+        Heavy,
+        Fast,
+        Normal,
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -41,10 +48,37 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     }
 
     public void Damage(Transform attackerTransform, AttackTypes attackType){
-        if(attackType == AttackTypes.SpecialAttack){
-            Interrupt();
+        switch(enemyType){
+            case EnemyType.Fast:
+                if(attackType == AttackTypes.SpecialAttack){
+                    Interrupt();
+                }
+                VisualDamage();
+            break;
+            case EnemyType.Heavy:
+                if(attackType == AttackTypes.SpecialAttack){
+                    animator.SetInteger("Damage",1);
+                    enemyControllerFSM.SendEvent("SPECIAL_ATTACK");
+                }
+                else{
+                    if(IsStunned()){
+                        VisualDamage();
+
+                    }
+                    else{
+                        enemyControllerFSM.SendEvent("NORMAL_ATTACK");
+                    }
+                }
+
+            break;
+            case EnemyType.Normal:
+                if(attackType == AttackTypes.SpecialAttack){
+                    Interrupt();
+                }
+                VisualDamage();
+            break;
         }
-        VisualDamage();
+
     }
 
     void Interrupt(){
@@ -72,10 +106,6 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         stunTimer = Time.time;
         print("Running time " + stunTimer + " UpperLimit Timer " + stunMaxTimer);
         return stunTimer<stunMaxTimer;
-    }
-
-    public void DamageTaken(){
-        animator.SetInteger("Damaged",1);
     }
 
     public void PlayDamageSound(){
