@@ -122,4 +122,12 @@ public class EnemyCombat : MonoBehaviour
         defenseTime =0;
         animator.SetInteger("Defense", defense);
     }
+
+    public void ThreeComboAttack(){
+        animator.SetInteger("Attack",1);
+    }
+
+    public int GetAttackIndex(){
+        return animator.GetInteger("Attack");
+    }
 }

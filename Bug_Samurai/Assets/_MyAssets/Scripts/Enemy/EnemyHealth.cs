@@ -11,6 +11,13 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [Range(0,3)]
     [SerializeField] float stunnedTime = 2f;
 
+    [Range(0,1)]
+    [SerializeField] float damageVisualTime = 0.5f;
+    [SerializeField] SpriteRenderer bodyRenderer;
+    [SerializeField] Material normalMaterial;
+    [SerializeField] Material damageMaterial;
+    [SerializeField] EnemyType enemyType;
+
     AudioSource audioSource;
     Animator animator;
 
@@ -18,9 +25,16 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     float stunMaxTimer = 0;
 
     AttackTypes attackType;
+
+    enum EnemyType{
+        Heavy,
+        Fast,
+        Normal,
+    }
     // Start is called before the first frame update
     void Start()
     {
+        SetMaterial(normalMaterial);
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -29,10 +43,59 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         stunTimer += Time.deltaTime;
     }
 
+    void SetMaterial(Material material){
+        bodyRenderer.material = material;
+    }
+
     public void Damage(Transform attackerTransform, AttackTypes attackType){
-        this.attackType = attackType;
-        print("Enemy got damaged");
-        enemyControllerFSM.SendEvent("ATTACKED");
+        switch(enemyType){
+            case EnemyType.Fast:
+                if(attackType == AttackTypes.SpecialAttack){
+                    Interrupt();
+                }
+                VisualDamage();
+            break;
+            case EnemyType.Heavy:
+                if(attackType == AttackTypes.SpecialAttack){
+                    animator.SetInteger("Damage",1);
+                    enemyControllerFSM.SendEvent("SPECIAL_ATTACK");
+                }
+                else{
+                    if(IsStunned()){
+                        VisualDamage();
+
+                    }
+                    else{
+                        enemyControllerFSM.SendEvent("NORMAL_ATTACK");
+                    }
+                }
+
+            break;
+            case EnemyType.Normal:
+                if(attackType == AttackTypes.SpecialAttack){
+                    Interrupt();
+                }
+                VisualDamage();
+            break;
+        }
+
+    }
+
+    void Interrupt(){
+        SheatAttackDamaged();
+        animator.SetInteger("Damage",1);
+        enemyControllerFSM.SendEvent("INTERRUPTED");
+    }
+
+    void VisualDamage(){
+        PlayDamageSound();
+        StartCoroutine(VisualDamageCoroutine());
+    }
+
+    IEnumerator VisualDamageCoroutine(){
+        SetMaterial(damageMaterial);
+        yield return new WaitForSeconds(damageVisualTime);
+        SetMaterial(normalMaterial);
     }
 
     public void SheatAttackDamaged(){
@@ -45,11 +108,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         return stunTimer<stunMaxTimer;
     }
 
-    public void DamageTaken(){
-        animator.SetInteger("Damaged",1);
-    }
-
-    public void DamagedSound(){
+    public void PlayDamageSound(){
         audioSource.PlayOneShot(audioGetDamaged, volumeDamaged);
     }
 
