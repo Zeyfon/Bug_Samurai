@@ -275,14 +275,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5584989756599446212}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.0600002, y: -0.23, z: -0.09822888}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.18493293, w: 0.98275113}
+  m_LocalPosition: {x: 0.65, y: -0.23, z: -0.09822888}
+  m_LocalScale: {x: 1, y: -1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8539431113329962761}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 21.314}
 --- !u!1 &5655825252105275032
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,6 +460,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 168957160224950877, guid: f9b8e0c219d7d654782485a11217a7b0, type: 3}
+      propertyPath: attackVFX
+      value: 
+      objectReference: {fileID: 8938179850576319324, guid: 03981f3078f7251418ae6a36afa228b7, type: 3}
     - target: {fileID: 168957160224950877, guid: f9b8e0c219d7d654782485a11217a7b0, type: 3}
       propertyPath: defenseAudio
       value: 
