@@ -72,9 +72,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
             break;
             case EnemyType.Normal:
-                if(attackType == AttackTypes.SpecialAttack){
-                    Interrupt();
-                }
+                Interrupt();
                 VisualDamage();
             break;
         }
