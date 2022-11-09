@@ -7,6 +7,20 @@ public class DetectionCollider : MonoBehaviour
 
     bool isPlayerDetected = false;
 
+    BoxCollider2D coll;
+    EnemyParameters parameters;
+    void Start(){
+        parameters = GetComponentInParent<EnemyParameters>();
+        coll = GetComponent<BoxCollider2D>();
+    }
+
+    void Update(){
+        coll.size = parameters.detectionColliderSize;
+    }
+    public void SetDetectionColliderSize(Vector2 size){
+        GetComponent<BoxCollider2D>().size = size;
+    }
+
     public bool IsPlayerDetected(){
         return isPlayerDetected;
     }
