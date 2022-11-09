@@ -7,10 +7,13 @@ public class EnemyMovement : MonoBehaviour
     [Range(0,10)]
     [SerializeField] float speed = 4.0f;
     Rigidbody2D rb;
+
+    EnemyParameters parameters;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        parameters = GetComponent<EnemyParameters>();
     }
 
     // Update is called once per frame
@@ -77,7 +80,16 @@ public class EnemyMovement : MonoBehaviour
         LookAtPlayer(player.transform);
         //rb.velocity = new Vector2(2,0);
         //rb.velocity = new Vector2(Vector2.right.x,0)*speed;
+        speed = parameters.movementSpeed;
         rb.velocity = new Vector2(transform.right.x,rb.velocity.y)*speed;
         //print("Enemy is moving");
+    }
+
+    public void SetMovementSpeed(float speed){
+        this.speed = speed;
+    }
+
+    public void Stop(){
+        rb.velocity = new Vector2(0,rb.velocity.y);
     }
 }

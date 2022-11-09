@@ -35,14 +35,14 @@ public class EnemyDefenseBehavior : StateMachineBehaviour
     //}
 
     // OnStateMachineEnter is called when entering a state machine via its Entry Node
-    //override public void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
-    //{
-    //    
-    //}
+   //  override public void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
+   //  {
+   //     animator.SetInteger("Attack",2);
+   //  }
 
     // OnStateMachineExit is called when exiting a state machine via its Exit Node
     override public void OnStateMachineExit(Animator animator, int stateMachinePathHash)
     {
-       //animator.SetInteger("Defense",15);
+       animator.SetInteger("Defense",100);
     }
 }

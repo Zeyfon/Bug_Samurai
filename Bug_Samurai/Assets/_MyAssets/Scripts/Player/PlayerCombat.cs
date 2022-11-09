@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using HutongGames.PlayMaker;
+using Cinemachine;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -35,6 +36,8 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] Transform vfxTransform;
     [SerializeField] GameObject sheatAttackVFX;
     [SerializeField] Transform vfxSheatAttackTransform;
+
+    [SerializeField] CinemachineVirtualCamera vCam;
 
 
     bool isAttacking = false;
@@ -73,7 +76,7 @@ public class PlayerCombat : MonoBehaviour
     }
 
     public void AttackEnded(){
-        print("Attack Ended");
+       // print("Attack Ended");
         SetIsAttacking(false);
         animator.SetInteger("Attack",0);
     }
@@ -175,5 +178,15 @@ public class PlayerCombat : MonoBehaviour
             yield return null;
         }
         Destroy(vfx);
+    }
+
+    public void PlayCameraSheatAttackMovement(){
+        StartCoroutine(CameraMovement());
+    }
+
+    IEnumerator CameraMovement(){
+        vCam.m_Priority = 0;
+        yield return new WaitForSeconds(0.4f);
+        vCam.m_Priority = 10;
     }
 }

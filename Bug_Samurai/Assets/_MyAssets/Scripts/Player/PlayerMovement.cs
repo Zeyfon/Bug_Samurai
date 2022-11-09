@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
             this.movementDireciton = transform.TransformDirection(Vector2.right);
         }
         animator.SetInteger("Evade",evadeState);
-        print("Evasion Started");
+        //print("Evasion Started");
     }
 
     public void ChangeToFrontalEvadeState(){
@@ -130,18 +130,18 @@ public class PlayerMovement : MonoBehaviour
 
     void EvadeEnded(){
         evadeState=5;
-        print("Evade Ended");
+        //print("Evade Ended");
     }
 
     public void ApplyFrontaEvadeForce(){
-        print("Applying Frontal Force");
+        //print("Applying Frontal Force");
         //TODO Later this evadeForceDirection will need to be updated at run time if we implement slopes
         evadeForceDirection = new Vector2(movementDireciton.x,0);//Must be a normalized vector. Only looks for direction
         currentMovementForce =evadeForceDirection*evadeForwardConstantSpeed;
         Move(currentMovementForce);
     }
     public void ApplyBackwardEvadeForce(){
-            print("Applying Backward Force");
+            //print("Applying Backward Force");
         //TODO Later this evadeForceDirection will need to be updated at run time if we implement slopes
         evadeForceDirection = new Vector2(-movementDireciton.x,1).normalized;//Must be a normalized vector. Only looks for direction
         print(evadeForceDirection);
@@ -166,7 +166,6 @@ public class PlayerMovement : MonoBehaviour
 
     void SetGameObjectLayer(LayerMask layerMask){
         int layer = (int) Mathf.Log(layerMask.value, 2); //Set the layer value of the desired layer inside the layerMask class
-        print(layer);
         gameObject.layer = layer;
     }
 }
