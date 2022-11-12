@@ -11,16 +11,4 @@ public class EnemyParameters:MonoBehaviour
         public float attackAnimationSpeed;
         public bool canBeInterruptedByAnything;
   
-        void Start(){
-                // if(gameObject.tag == "Enemy"){
-                //         GetComponent<EnemyMovement>().SetMovementSpeed(movementSpeed);
-                //         GetComponent<EnemyCombat>().SetQuantityOfAttacks(quantityOfAttacks);
-                //         GetComponent<EnemyCombat>().SetAttackAnimationSpeed(attackAnimationSpeed);
-                //         GetComponentInChildren<DetectionCollider>().SetDetectionColliderSize(detectionColliderSize);
-                //         GetComponent<EnemyCombat>().SetHasDefense(hasDefense);
-                //         GetComponent<EnemyCombat>().SetCanBeInterruptedByAnyAttack(canBeInterruptedByAnything);
-                // }
-
-
-        }
 }

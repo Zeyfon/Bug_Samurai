@@ -8,24 +8,45 @@ public class EnemeyProceduralGeneration : MonoBehaviour
     [SerializeField] Transform spawnLocation;
     [SerializeField] GameObject enemyTemplate;
 
-    EnemyParameters parameters;
-    // Start is called before the first frame update
-    void Awake()
-    {
-
-        SetInitialParameters();
-        InstantiateEnemy();
+    public struct ThisEnemyParameters{
+        public Vector2 detectionColliderSize;
+        public float movementSpeed;
+        public bool hasDefense;
+        public int quantityOfAttacks;
+        public float attackAnimationSpeed;
+        public bool canBeInterruptedByAnything;
     }
 
-    void SetInitialParameters(){
-        parameters = GetComponent<EnemyParameters>();
+
+    bool isManagerAway=false;
+    // Start is called before the first frame update
+    void Start()
+    {
+        Transform[] spawnLocations = GetAllSpawnLocations();
+        foreach(Transform spawnLocation in spawnLocations){
+            if(isManagerAway){
+            print(spawnLocation.gameObject.name);
+            ThisEnemyParameters parameters = SetInitialParameters();
+            InstantiateEnemy(parameters, spawnLocation);
+            }
+            else isManagerAway=true;
+
+        }
+    }
+
+    Transform[] GetAllSpawnLocations(){
+        return GetComponentsInChildren<Transform>();
+    }
+
+    ThisEnemyParameters SetInitialParameters(){
+        ThisEnemyParameters parameters = new ThisEnemyParameters();
         parameters.detectionColliderSize = new Vector2(Random.Range(5f,15f),3);
         parameters.movementSpeed = Random.Range(1f,4f);
         parameters.hasDefense = HasDefense();
         parameters.quantityOfAttacks = SetQuantityOfAttacks();
         parameters.attackAnimationSpeed = Random.Range(0.1f,3f);
         parameters.canBeInterruptedByAnything = SetCanBeInterruptedByAnything(parameters.hasDefense);
-        print("Can be Interrupted" + "  " + parameters.canBeInterruptedByAnything);
+        return parameters;
     }
 
     bool SetCanBeInterruptedByAnything(bool hasDefense){
@@ -51,13 +72,13 @@ public class EnemeyProceduralGeneration : MonoBehaviour
         return quantity;
     }
 
-    void InstantiateEnemy(){
+    void InstantiateEnemy(ThisEnemyParameters parameters, Transform spawnLocation){
         GameObject enemy = GameObject.Instantiate(enemyTemplate,spawnLocation.position, Quaternion.identity);
-        EnemyParameters thisEnemyParameters = enemy.GetComponent<EnemyParameters>();
-        SetParametersToEnemy(thisEnemyParameters);
+        EnemyParameters enemyParameters = enemy.GetComponent<EnemyParameters>();
+        SetParametersToEnemy(enemyParameters, parameters);
     }
 
-    void SetParametersToEnemy(EnemyParameters thisEnemyParameters){
+    void SetParametersToEnemy(EnemyParameters thisEnemyParameters, ThisEnemyParameters parameters){
         thisEnemyParameters.movementSpeed = parameters.movementSpeed;
         thisEnemyParameters.hasDefense = parameters.hasDefense;
         thisEnemyParameters.detectionColliderSize = parameters.detectionColliderSize;
