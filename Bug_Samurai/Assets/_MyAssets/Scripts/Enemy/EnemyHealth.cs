@@ -99,11 +99,12 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         SheatAttackDamaged();
         animator.SetInteger("Damage",1);
         enemyControllerFSM.SendEvent("INTERRUPT");
+        StartCoroutine(VisualDamageCoroutine());
     }
 
     void NoInterruptionDamage(){
         PlayDamageSound();
-        StartCoroutine(VisualDamageCoroutine());
+
     }
 
     IEnumerator VisualDamageCoroutine(){
