@@ -63,7 +63,7 @@ Material:
     - _QueueOffset: 0
     - _hue: 114.68
     m_Colors:
-    - _BodyColor: {r: 1, g: 1, b: 1, a: 0}
+    - _BodyColor: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
