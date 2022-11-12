@@ -139,7 +139,7 @@ MonoBehaviour:
   m_DefaultBlend:
     m_Style: 2
     m_Time: 0.3
-  m_CustomBlends: {fileID: 0}
+  m_CustomBlends: {fileID: 11400000, guid: dc6dfa5abe8008945a0e0ab9e6ba0349, type: 2}
   m_CameraCutEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 3020021507784798797}
   - component: {fileID: 3020021507784798799}
   - component: {fileID: 3020021507784798798}
+  - component: {fileID: 6710468306177874804}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -230,6 +231,21 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 100
+--- !u!114 &6710468306177874804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3020021507784798796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 4b5e5c29a5c2e1142b9b120f66dc8fa0, type: 2}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 1
 --- !u!1 &3020021507910374948
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,6 +256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3020021507910374950}
   - component: {fileID: 3020021507910374949}
+  - component: {fileID: 3052948614726722908}
   m_Layer: 0
   m_Name: SheatAttackMomentCamera
   m_TagString: Untagged
@@ -255,7 +272,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3020021507910374948}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.82, y: -0.00000011920929, z: -10}
+  m_LocalPosition: {x: -4.8199997, y: -0.00000023841858, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -284,11 +301,25 @@ MonoBehaviour:
   m_Follow: {fileID: 1635452109970889181}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 3.5
+    OrthographicSize: 6.8
     NearClipPlane: 0.01
     FarClipPlane: 30
     Dutch: 0
   m_ComponentOwner: {fileID: 3020021507784798797}
+--- !u!114 &3052948614726722908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3020021507910374948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445da938a6f170a4a9adb90777991ab9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeTime: 0.5
+  maxAmplitud: 5
 --- !u!1 &3020021507912690667
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,6 +363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3020021508832306585}
   - component: {fileID: 3020021508832306584}
+  - component: {fileID: 2130078887678331327}
   m_Layer: 0
   m_Name: FollowPlayerCamera
   m_TagString: Untagged
@@ -381,6 +413,20 @@ MonoBehaviour:
     FarClipPlane: 30
     Dutch: 0
   m_ComponentOwner: {fileID: 3020021509535440587}
+--- !u!114 &2130078887678331327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3020021508832306591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445da938a6f170a4a9adb90777991ab9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeTime: 0.5
+  maxAmplitud: 5
 --- !u!1 &3020021509482784562
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,6 +472,7 @@ GameObject:
   - component: {fileID: 3020021509535440587}
   - component: {fileID: 3020021509535440565}
   - component: {fileID: 3020021509535440564}
+  - component: {fileID: 355616353998451424}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -499,6 +546,21 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 100
+--- !u!114 &355616353998451424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3020021509535440586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 4b5e5c29a5c2e1142b9b120f66dc8fa0, type: 2}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 1
 --- !u!1001 &1464636108622354084
 PrefabInstance:
   m_ObjectHideFlags: 0

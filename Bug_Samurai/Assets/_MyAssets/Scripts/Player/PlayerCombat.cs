@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using HutongGames.PlayMaker;
@@ -39,6 +40,7 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField] CinemachineVirtualCamera vCam;
 
+    public static event Action OnSheatAttackEvent;
 
     bool isAttacking = false;
   
@@ -145,6 +147,7 @@ public class PlayerCombat : MonoBehaviour
     }
 
     public void SheatAttackDamage(){
+        OnSheatAttackEvent();
         attackerTransform.GetComponent<IDamageable>().Damage(transform,AttackTypes.SpecialAttack);
     }
 
