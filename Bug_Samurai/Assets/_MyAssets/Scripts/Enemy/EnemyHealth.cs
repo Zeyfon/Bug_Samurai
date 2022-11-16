@@ -17,12 +17,18 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [SerializeField] Material normalMaterial;
     [SerializeField] Material damageMaterial;
     [SerializeField] EnemyType enemyType;
+    [SerializeField] int health = 50;
+    [SerializeField] bool canBeDamaged = true;
+    [SerializeField] int damageMultiplier = 2;
+
+
 
     AudioSource audioSource;
     Animator animator;
 
     float stunTimer = 0;
     float stunMaxTimer = 0;
+
 
     AttackTypes attackType;
 
@@ -34,6 +40,9 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
+        EnemyParameters parameters = GetComponent<EnemyParameters>();
+        health = parameters.health;
+        canBeDamaged = parameters.canBeDamaged;
         SetMaterial(normalMaterial);
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
@@ -47,51 +56,52 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         bodyRenderer.material = material;
     }
 
-    public void Damage(Transform attackerTransform, AttackTypes attackType){
-        // switch(enemyType){
-        //     case EnemyType.Fast:
-        //         if(attackType == AttackTypes.SpecialAttack){
-        //             InterruptionDamage();
-        //         }
-        //         NoInterruptionDamage();
-        //     break;
-        //     case EnemyType.Heavy:
-                if(IsStunned() && !GetComponent<EnemyCombat>().GetCanBeInterruptedByAnyAttack()){
-                    print("Damage while stunned");
-                    NoInterruptionDamage();
-                    //break;
-                    return;
-                }
-                //Recevies a Special Attack
-                if(attackType == AttackTypes.SpecialAttack){
-                    print("Special Attack Damage");
-                    //enemyControllerFSM.SendEvent("SPECIAL_ATTACK");
-                    InterruptionDamage();
-                }
-                //Receives a Normal Attack
-                else{
-                    if(GetComponent<EnemyCombat>().GetHasDefense()){
-                        print("Defense");
-                        GetComponent<EnemyCombat>().StartDefense();
-                        enemyControllerFSM.SendEvent("DEFENSE");
-                    }
-                    else if(GetComponent<EnemyCombat>().GetCanBeInterruptedByAnyAttack()){
-                        print("Normal Interruption damage");
-                        InterruptionDamage();
-                    }
-                    else{
-                        print("Simple No Interruption Damage");
-                        NoInterruptionDamage();
-                    }
-                        //enemyControllerFSM.SendEvent("NORMAL_ATTACK");
-                }
-                
-            // break;
-            // case EnemyType.Normal:
-            //     InterruptionDamage();
-            //     NoInterruptionDamage();
-            // break;
-        //}
+    public void Damage(Transform attackerTransform, AttackTypes attackType, int damage){
+        if(IsStunned() && !GetComponent<EnemyCombat>().GetCanBeInterruptedByAnyAttack()){
+            print("Damage while stunned");
+            NoInterruptionDamage();
+            HealthDamage(damage);
+            //break;
+            return;
+        }
+        //Recevies a Special Attack
+        if(attackType == AttackTypes.SpecialAttack){
+            print("Special Attack Damage");
+            //enemyControllerFSM.SendEvent("SPECIAL_ATTACK");
+            InterruptionDamage();
+            HealthDamage(damage*damageMultiplier);
+        }
+        //Receives a Normal Attack
+        else{
+            if(GetComponent<EnemyCombat>().GetHasDefense()){
+                print("Defense");
+                GetComponent<EnemyCombat>().StartDefense();
+                enemyControllerFSM.SendEvent("DEFENSE");
+            }
+            else if(GetComponent<EnemyCombat>().GetCanBeInterruptedByAnyAttack()){
+                print("Normal Interruption damage");
+                InterruptionDamage();
+                HealthDamage(damage);
+            }
+            else{
+                print("Simple No Interruption Damage");
+                NoInterruptionDamage();
+                HealthDamage(damage);
+            }
+        }
+    }
+
+    void HealthDamage(int damage){
+        if(canBeDamaged){
+            if(health-damage <0)
+                health = 0;
+            else{
+                health -= damage;
+            }
+            if(health==0){
+                Destroy(gameObject);
+            }
+        }
 
     }
 
@@ -135,5 +145,9 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     }
     public void ResetHealthVariables(){
         
+    }
+
+    public int GetHealth(){
+        return health;
     }
 }

@@ -39,6 +39,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] Transform vfxSheatAttackTransform;
 
     [SerializeField] CinemachineVirtualCamera vCam;
+    [SerializeField] int damage = 10;
 
     public static event Action OnSheatAttackEvent;
 
@@ -148,7 +149,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void SheatAttackDamage(){
         OnSheatAttackEvent();
-        attackerTransform.GetComponent<IDamageable>().Damage(transform,AttackTypes.SpecialAttack);
+        attackerTransform.GetComponent<IDamageable>().Damage(transform,AttackTypes.SpecialAttack, damage);
     }
 
     public void SheatAttackSound(){

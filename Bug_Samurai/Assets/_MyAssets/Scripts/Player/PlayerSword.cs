@@ -6,6 +6,8 @@ public class PlayerSword : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
     List<IDamageable> damageables = new List<IDamageable>();
+
+    int damage = 10;
     public void EnableSwordCollider(){
         //print("Sword Enabled");
         rb.WakeUp();
@@ -23,7 +25,7 @@ public class PlayerSword : MonoBehaviour
         //print("An object was found :"+ other.gameObject.name);
         if (other.TryGetComponent(out IDamageable iDamageable)){
                 if(!damageables.Contains(iDamageable)){
-                    iDamageable.Damage(transform.parent.parent.transform,AttackTypes.NormalAttack);
+                    iDamageable.Damage(transform.parent.parent.transform,AttackTypes.NormalAttack, damage);
                     damageables.Add(iDamageable);
                 }
             //print("Damege done to ");
