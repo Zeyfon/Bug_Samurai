@@ -5,6 +5,7 @@ using UnityEngine;
 public class AttackCollider : MonoBehaviour
 {
 
+    int damage = 10;
     public void EnableCollider(){
         print("Enable Collider");
         GetComponent<BoxCollider2D>().enabled=true;
@@ -16,7 +17,7 @@ public class AttackCollider : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D other) {
         if(other.CompareTag("Player")){
-            other.GetComponent<IDamageable>().Damage(transform.parent.parent, AttackTypes.NormalAttack);
+            other.GetComponent<IDamageable>().Damage(transform.parent.parent, AttackTypes.NormalAttack, damage);
             GetComponent<BoxCollider2D>().enabled=false;
         }
     }

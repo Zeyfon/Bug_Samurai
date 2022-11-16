@@ -20,6 +20,20 @@ public class EnemeyProceduralGeneration : MonoBehaviour
     [Range(0,4)]
     [SerializeField]float spawnFromOriginDistanceRange;
 
+    [Range(0,3)]
+    [SerializeField] float minAttackAnimationSpeed;
+
+    [Range(0,3)]
+    [SerializeField] float maxAttackAnimationSpeed;
+
+    [Range(0,100)]
+    [SerializeField] int minEnemyHealth;
+
+    [Range(0,100)]
+    [SerializeField] int maxEnemyHealth;
+
+    [SerializeField] bool canEnemiesBeDamaged;
+
     public struct ThisEnemyParameters{
         public Vector2 detectionColliderSize;
         public float movementSpeed;
@@ -27,6 +41,8 @@ public class EnemeyProceduralGeneration : MonoBehaviour
         public int quantityOfAttacks;
         public float attackAnimationSpeed;
         public bool canBeInterruptedByAnything;
+        public int enemyHealth;
+        public bool canEnemiesBeDamaged;
     }
 
 
@@ -34,8 +50,6 @@ public class EnemeyProceduralGeneration : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-
         int counter = 0;
         Transform[] spawnLocations = GetAllSpawnLocations();
         foreach(Transform spawnLocation in spawnLocations){
@@ -70,8 +84,10 @@ public class EnemeyProceduralGeneration : MonoBehaviour
         parameters.movementSpeed = Random.Range(1f,4f);
         parameters.hasDefense = HasDefense();
         parameters.quantityOfAttacks = SetQuantityOfAttacks();
-        parameters.attackAnimationSpeed = Random.Range(0.1f,3f);
+        parameters.attackAnimationSpeed = Random.Range(minAttackAnimationSpeed,maxAttackAnimationSpeed);
         parameters.canBeInterruptedByAnything = SetCanBeInterruptedByAnything(parameters.hasDefense);
+        parameters.enemyHealth = Random.Range(minEnemyHealth,maxEnemyHealth);
+        parameters.canEnemiesBeDamaged = canEnemiesBeDamaged;
         return parameters;
     }
 
@@ -112,6 +128,8 @@ public class EnemeyProceduralGeneration : MonoBehaviour
         thisEnemyParameters.quantityOfAttacks = parameters.quantityOfAttacks;
         thisEnemyParameters.attackAnimationSpeed = parameters.attackAnimationSpeed;
         thisEnemyParameters.canBeInterruptedByAnything = parameters.canBeInterruptedByAnything;
+        thisEnemyParameters.health = parameters.enemyHealth;
+        thisEnemyParameters.canBeDamaged = parameters.canEnemiesBeDamaged;
     }
 
     void SetEnemyColor(GameObject enemy, ThisEnemyParameters parameters){

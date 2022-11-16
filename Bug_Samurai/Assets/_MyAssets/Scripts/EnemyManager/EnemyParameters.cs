@@ -10,5 +10,6 @@ public class EnemyParameters:MonoBehaviour
         public int quantityOfAttacks;
         public float attackAnimationSpeed;
         public bool canBeInterruptedByAnything;
-  
+        public int health;
+        public bool canBeDamaged;
 }
