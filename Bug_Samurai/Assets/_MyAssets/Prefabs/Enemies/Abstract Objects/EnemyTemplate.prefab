@@ -2393,6 +2393,10 @@ MonoBehaviour:
   quantityOfAttacks: 1
   attackAnimationSpeed: 1
   canBeInterruptedByAnything: 0
+  health: 0
+  canBeDamaged: 0
+  minMovementSpeed: 0
+  maxMovementSpeed: 0
 --- !u!114 &6652043800639665629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2421,9 +2425,9 @@ MonoBehaviour:
   attackCollider: {fileID: 7702939299422136539}
   audioAttack: {fileID: 8300000, guid: 2432cf1603e3951439cbe7ce2276ad1d, type: 3}
   volumeAttack: 0.35
-  attackSignal: {fileID: 668831008311998851, guid: 6e74f5fc4d71ec64e89dc440b7878630, type: 3}
+  attackSignal: {fileID: 8867112169225384458, guid: c7192044afa1e474698d2bc7a0ee4011, type: 3}
   attackSignalOriginTransform: {fileID: 4540418027732453146}
-  attackVFX: {fileID: 5160057442488230379, guid: a1d69020cc5fd1f4c86f55b8ccbb57cb, type: 3}
+  attackVFX: {fileID: 5675062471633878340, guid: 97877d5e87937664ca430bd60107c678, type: 3}
   attackVFXOriginTransform: {fileID: 4541592148756673425}
   maxDefenseTime: 2
   defenseAudio: {fileID: 8300000, guid: e91e06c385d1b1645bca2cef09c8668c, type: 3}
