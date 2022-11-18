@@ -12,4 +12,6 @@ public class EnemyParameters:MonoBehaviour
         public bool canBeInterruptedByAnything;
         public int health;
         public bool canBeDamaged;
+        public float minMovementSpeed;
+        public float maxMovementSpeed;
 }
