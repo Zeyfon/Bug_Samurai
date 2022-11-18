@@ -38,13 +38,17 @@ public class PlayerMovement : MonoBehaviour
     int evadeState = 0;
 
     Vector2 evadeForceDirection;
+    PlayerParameters parameters;
     void Awake(){
+        parameters = GetComponent<PlayerParameters>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         audioSource =GetComponent<AudioSource>();    
     }
 
     void Update(){
+        animator.SetFloat("fEvadeMultiplier",parameters.forwardEvadeAnimationSpeedMultiplier);
+        animator.SetFloat("bEvadeMultiplier",parameters.backwardEvadeAnimationSpeedMultiplier);
         if(animator.GetInteger("Evade")==3){
             animator.SetInteger("Evade",0);
             EvadeEnded();
@@ -63,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
     }
     //Method called by the playerControllerFSM in the Idle/Moving State
     public void PlayerMovement_Move(Vector2 move){
-        currentMovementForce = new Vector2(move.x* velocity,rb.velocity.y);
+        currentMovementForce = new Vector2(move.x* parameters.movementSpeed,rb.velocity.y);
         Move(currentMovementForce);
     }
 
@@ -137,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
         //print("Applying Frontal Force");
         //TODO Later this evadeForceDirection will need to be updated at run time if we implement slopes
         evadeForceDirection = new Vector2(movementDireciton.x,0);//Must be a normalized vector. Only looks for direction
-        currentMovementForce =evadeForceDirection*evadeForwardConstantSpeed;
+        currentMovementForce =evadeForceDirection*parameters.forwardEvadeSpeed;
         Move(currentMovementForce);
     }
     public void ApplyBackwardEvadeForce(){
@@ -145,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
         //TODO Later this evadeForceDirection will need to be updated at run time if we implement slopes
         evadeForceDirection = new Vector2(-movementDireciton.x,1).normalized;//Must be a normalized vector. Only looks for direction
         print(evadeForceDirection);
-        currentMovementForce =evadeForceDirection*evadeBackwardImpulse;
+        currentMovementForce =evadeForceDirection*parameters.backwardEvadeSpeed;
         rb.AddForce(currentMovementForce,ForceMode2D.Impulse);
     }
 

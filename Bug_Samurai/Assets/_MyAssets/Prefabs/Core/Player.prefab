@@ -312,6 +312,7 @@ GameObject:
   - component: {fileID: 4447915171210409066}
   - component: {fileID: 1726523136020924551}
   - component: {fileID: 6124330598644160470}
+  - component: {fileID: 1933221192526096896}
   - component: {fileID: 5089992514595569142}
   - component: {fileID: 1892958101206381320}
   - component: {fileID: 2191504155436253058}
@@ -393,6 +394,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 1.7}
   m_EdgeRadius: 0
+--- !u!114 &1933221192526096896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4447915171210409065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 893a570fe2df70349a8ee6a07e4576fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 3
+  evadeAnimationSpeedMultiplier: 1
+  evadeMovementSpeed: 5
+  baseAttackDamage: 10
+  sheatAttackDamageMultiplier: 3
 --- !u!114 &5089992514595569142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,6 +469,8 @@ MonoBehaviour:
   vfxTransform: {fileID: 1144058674169044623}
   sheatAttackVFX: {fileID: 3183103670429015080, guid: 5ad16c75c8ae2934cbb9b699a7120f47, type: 3}
   vfxSheatAttackTransform: {fileID: 8300229456850720505}
+  vCam: {fileID: 0}
+  damage: 10
 --- !u!114 &2191504155436253058
 MonoBehaviour:
   m_ObjectHideFlags: 0

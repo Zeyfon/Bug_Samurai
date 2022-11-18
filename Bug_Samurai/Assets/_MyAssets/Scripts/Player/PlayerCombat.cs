@@ -52,7 +52,9 @@ public class PlayerCombat : MonoBehaviour
     
     Transform attackerTransform;
 
+    PlayerParameters parameters;
     void Start(){
+        parameters = GetComponent<PlayerParameters>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -149,7 +151,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void SheatAttackDamage(){
         OnSheatAttackEvent();
-        attackerTransform.GetComponent<IDamageable>().Damage(transform,AttackTypes.SpecialAttack, damage);
+        attackerTransform.GetComponent<IDamageable>().Damage(transform,AttackTypes.SpecialAttack, (int)(parameters.baseAttackDamage*parameters.sheatAttackDamageMultiplier));
     }
 
     public void SheatAttackSound(){
