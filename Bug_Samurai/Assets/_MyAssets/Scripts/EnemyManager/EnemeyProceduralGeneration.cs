@@ -34,6 +34,13 @@ public class EnemeyProceduralGeneration : MonoBehaviour
 
     [SerializeField] bool canEnemiesBeDamaged;
 
+    [Range(0,3)]
+    [SerializeField] float minEnemyMovementSpeed;
+
+    [Range(0,5)]
+    [SerializeField] float maxEnemyMovementSpeed;
+
+
     public struct ThisEnemyParameters{
         public Vector2 detectionColliderSize;
         public float movementSpeed;
@@ -43,6 +50,8 @@ public class EnemeyProceduralGeneration : MonoBehaviour
         public bool canBeInterruptedByAnything;
         public int enemyHealth;
         public bool canEnemiesBeDamaged;
+        public float minEnemyMovementSpeed;
+        public float maxEnemyMovementSpeed;
     }
 
 
@@ -81,7 +90,7 @@ public class EnemeyProceduralGeneration : MonoBehaviour
     ThisEnemyParameters SetInitialParameters(){
         ThisEnemyParameters parameters = new ThisEnemyParameters();
         parameters.detectionColliderSize = new Vector2(Random.Range(5f,15f),3);
-        parameters.movementSpeed = Random.Range(1f,4f);
+        parameters.movementSpeed = Random.Range(minEnemyMovementSpeed, maxEnemyMovementSpeed);
         parameters.hasDefense = HasDefense();
         parameters.quantityOfAttacks = SetQuantityOfAttacks();
         parameters.attackAnimationSpeed = Random.Range(minAttackAnimationSpeed,maxAttackAnimationSpeed);

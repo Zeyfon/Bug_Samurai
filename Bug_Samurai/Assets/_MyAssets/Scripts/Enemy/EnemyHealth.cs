@@ -99,7 +99,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
                 health -= damage;
             }
             if(health==0){
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
 
