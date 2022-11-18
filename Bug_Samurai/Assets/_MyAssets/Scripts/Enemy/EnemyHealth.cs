@@ -19,7 +19,6 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [SerializeField] EnemyType enemyType;
     [SerializeField] int health = 50;
     [SerializeField] bool canBeDamaged = true;
-    [SerializeField] int damageMultiplier = 2;
 
 
 
@@ -69,7 +68,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             print("Special Attack Damage");
             //enemyControllerFSM.SendEvent("SPECIAL_ATTACK");
             InterruptionDamage();
-            HealthDamage(damage*damageMultiplier);
+            HealthDamage(damage);
         }
         //Receives a Normal Attack
         else{
