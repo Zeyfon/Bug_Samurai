@@ -90,10 +90,10 @@ public class PlayerCombat : MonoBehaviour
         return isAttacking;
     }
 
-    public void PlayAttackAudio2(){
+    public void PlayComboAttack2SFX(){
         audioSource.PlayOneShot(attackAudio2, volumeAttack1);
     }
-    public void PlayAttackAudio1(){
+    public void PlayComboAttack1SFX(){
         audioSource.PlayOneShot(attackAudio1, volumeAttack2);
     }
 
@@ -154,7 +154,7 @@ public class PlayerCombat : MonoBehaviour
         attackerTransform.GetComponent<IDamageable>().Damage(transform,AttackTypes.SpecialAttack, (int)(parameters.baseAttackDamage*parameters.sheatAttackDamageMultiplier));
     }
 
-    public void SheatAttackSound(){
+    public void PlaySheatAttackSFX(){
         audioSource.PlayOneShot(audioSheatAttack, volumeSheatAttack);
     }
 

@@ -21,7 +21,15 @@ public class PlayerMovement : MonoBehaviour
     [Range(0,30)]
     [SerializeField] float evadeForwardConstantSpeed = 15f;
 
-    [Header("Evade Audios")]
+    [Header("Evade VFX")]
+
+    [SerializeField] GameObject forwardEvadeVFX;
+    [SerializeField] Transform forwardEvadeVFXTransform;    
+    [SerializeField] GameObject backwardsEvadeVFX;
+    [SerializeField] Transform backwardsEvadeVFXTransform;
+    
+    [Header("Evade SFX")]
+
     [SerializeField] AudioClip evadeFrontalAudio;
     [Range(0,1)]
     [SerializeField] float evadeFrontalVolume =0.5f;
@@ -151,6 +159,25 @@ public class PlayerMovement : MonoBehaviour
         print(evadeForceDirection);
         currentMovementForce =evadeForceDirection*parameters.backwardEvadeSpeed;
         rb.AddForce(currentMovementForce,ForceMode2D.Impulse);
+    }
+
+    public void PlayForwardEvadeVFX(){
+        GameObject vfx = GameObject.Instantiate(forwardEvadeVFX, forwardEvadeVFXTransform.position, forwardEvadeVFXTransform.rotation);
+        vfx.transform.localScale = forwardEvadeVFXTransform.localScale;
+        StartCoroutine(DestroyObject(vfx));
+    }
+    public void PlayBackwardEvadeVFX(){
+        GameObject vfx = GameObject.Instantiate(backwardsEvadeVFX, backwardsEvadeVFXTransform.position, backwardsEvadeVFXTransform.rotation);
+        vfx.transform.localScale = backwardsEvadeVFXTransform.localScale;
+        StartCoroutine(DestroyObject(vfx));
+    }
+
+        IEnumerator DestroyObject(GameObject vfx){
+        ParticleSystem particles = vfx.GetComponent<ParticleSystem>();
+        while(particles.isPlaying){
+            yield return null;
+        }
+        Destroy(vfx);
     }
 
     public void PlayEvadeBackwardAudio(){

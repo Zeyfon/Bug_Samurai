@@ -2219,7 +2219,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.25
-    functionName: PlayAttackAudio2
+    functionName: PlayComboAttack2SFX
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

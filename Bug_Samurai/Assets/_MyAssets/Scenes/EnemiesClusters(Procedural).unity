@@ -964,7 +964,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundMusic: {fileID: 0}
-  musicVolume: 1
 --- !u!4 &1876336381
 Transform:
   m_ObjectHideFlags: 0
