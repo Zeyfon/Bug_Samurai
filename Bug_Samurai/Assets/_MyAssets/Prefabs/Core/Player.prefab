@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1436650973316791149}
   m_Layer: 6
-  m_Name: VFX1Origin
+  m_Name: VFXComboAttack1Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,6 +115,37 @@ Transform:
   m_Father: {fileID: 4498906711672072463}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 62.46}
+--- !u!1 &2376518629590328504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8787215287298024201}
+  m_Layer: 6
+  m_Name: VFXForwardEvadeOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8787215287298024201
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2376518629590328504}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.31, y: 2.54, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4498906711672072463}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2398404243195583364
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,8 +438,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
-  evadeAnimationSpeedMultiplier: 1
-  evadeMovementSpeed: 5
+  forwardEvadeAnimationSpeedMultiplier: 1
+  backwardEvadeAnimationSpeedMultiplier: 1
+  forwardEvadeSpeed: 5
+  backwardEvadeSpeed: 5
   baseAttackDamage: 10
   sheatAttackDamageMultiplier: 3
 --- !u!114 &5089992514595569142
@@ -494,6 +527,10 @@ MonoBehaviour:
   volumeRunning: 0.5
   evadeBackwardImpulse: 25
   evadeForwardConstantSpeed: 15
+  forwardEvadeVFX: {fileID: 9090052037473767930, guid: 54decf03c13d0a64b9313be299066d7d, type: 3}
+  forwardEvadeVFXTransform: {fileID: 8787215287298024201}
+  backwardsEvadeVFX: {fileID: 2972137616953671510, guid: 3b6d31ab622956941a502c2a29929280, type: 3}
+  backwardsEvadeVFXTransform: {fileID: 3982982200623870286}
   evadeFrontalAudio: {fileID: 8300000, guid: f882b951de9648f4fb0bf51b5d0623fa, type: 3}
   evadeFrontalVolume: 0.5
   evadeBackwardAudio: {fileID: 8300000, guid: f882b951de9648f4fb0bf51b5d0623fa, type: 3}
@@ -3173,6 +3210,37 @@ Transform:
   m_Father: {fileID: 4643799072619400359}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6064909113774014313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3982982200623870286}
+  m_Layer: 6
+  m_Name: VFXBackwardEvadeOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3982982200623870286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6064909113774014313}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.58, y: -0.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4498906711672072463}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7152776989894592536
 GameObject:
   m_ObjectHideFlags: 0
@@ -3352,6 +3420,8 @@ Transform:
   - {fileID: 1436650973316791149}
   - {fileID: 1144058674169044623}
   - {fileID: 8300229456850720505}
+  - {fileID: 8787215287298024201}
+  - {fileID: 3982982200623870286}
   m_Father: {fileID: 4447915171210409066}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3365,7 +3435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1144058674169044623}
   m_Layer: 6
-  m_Name: VFX2Origin
+  m_Name: VFXComboAttack2Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
