@@ -11,7 +11,8 @@ public class PlayerCombat : MonoBehaviour
     [Header("Connection Classes")]
     [SerializeField] PlayMakerFSM playerControllerFSM;
     [SerializeField] PlayerMovement playerMovement;
-    [SerializeField] PlayerSword playerSword;
+    [SerializeField] PlayerSword comboAttackSword;
+    [SerializeField] PlayerSword sheatAttackSword;
 
     [Header("Sheat Attack Counter Time")]
     [Range(0,2)]
@@ -53,6 +54,9 @@ public class PlayerCombat : MonoBehaviour
     Transform attackerTransform;
 
     PlayerParameters parameters;
+    int currentAttackDamage;
+
+    AttackTypes currentAttackType;
     void Start(){
         parameters = GetComponent<PlayerParameters>();
         animator = GetComponent<Animator>();
@@ -98,11 +102,42 @@ public class PlayerCombat : MonoBehaviour
     }
 
     public void EnableSwordCollider(){
-        playerSword.EnableSwordCollider();
+        SetCurrentAttackDaamge((int)parameters.baseAttackDamage);
+        SetCurrentAttackType(AttackTypes.NormalAttack);
+        comboAttackSword.EnableSwordCollider();
     }
 
     public void DisableSwordCollider(){
-        playerSword.DisableSwordCollider();
+        comboAttackSword.DisableSwordCollider();
+    }
+
+    public void EnableSheatAttackCollider(){
+        SetCurrentAttackDaamge((int)(parameters.baseAttackDamage*parameters.sheatAttackDamageMultiplier));
+        SetCurrentAttackType(AttackTypes.SpecialAttack);
+        sheatAttackSword.EnableSwordCollider();
+    }
+
+    public void DisableSheatAttackCollider(){
+        sheatAttackSword.DisableSwordCollider();
+    }
+
+
+    void SetCurrentAttackDaamge(int damage){
+        currentAttackDamage = damage;
+    }
+
+
+
+    public int GetCurrentAttackDamage(){
+        return currentAttackDamage;
+    }
+
+    void SetCurrentAttackType(AttackTypes type){
+        currentAttackType = type;
+    }
+
+    public AttackTypes GetCurrentAttackType(){
+        return currentAttackType;
     }
 
     public void SheatPosture(bool isSheatPostureButtonPressed){
@@ -151,7 +186,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void SheatAttackDamage(){
         OnSheatAttackEvent();
-        attackerTransform.GetComponent<IDamageable>().Damage(transform,AttackTypes.SpecialAttack, (int)(parameters.baseAttackDamage*parameters.sheatAttackDamageMultiplier));
+        //attackerTransform.GetComponent<IDamageable>().Damage(transform,AttackTypes.SpecialAttack, (int)(parameters.baseAttackDamage*parameters.sheatAttackDamageMultiplier));
     }
 
     public void PlaySheatAttackSFX(){
