@@ -203,7 +203,7 @@ Transform:
   m_GameObject: {fileID: 1303748525730913784}
   m_LocalRotation: {x: -0, y: -0, z: 0.51847196, w: 0.8550947}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: -1, z: 1}
+  m_LocalScale: {x: 1, y: -0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4498906711672072463}
@@ -327,8 +327,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2376518629590328504}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.31, y: 2.54, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.43, y: -0.82, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4498906711672072463}
@@ -3079,9 +3079,9 @@ MonoBehaviour:
   volumeAttack2: 0.5
   audioSheatAttack: {fileID: 8300000, guid: cf2a2a9bbd4164c499eb669b4fe3899f, type: 3}
   volumeSheatAttack: 0.5
-  combotAttack1VFX: {fileID: 6792073445626459971, guid: 85f3e3eeb46cd754092b6561cfdb822d, type: 3}
+  combotAttack1VFX: {fileID: 373540190890739687, guid: 27cb069e4c03924438c45221523df0cc, type: 3}
   vfx1Transform: {fileID: 1436650973316791149}
-  combotAttack2VFX: {fileID: 7864041025692017803, guid: 83f3b83127f98594ca476f2119817f02, type: 3}
+  combotAttack2VFX: {fileID: 373540190890739687, guid: 27cb069e4c03924438c45221523df0cc, type: 3}
   vfxTransform: {fileID: 1144058674169044623}
   sheatAttackVFX: {fileID: 3183103670429015080, guid: 5ad16c75c8ae2934cbb9b699a7120f47, type: 3}
   vfxSheatAttackTransform: {fileID: 8300229456850720505}
@@ -3110,9 +3110,9 @@ MonoBehaviour:
   volumeRunning: 0.5
   evadeBackwardImpulse: 25
   evadeForwardConstantSpeed: 15
-  forwardEvadeVFX: {fileID: 9090052037473767930, guid: 54decf03c13d0a64b9313be299066d7d, type: 3}
+  forwardEvadeVFX: {fileID: 9187293839791537495, guid: a1a11c93b88bc4f4fb5b3019cf606234, type: 3}
   forwardEvadeVFXTransform: {fileID: 8787215287298024201}
-  backwardsEvadeVFX: {fileID: 2972137616953671510, guid: 3b6d31ab622956941a502c2a29929280, type: 3}
+  backwardsEvadeVFX: {fileID: 9187293839791537495, guid: a1a11c93b88bc4f4fb5b3019cf606234, type: 3}
   backwardsEvadeVFXTransform: {fileID: 3982982200623870286}
   evadeFrontalAudio: {fileID: 8300000, guid: f882b951de9648f4fb0bf51b5d0623fa, type: 3}
   evadeFrontalVolume: 0.5
@@ -3361,8 +3361,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6064909113774014313}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.58, y: -0.35, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.36, y: -0.83, z: 0}
+  m_LocalScale: {x: 0.15, y: 0, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4498906711672072463}
@@ -3392,8 +3392,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7152776989894592536}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.47, y: 0, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4498906711672072463}
@@ -3610,7 +3610,7 @@ Transform:
   m_GameObject: {fileID: 9096195433613549871}
   m_LocalRotation: {x: -0, y: -0, z: -0.3257079, w: 0.94547045}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: -0, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4498906711672072463}
