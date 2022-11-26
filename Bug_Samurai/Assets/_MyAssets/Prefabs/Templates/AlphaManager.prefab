@@ -95,6 +95,11 @@ MonoBehaviour:
   canEnemiesBeDamaged: 0
   minEnemyMovementSpeed: 1.02
   maxEnemyMovementSpeed: 2.99
+  squareSprite: {fileID: -1181746703, guid: 565ce465e5270c3448e0bdfb5073af00, type: 3}
+  triangleSprite: {fileID: 21300000, guid: 89b68e06723b4224d90090f0424d23a8, type: 3}
+  circleSprite: {fileID: -1492929155, guid: 99f1cf51e78b7e145b6bbd1b7501d585, type: 3}
+  darkColor: {r: 0.24528301, g: 0.23255606, b: 0.23255606, a: 1}
+  brightColor: {r: 0.754717, g: 0.71555716, b: 0.71555716, a: 1}
 --- !u!1 &4375133543945612663
 GameObject:
   m_ObjectHideFlags: 0

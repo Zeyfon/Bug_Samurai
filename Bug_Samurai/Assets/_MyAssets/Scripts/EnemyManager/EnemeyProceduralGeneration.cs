@@ -40,6 +40,16 @@ public class EnemeyProceduralGeneration : MonoBehaviour
     [Range(0,5)]
     [SerializeField] float maxEnemyMovementSpeed;
 
+    [SerializeField] Sprite squareSprite;
+
+    [SerializeField] Sprite triangleSprite;
+    [SerializeField] Sprite circleSprite;
+
+    [SerializeField] Color darkColor;
+    [SerializeField] Color brightColor;
+
+
+
 
     public struct ThisEnemyParameters{
         public Vector2 detectionColliderSize;
@@ -127,7 +137,7 @@ public class EnemeyProceduralGeneration : MonoBehaviour
         GameObject enemy = GameObject.Instantiate(enemyTemplate,spawnLocation, Quaternion.identity);
         EnemyParameters enemyParameters = enemy.GetComponent<EnemyParameters>();
         SetParametersToEnemy(enemyParameters, parameters);
-        SetEnemyColor(enemy,parameters);
+        SetEnemiesVisuals(enemyParameters,parameters);
     }
 
     void SetParametersToEnemy(EnemyParameters thisEnemyParameters, ThisEnemyParameters parameters){
@@ -141,28 +151,45 @@ public class EnemeyProceduralGeneration : MonoBehaviour
         thisEnemyParameters.canBeDamaged = parameters.canEnemiesBeDamaged;
     }
 
-    void SetEnemyColor(GameObject enemy, ThisEnemyParameters parameters){
-        SpriteRenderer m_Renderer = enemy.GetComponentInChildren<SpriteRenderer>();
-        print(m_Renderer.gameObject.name);
+    void SetEnemiesVisuals(EnemyParameters  enemyParameters, ThisEnemyParameters templateParameters){
 
         //Defense guy
-        if(parameters.hasDefense){
+        if(templateParameters.hasDefense){
             print("Blue one");
-            m_Renderer.color = Color.blue;
+            enemyParameters.bodyRenderer.sprite = squareSprite;
+            if (templateParameters.quantityOfAttacks>1){
+                //print("Red one");
+            enemyParameters.bodyRenderer.color = darkColor;
+            }
+            else{
+                enemyParameters.bodyRenderer.color = brightColor;
+            }
+            //enemyParameters.bodyRenderer.color = Color.red;
         }
+            //enemyParameters.bodyRenderer.color = Color.blue;
         //Three Attacks Combo Guy
-        else if (parameters.quantityOfAttacks>1){
+        else if (templateParameters.quantityOfAttacks>1){
             print("Red one");
-            m_Renderer.color = Color.red;
+            enemyParameters.bodyRenderer.sprite = triangleSprite;
+            if (!templateParameters.canBeInterruptedByAnything){
+                //print("Red one");
+                enemyParameters.bodyRenderer.color = darkColor;
+            }
+            else{
+                enemyParameters.bodyRenderer.color = brightColor;
+            }
+            //enemyParameters.bodyRenderer.color = Color.red;
         }
-        //Is Easily Interrupted guy
-        else if(parameters.canBeInterruptedByAnything){
-            print("Green one");
-            m_Renderer.color = Color.green;
-        }
-        //No interrupted easily with 1 attack
         else{
-            print("Body Color did not change");
+            //Is Easily Interrupted guy
+            enemyParameters.bodyRenderer.sprite = circleSprite;
+            if (!templateParameters.canBeInterruptedByAnything){
+                enemyParameters.bodyRenderer.color = darkColor;
+            }
+            else{
+                enemyParameters.bodyRenderer.color = brightColor;
+            }
         }
+
     }
 }

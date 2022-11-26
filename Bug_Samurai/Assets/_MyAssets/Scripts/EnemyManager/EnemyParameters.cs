@@ -14,4 +14,6 @@ public class EnemyParameters:MonoBehaviour
         public bool canBeDamaged;
         public float minMovementSpeed;
         public float maxMovementSpeed;
+
+        public SpriteRenderer bodyRenderer;
 }

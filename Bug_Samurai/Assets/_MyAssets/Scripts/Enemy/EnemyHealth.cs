@@ -98,11 +98,20 @@ public class EnemyHealth : MonoBehaviour, IDamageable
                 health -= damage;
             }
             if(health==0){
-                //Destroy(gameObject);
-                gameObject.SetActive(false);
+                Die();
             }
         }
 
+    }
+
+    void Die(){
+        StartCoroutine(DieCoroutine());
+
+    }
+
+    IEnumerator DieCoroutine(){
+        yield return new WaitForSeconds(0.4f);
+        gameObject.SetActive(false);
     }
 
     void InterruptionDamage(){
