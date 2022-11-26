@@ -59,8 +59,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451987661771930994}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.02, y: 1.64, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5152630633546916119}
@@ -344,8 +344,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3462243852049274292}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.54, y: 0.2, z: 1}
+  m_LocalPosition: {x: -0.09, y: -0.06, z: 0}
+  m_LocalScale: {x: 0.75448805, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5486816572853151116}
@@ -2405,14 +2405,14 @@ MonoBehaviour:
   attackCollider: {fileID: 7702939299422136539}
   audioAttack: {fileID: 8300000, guid: 2432cf1603e3951439cbe7ce2276ad1d, type: 3}
   volumeAttack: 0.35
-  attackSignal: {fileID: 8867112169225384458, guid: c7192044afa1e474698d2bc7a0ee4011, type: 3}
+  attackSignal: {fileID: 3882701174276009160, guid: 0bed6fdeb3191e0478b5744febdaddb1, type: 3}
   attackSignalOriginTransform: {fileID: 2976006025594989442}
   attackVFX: {fileID: 5675062471633878340, guid: 97877d5e87937664ca430bd60107c678, type: 3}
   attackVFXOriginTransform: {fileID: 4541592148756673425}
   maxDefenseTime: 2
   defenseAudio: {fileID: 8300000, guid: e91e06c385d1b1645bca2cef09c8668c, type: 3}
   defenseVolume: 0.5
-  defenseVFX: {fileID: 8535027140315678471, guid: a9c779f704b18d846b24b2faae31bf1a, type: 3}
+  defenseVFX: {fileID: 2050967202763056129, guid: b80407ae74dc7e9499a6d2a7553d0eef, type: 3}
   defenseVFXOrigin: {fileID: 2974392850629769414}
   quantityOfAttacks: 0
   attackAnimationSpeed: 1
@@ -2698,8 +2698,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8718238993668656913}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.09, y: -0.26, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5152630633546916119}
