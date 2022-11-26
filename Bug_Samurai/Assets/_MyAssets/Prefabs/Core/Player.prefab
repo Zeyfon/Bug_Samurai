@@ -3050,12 +3050,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
-  forwardEvadeAnimationSpeedMultiplier: 1
+  forwardEvadeAnimationSpeedMultiplier: 2
   backwardEvadeAnimationSpeedMultiplier: 1
-  forwardEvadeSpeed: 5
-  backwardEvadeSpeed: 5
-  baseAttackDamage: 10
-  sheatAttackDamageMultiplier: 3
+  forwardEvadeSpeed: 15
+  backwardEvadeSpeed: 15
+  baseAttackDamage: 15
+  sheatAttackDamageMultiplier: 2
 --- !u!114 &1892958101206381320
 MonoBehaviour:
   m_ObjectHideFlags: 0
