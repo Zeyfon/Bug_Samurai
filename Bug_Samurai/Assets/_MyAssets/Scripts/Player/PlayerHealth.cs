@@ -25,7 +25,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         print("Damaged Received");
         if(playerCombat.CanDoSheatAttack() && animator.GetInteger("Attack") != 0){
             print("SheatAttack");
-            playerCombat.SheatAttack(attackerTransform);
+            playerCombat.EnableSheatAttackDamageDelivery();
             return;
         }
         playerCombat.SetIsAttacking(false);
