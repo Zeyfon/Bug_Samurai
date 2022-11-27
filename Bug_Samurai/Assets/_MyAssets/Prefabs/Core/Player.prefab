@@ -3072,7 +3072,7 @@ MonoBehaviour:
   playerMovement: {fileID: 2191504155436253058}
   comboAttackSword: {fileID: 2421439158994392472}
   sheatAttackSword: {fileID: 833527916163101683}
-  sheatAttackMaxTime: 1
+  sheatAttackMaxTime: 0.5
   attackAudio1: {fileID: 8300000, guid: d2a2da07ffbe080428bc02a1103ab2f6, type: 3}
   volumeAttack1: 0.5
   attackAudio2: {fileID: 8300000, guid: cf2a2a9bbd4164c499eb669b4fe3899f, type: 3}
