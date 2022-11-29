@@ -332,7 +332,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4498906711672072463}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2398404243195583364
 GameObject:
@@ -392,6 +392,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
+--- !u!1 &2413118243498015621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3903421464727036365}
+  m_Layer: 6
+  m_Name: VFXSheatAttackReady
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3903421464727036365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2413118243498015621}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.42, y: 1.17, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4498906711672072463}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4447915170263853104
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,8 +655,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 521.4922
-        y: 119.265625
+        x: 361.4922
+        y: 103.265625
         width: 100
         height: 32
       isBreakpoint: 0
@@ -685,8 +716,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 518.2422
-        y: 219.17969
+        x: 358.2422
+        y: 203.17969
         width: 175
         height: 80
       isBreakpoint: 0
@@ -715,7 +746,7 @@ MonoBehaviour:
           name: ENABLESHEATPOSTURE
           isSystemEvent: 0
           isGlobal: 0
-        toState: SheatPosture 2
+        toState: SheatPosture
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
@@ -929,8 +960,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 807.02344
-        y: 191.19531
+        x: 657.5625
+        y: 180.46875
         width: 103
         height: 32
       isBreakpoint: 0
@@ -1040,8 +1071,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 804.90625
-        y: 252.10156
+        x: 644.90625
+        y: 236.10156
         width: 148
         height: 48
       isBreakpoint: 0
@@ -1170,8 +1201,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 1032.0703
-        y: 260.66406
+        x: 881.28906
+        y: 239.41406
         width: 100
         height: 32
       isBreakpoint: 0
@@ -1277,8 +1308,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 793
-        y: 100
+        x: 611.96094
+        y: 105.0625
         width: 118
         height: 32
       isBreakpoint: 0
@@ -1441,24 +1472,24 @@ MonoBehaviour:
         - updateType
         paramDataPos: 000000000000000000000000000000000000000001000000020000000000000000000000010000000600000001000000010000000100000001000000070000000800000009000000
         paramByteDataSize: 000000000000000000000000000000000100000001000000040000000000000000000000000000000100000000000000000000000000000000000000010000000100000004000000
-    - name: SheatPosture 2
+    - name: SheatPosture
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 262.5
-        y: 252.35938
+        x: 56.460938
+        y: 283.7422
         width: 148
-        height: 80
+        height: 64
       isBreakpoint: 0
       isSequence: 1
       hideUnused: 0
       transitions:
       - fsmEvent:
-          name: ACTIONENDED
+          name: ATTACKCOMMAND
           isSystemEvent: 0
           isGlobal: 0
-        toState: Reset Values
+        toState: SheatAttack
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
@@ -1467,25 +1498,16 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: SheatPosture 2
+        toState: SheatPosture
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
         colorIndex: 0
       - fsmEvent:
-          name: ATTACKCOMMAND
+          name: ACTIONENDED
           isSystemEvent: 0
           isGlobal: 0
-        toState: ReadySheatAttack
-        linkStyle: 0
-        linkConstraint: 0
-        linkTarget: 0
-        colorIndex: 0
-      - fsmEvent:
-          name: SHEATATTACK
-          isSystemEvent: 0
-          isGlobal: 0
-        toState: State 1
+        toState: Reset Values
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
@@ -1670,8 +1692,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 588.16406
-        y: 349.08594
+        x: 366.33594
+        y: 333.09375
         width: 107
         height: 32
       isBreakpoint: 0
@@ -1824,125 +1846,13 @@ MonoBehaviour:
         - sendEvent
         paramDataPos: 000000000000000000000000000000000000000001000000020000000100000001000000010000000100000006000000070000000800000000000000
         paramByteDataSize: 000000000000000000000000000000000100000001000000040000000000000000000000000000000000000001000000010000000400000000000000
-    - name: ReadySheatAttack
-      description: 
-      colorIndex: 0
-      position:
-        serializedVersion: 2
-        x: 260.27344
-        y: 368.1797
-        width: 141
-        height: 32
-      isBreakpoint: 0
-      isSequence: 1
-      hideUnused: 0
-      transitions:
-      - fsmEvent:
-          name: FINISHED
-          isSystemEvent: 1
-          isGlobal: 0
-        toState: SheatPosture 2
-        linkStyle: 0
-        linkConstraint: 0
-        linkTarget: 0
-        colorIndex: 0
-      actionData:
-        actionNames:
-        - HutongGames.PlayMaker.Actions.CallMethodAdvanced
-        - HutongGames.PlayMaker.Actions.NextFrameEvent
-        customNames:
-        - 
-        - 
-        actionEnabled: 0101
-        actionIsOpen: 0101
-        actionStartIndex: 0000000007000000
-        actionHashCodes: 6d61810388611604
-        unityObjectParams: []
-        fsmGameObjectParams: []
-        fsmOwnerDefaultParams: []
-        animationCurveParams: []
-        functionCallParams: []
-        fsmTemplateControlParams: []
-        fsmEventTargetParams: []
-        fsmPropertyParams: []
-        layoutOptionParams: []
-        fsmStringParams:
-        - useVariable: 0
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: ReadySheatAttack
-        fsmObjectParams:
-        - useVariable: 1
-          name: combatComponent
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          typeName: PlayerCombat
-          value: {fileID: 1892958101206381320}
-        fsmVarParams:
-        - variableName: 
-          objectType: 
-          useVariable: 0
-          type: -1
-          floatValue: 0
-          intValue: 0
-          boolValue: 0
-          stringValue: 
-          vector4Value: {x: 0, y: 0, z: 0, w: 0}
-          objectReference: {fileID: 0}
-          arrayValue:
-            useVariable: 0
-            name: 
-            tooltip: 
-            showInInspector: 0
-            networkSync: 0
-            type: -1
-            objectTypeName: 
-            floatValues: []
-            intValues: 
-            boolValues: 
-            stringValues: []
-            vector4Values: []
-            objectReferences: []
-        fsmArrayParams: []
-        fsmEnumParams: []
-        fsmFloatParams: []
-        fsmIntParams: []
-        fsmBoolParams: []
-        fsmVector2Params: []
-        fsmVector3Params: []
-        fsmColorParams: []
-        fsmRectParams: []
-        fsmQuaternionParams: []
-        stringParams:
-        - FINISHED
-        byteData: 000000000000
-        arrayParamSizes: 00000000
-        arrayParamTypes:
-        - HutongGames.PlayMaker.FsmVar
-        customTypeSizes: 
-        customTypeNames: []
-        paramDataType: 18000000120000000c0000002700000001000000010000000700000017000000
-        paramName:
-        - behaviour
-        - methodName
-        - parameters
-        - storeResult
-        - manualUI
-        - everyFrame
-        - updateType
-        - sendEvent
-        paramDataPos: 0000000000000000000000000000000000000000010000000200000000000000
-        paramByteDataSize: 0000000000000000000000000000000001000000010000000400000000000000
     - name: SheatAttack
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 259.75
-        y: 187.0625
+        x: 55.023438
+        y: 180.28125
         width: 118
         height: 32
       isBreakpoint: 0
@@ -2105,189 +2015,13 @@ MonoBehaviour:
         - everyFrame
         paramDataPos: 00000000000000000000000000000000000000000100000002000000010000000100000001000000010000000600000007000000080000000000000000000000010000000c000000
         paramByteDataSize: 000000000000000000000000000000000100000001000000040000000000000000000000000000000000000001000000010000000400000000000000000000000000000001000000
-    - name: State 1
-      description: 
-      colorIndex: 0
-      position:
-        serializedVersion: 2
-        x: 64.88281
-        y: 211.625
-        width: 100
-        height: 32
-      isBreakpoint: 0
-      isSequence: 0
-      hideUnused: 0
-      transitions:
-      - fsmEvent:
-          name: FINISHED
-          isSystemEvent: 1
-          isGlobal: 0
-        toState: SheatAttack
-        linkStyle: 0
-        linkConstraint: 0
-        linkTarget: 0
-        colorIndex: 0
-      actionData:
-        actionNames:
-        - HutongGames.PlayMaker.Actions.GetEventInfo
-        customNames:
-        - 
-        actionEnabled: 01
-        actionIsOpen: 01
-        actionStartIndex: 00000000
-        actionHashCodes: d9ade603
-        unityObjectParams: []
-        fsmGameObjectParams:
-        - useVariable: 1
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: {fileID: 0}
-        - useVariable: 1
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: {fileID: 0}
-        fsmOwnerDefaultParams: []
-        animationCurveParams: []
-        functionCallParams: []
-        fsmTemplateControlParams: []
-        fsmEventTargetParams: []
-        fsmPropertyParams: []
-        layoutOptionParams: []
-        fsmStringParams:
-        - useVariable: 1
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: 
-        - useVariable: 1
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: 
-        fsmObjectParams:
-        - useVariable: 1
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          typeName: 
-          value: {fileID: 0}
-        - useVariable: 1
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          typeName: 
-          value: {fileID: 0}
-        - useVariable: 1
-          name: enemyTransform
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          typeName: UnityEngine.Transform
-          value: {fileID: 0}
-        fsmVarParams: []
-        fsmArrayParams: []
-        fsmEnumParams: []
-        fsmFloatParams:
-        - useVariable: 1
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: 0
-        fsmIntParams:
-        - useVariable: 1
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: 0
-        fsmBoolParams:
-        - useVariable: 1
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: 0
-        fsmVector2Params:
-        - useVariable: 1
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: {x: 0, y: 0}
-        fsmVector3Params:
-        - useVariable: 1
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: {x: 0, y: 0, z: 0}
-        fsmColorParams:
-        - useVariable: 1
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: {r: 0, g: 0, b: 0, a: 1}
-        fsmRectParams:
-        - useVariable: 1
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value:
-            serializedVersion: 2
-            x: 0
-            y: 0
-            width: 0
-            height: 0
-        fsmQuaternionParams:
-        - useVariable: 1
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: {x: 0, y: 0, z: 0, w: 0}
-        stringParams: []
-        byteData: 
-        arrayParamSizes: 
-        arrayParamTypes: []
-        customTypeSizes: 
-        customTypeNames: []
-        paramDataType: 130000001200000011000000100000000f000000250000001c00000012000000130000001e0000002300000020000000210000001900000018000000
-        paramName:
-        - sentByGameObject
-        - fsmName
-        - getBoolData
-        - getIntData
-        - getFloatData
-        - getVector2Data
-        - getVector3Data
-        - getStringData
-        - getGameObjectData
-        - getRectData
-        - getQuaternionData
-        - getMaterialData
-        - getTextureData
-        - getColorData
-        - getObjectData
-        paramDataPos: 000000000000000000000000000000000000000000000000000000000100000001000000000000000000000000000000010000000000000002000000
-        paramByteDataSize: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     - name: Start Evade
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 862.3203
-        y: 357.0547
+        x: 702.3203
+        y: 341.0547
         width: 143
         height: 48
       isBreakpoint: 0
@@ -2521,8 +2255,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 849.5078
-        y: 441.02344
+        x: 694.78125
+        y: 422.39844
         width: 118
         height: 32
       isBreakpoint: 0
@@ -2699,8 +2433,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 842.4453
-        y: 492.8672
+        x: 695.6172
+        y: 478.21094
         width: 128
         height: 32
       isBreakpoint: 0
@@ -3049,13 +2783,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 893a570fe2df70349a8ee6a07e4576fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3
+  movementSpeed: 3.5
   forwardEvadeAnimationSpeedMultiplier: 2
   backwardEvadeAnimationSpeedMultiplier: 1
-  forwardEvadeSpeed: 15
+  forwardEvadeSpeed: 20
   backwardEvadeSpeed: 15
-  baseAttackDamage: 15
-  sheatAttackDamageMultiplier: 2
+  baseAttackDamage: 20
+  sheatAttackDamageMultiplier: 2.5
 --- !u!114 &1892958101206381320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3072,6 +2806,10 @@ MonoBehaviour:
   playerMovement: {fileID: 2191504155436253058}
   comboAttackSword: {fileID: 2421439158994392472}
   sheatAttackSword: {fileID: 833527916163101683}
+  sheatAttackReadySignalVFX: {fileID: 962401135209959635, guid: b61b9f2ad9438834c97bf701fe47d415, type: 3}
+  sheatAttackReadySignalTransform: {fileID: 3903421464727036365}
+  sheatAttackHitEnemyVFX: {fileID: 9067312723426285028, guid: 23c042da2a6bf0e4baf3492d51486d82, type: 3}
+  sheatAttackHitEnemyVFXTransform: {fileID: 1065731396475038168}
   sheatAttackMaxTime: 0.5
   attackAudio1: {fileID: 8300000, guid: d2a2da07ffbe080428bc02a1103ab2f6, type: 3}
   volumeAttack1: 0.5
@@ -3083,8 +2821,8 @@ MonoBehaviour:
   vfx1Transform: {fileID: 1436650973316791149}
   combotAttack2VFX: {fileID: 373540190890739687, guid: 27cb069e4c03924438c45221523df0cc, type: 3}
   vfxTransform: {fileID: 1144058674169044623}
-  sheatAttackVFX: {fileID: 3183103670429015080, guid: 5ad16c75c8ae2934cbb9b699a7120f47, type: 3}
-  vfxSheatAttackTransform: {fileID: 8300229456850720505}
+  sheatAttackPerformedVFX: {fileID: 3183103670429015080, guid: 5ad16c75c8ae2934cbb9b699a7120f47, type: 3}
+  vfxSheatAttackPerformedTransform: {fileID: 8300229456850720505}
   vCam: {fileID: 0}
   damage: 10
 --- !u!114 &2191504155436253058
@@ -3366,7 +3104,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4498906711672072463}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7152776989894592536
 GameObject:
@@ -3378,7 +3116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8300229456850720505}
   m_Layer: 6
-  m_Name: VFXSheatAttackOrigin
+  m_Name: VFXSheatAttackPerformedOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3393,11 +3131,42 @@ Transform:
   m_GameObject: {fileID: 7152776989894592536}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.47, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4498906711672072463}
-  m_RootOrder: 2
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7168995064111474202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1065731396475038168}
+  m_Layer: 6
+  m_Name: VFXSheatAttackHitEnemyOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1065731396475038168
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7168995064111474202}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.14, y: 0.08, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4498906711672072463}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7666617677069919087
 GameObject:
@@ -3579,9 +3348,11 @@ Transform:
   m_Children:
   - {fileID: 1436650973316791149}
   - {fileID: 1144058674169044623}
-  - {fileID: 8300229456850720505}
   - {fileID: 8787215287298024201}
   - {fileID: 3982982200623870286}
+  - {fileID: 3903421464727036365}
+  - {fileID: 8300229456850720505}
+  - {fileID: 1065731396475038168}
   m_Father: {fileID: 4447915171210409066}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

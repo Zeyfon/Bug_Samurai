@@ -14,7 +14,12 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] PlayerSword comboAttackSword;
     [SerializeField] PlayerSword sheatAttackSword;
 
-    [Header("Sheat Attack Counter Time")]
+    [Header("Sheat Attack")]
+    [SerializeField] GameObject sheatAttackReadySignalVFX;
+    [SerializeField] Transform sheatAttackReadySignalTransform;
+
+    [SerializeField] GameObject sheatAttackHitEnemyVFX;
+    [SerializeField] Transform sheatAttackHitEnemyVFXTransform;
     [Range(0,2)]
     [SerializeField] float sheatAttackMaxTime = 2.0f;
 
@@ -36,8 +41,8 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] Transform vfx1Transform;
     [SerializeField] GameObject combotAttack2VFX;
     [SerializeField] Transform vfxTransform;
-    [SerializeField] GameObject sheatAttackVFX;
-    [SerializeField] Transform vfxSheatAttackTransform;
+    [SerializeField] GameObject sheatAttackPerformedVFX;
+    [SerializeField] Transform vfxSheatAttackPerformedTransform;
 
     [SerializeField] CinemachineVirtualCamera vCam;
     [SerializeField] int damage = 10;
@@ -57,31 +62,16 @@ public class PlayerCombat : MonoBehaviour
     int currentAttackDamage;
 
     AttackTypes currentAttackType;
+
+    bool enableSheatAttackCollider = false;
     void Start(){
         parameters = GetComponent<PlayerParameters>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
     }
+
     void Update(){
         sheatAttackTimer +=Time.deltaTime;
-        // if(sheatAttackTimer<sheatAttackMaxTime){
-        //     print(sheatAttackTimer);
-        // }
-
-    }
-
-    public void StartAttack(){
-        SetIsAttacking(true);
-        animator.SetInteger("Attack", 1);
-    }
-    public void ContinueAttack(){
-        if(animator.GetInteger("Attack")==11){
-            animator.SetInteger("Attack", 15);
-        }
-    }
-
-    public void CanContinueAttack(){
-        animator.SetInteger("Attack", 11);
     }
 
     public void AttackEnded(){
@@ -94,11 +84,20 @@ public class PlayerCombat : MonoBehaviour
         return isAttacking;
     }
 
-    public void PlayComboAttack2SFX(){
-        audioSource.PlayOneShot(attackAudio2, volumeAttack1);
+#region Combo Attack
+    public void StartAttack(){
+        SetIsAttacking(true);
+        animator.SetInteger("Attack", 1);
     }
-    public void PlayComboAttack1SFX(){
-        audioSource.PlayOneShot(attackAudio1, volumeAttack2);
+
+    public void ContinueAttack(){
+        if(animator.GetInteger("Attack")==11){
+            animator.SetInteger("Attack", 15);
+        }
+    }
+
+    public void CanContinueAttack(){
+        animator.SetInteger("Attack", 11);
     }
 
     public void EnableSwordCollider(){
@@ -106,38 +105,57 @@ public class PlayerCombat : MonoBehaviour
         SetCurrentAttackType(AttackTypes.NormalAttack);
         comboAttackSword.EnableSwordCollider();
     }
-
-    public void DisableSwordCollider(){
+    void DisableSwordCollider(){
         comboAttackSword.DisableSwordCollider();
     }
 
-    public void EnableSheatAttackCollider(){
-        SetCurrentAttackDaamge((int)(parameters.baseAttackDamage*parameters.sheatAttackDamageMultiplier));
-        SetCurrentAttackType(AttackTypes.SpecialAttack);
-        sheatAttackSword.EnableSwordCollider();
+    public void PlayComboAttack1VFX(){
+        CreateVFXGameObject(combotAttack1VFX,vfx1Transform);
+    }
+    public void PlayComboAttack2VFX(){
+        CreateVFXGameObject(combotAttack2VFX,vfxTransform);
+    } 
+    public void PlayComboAttack2SFX(){
+        audioSource.PlayOneShot(attackAudio2, volumeAttack1);
+    }
+    public void PlayComboAttack1SFX(){
+        audioSource.PlayOneShot(attackAudio1, volumeAttack2);
     }
 
-    public void DisableSheatAttackCollider(){
-        sheatAttackSword.DisableSwordCollider();
+#endregion
+#region SheatAttack
+
+    public bool CanDoSheatAttack(){
+        if(sheatAttackTimer< sheatAttackMaxTime){
+            return true;
+        }
+        else{
+            return false;
+        } 
     }
 
-
-    void SetCurrentAttackDaamge(int damage){
-        currentAttackDamage = damage;
+    public void EnableSheatAttackDamageDelivery(){
+        enableSheatAttackCollider=true;
     }
 
-
-
-    public int GetCurrentAttackDamage(){
-        return currentAttackDamage;
+    public void DeliverSheatAttackDamage(){
+        if(enableSheatAttackCollider){
+            EnableSheatAttackCollider();
+            enableSheatAttackCollider = false;
+            PlaySheatAttackHitEnemyVFX();
+        } 
     }
 
-    void SetCurrentAttackType(AttackTypes type){
-        currentAttackType = type;
+    public void StartSheatAttack(){
+        //Animation
+        animator.SetInteger("Attack",60);
+        //Timing to Parry
+        sheatAttackTimer=0;
     }
 
-    public AttackTypes GetCurrentAttackType(){
-        return currentAttackType;
+    public void SheatAttackDamage(){
+        OnSheatAttackEvent();
+        //attackerTransform.GetComponent<IDamageable>().Damage(transform,AttackTypes.SpecialAttack, (int)(parameters.baseAttackDamage*parameters.sheatAttackDamageMultiplier));
     }
 
     public void SheatPosture(bool isSheatPostureButtonPressed){
@@ -152,67 +170,60 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    public void ReadySheatAttack(){
-        print("Ready Sheat Attack");
-        sheatAttackTimer=0;
+    void EnableSheatAttackCollider(){
+        SetCurrentAttackDaamge((int)(parameters.baseAttackDamage*parameters.sheatAttackDamageMultiplier));
+        SetCurrentAttackType(AttackTypes.SpecialAttack);
+        sheatAttackSword.EnableSwordCollider();
     }
 
-    public void ResetAnimationValues(){
-        animator.SetInteger("Attack",0);
+    public void DisableSheatAttackCollider(){
+        sheatAttackSword.DisableSwordCollider();
     }
 
-    public void EnableSheatCollider(){
-        
+    public void PlaySheatAttackStartSignalVFX(){
+        CreateVFXGameObject(sheatAttackReadySignalVFX,sheatAttackReadySignalTransform);
     }
 
-    public bool CanDoSheatAttack(){
-        if(sheatAttackTimer< sheatAttackMaxTime){
-            return true;
-        }
-        else{
-            return false;
-        } 
+    public void PlaySheatAttackPerformedVFX(){
+        CreateVFXGameObject(sheatAttackPerformedVFX,vfxSheatAttackPerformedTransform);
     }
 
-    public void SheatAttack(Transform attackerTransform){
-        print("The attacker is " +attackerTransform);
-        this.attackerTransform = attackerTransform;
-        playerControllerFSM.SendEvent("SHEATATTACK");
+    public void PlaySheatAttackHitEnemyVFX(){
+        CreateVFXGameObject(sheatAttackHitEnemyVFX,sheatAttackHitEnemyVFXTransform);
     }
 
-    public void StartSheatAttack(){
-        animator.SetInteger("Attack",60);
-    }
-
-    public void SheatAttackDamage(){
-        OnSheatAttackEvent();
-        //attackerTransform.GetComponent<IDamageable>().Damage(transform,AttackTypes.SpecialAttack, (int)(parameters.baseAttackDamage*parameters.sheatAttackDamageMultiplier));
-    }
 
     public void PlaySheatAttackSFX(){
         audioSource.PlayOneShot(audioSheatAttack, volumeSheatAttack);
+    }
+
+#endregion
+
+    void SetCurrentAttackDaamge(int damage){
+        currentAttackDamage = damage;
+    }
+
+    public int GetCurrentAttackDamage(){
+        return currentAttackDamage;
+    }
+
+    void SetCurrentAttackType(AttackTypes type){
+        currentAttackType = type;
+    }
+
+    public AttackTypes GetCurrentAttackType(){
+        return currentAttackType;
     }
 
     public void SetIsAttacking(bool state){
         isAttacking = state;
     }
 
-    public void PlayComboAttack1VFX(){
-        GameObject vfx = GameObject.Instantiate(combotAttack1VFX, vfx1Transform.position, vfx1Transform.rotation);
-        vfx.transform.localScale = vfx1Transform.localScale;
+    void CreateVFXGameObject(GameObject vfxTemplate, Transform originTransform){
+        GameObject vfx = GameObject.Instantiate(vfxTemplate, originTransform.position, originTransform.rotation);
+        vfx.transform.localScale = originTransform.localScale;
         StartCoroutine(DestroyObject(vfx));
     }
-    public void PlayComboAttack2VFX(){
-        GameObject vfx = GameObject.Instantiate(combotAttack2VFX, vfxTransform.position, vfxTransform.rotation);
-        vfxTransform.localScale = vfxTransform.localScale;
-        StartCoroutine(DestroyObject(vfx));
-    }    
-    public void PlaySheatAttackVFX(){
-        GameObject vfx = GameObject.Instantiate(sheatAttackVFX, vfxSheatAttackTransform.position, vfxTransform.rotation);
-        vfxSheatAttackTransform.localScale = vfxSheatAttackTransform.localScale;
-        StartCoroutine(DestroyObject(vfx)); 
-    }
-
     IEnumerator DestroyObject(GameObject vfx){
         ParticleSystem particles = vfx.GetComponent<ParticleSystem>();
         while(particles.isPlaying){
@@ -221,6 +232,7 @@ public class PlayerCombat : MonoBehaviour
         Destroy(vfx);
     }
 
+#region CameraMovement
     public void PlayCameraSheatAttackMovement(){
         StartCoroutine(CameraMovement());
     }
@@ -229,5 +241,11 @@ public class PlayerCombat : MonoBehaviour
         vCam.m_Priority = 0;
         yield return new WaitForSeconds(0.4f);
         vCam.m_Priority = 10;
+    }
+#endregion
+
+    public void ResetAnimationValues(){
+        animator.SetInteger("Attack",0);
+        SetIsAttacking(false);
     }
 }

@@ -1245,5 +1245,9 @@ PrefabInstance:
       propertyPath: field of view
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 8579544214027902652, guid: ea1e0df01f2d35645a9d166e9f4bcca1, type: 3}
+      propertyPath: m_Name
+      value: VFXSheatAttackPerformedOrigin
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea1e0df01f2d35645a9d166e9f4bcca1, type: 3}
