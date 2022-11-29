@@ -2783,13 +2783,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 893a570fe2df70349a8ee6a07e4576fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3
+  movementSpeed: 3.5
   forwardEvadeAnimationSpeedMultiplier: 2
   backwardEvadeAnimationSpeedMultiplier: 1
-  forwardEvadeSpeed: 15
+  forwardEvadeSpeed: 20
   backwardEvadeSpeed: 15
-  baseAttackDamage: 15
-  sheatAttackDamageMultiplier: 2
+  baseAttackDamage: 20
+  sheatAttackDamageMultiplier: 2.5
 --- !u!114 &1892958101206381320
 MonoBehaviour:
   m_ObjectHideFlags: 0
