@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyParameters:MonoBehaviour
 {
+        [Header("Enemy Characteristics")]
         public float movementSpeed;
         public bool hasDefense;
         public Vector2 detectionColliderSize;
@@ -11,9 +12,12 @@ public class EnemyParameters:MonoBehaviour
         public float attackAnimationSpeed;
         public bool canBeInterruptedByAnything;
         public int health;
-        public bool canBeDamaged;
-        public float minMovementSpeed;
-        public float maxMovementSpeed;
+        public int attack;
+        
+        [Header("Visual Design")]
+        public Sprite sprite;
+        public Color color;
 
-        public SpriteRenderer bodyRenderer;
+        [Header("Testing Purpose")]
+        public bool canBeDamaged;
 }
