@@ -156,38 +156,38 @@ public class EnemeyProceduralGeneration : MonoBehaviour
         //Defense guy
         if(templateParameters.hasDefense){
             print("Blue one");
-            enemyParameters.bodyRenderer.sprite = squareSprite;
+            enemyParameters.sprite = squareSprite;
             if (templateParameters.quantityOfAttacks>1){
                 //print("Red one");
-            enemyParameters.bodyRenderer.color = darkColor;
+            enemyParameters.color = darkColor;
             }
             else{
-                enemyParameters.bodyRenderer.color = brightColor;
+                enemyParameters.color = brightColor;
             }
-            //enemyParameters.bodyRenderer.color = Color.red;
+            //enemyParameters.color = Color.red;
         }
-            //enemyParameters.bodyRenderer.color = Color.blue;
+            //enemyParameters.color = Color.blue;
         //Three Attacks Combo Guy
         else if (templateParameters.quantityOfAttacks>1){
             print("Red one");
-            enemyParameters.bodyRenderer.sprite = triangleSprite;
+            enemyParameters.sprite = triangleSprite;
             if (!templateParameters.canBeInterruptedByAnything){
                 //print("Red one");
-                enemyParameters.bodyRenderer.color = darkColor;
+                enemyParameters.color = darkColor;
             }
             else{
-                enemyParameters.bodyRenderer.color = brightColor;
+                enemyParameters.color = brightColor;
             }
-            //enemyParameters.bodyRenderer.color = Color.red;
+            //enemyParameters.color = Color.red;
         }
         else{
             //Is Easily Interrupted guy
-            enemyParameters.bodyRenderer.sprite = circleSprite;
+            enemyParameters.sprite = circleSprite;
             if (!templateParameters.canBeInterruptedByAnything){
-                enemyParameters.bodyRenderer.color = darkColor;
+                enemyParameters.color = darkColor;
             }
             else{
-                enemyParameters.bodyRenderer.color = brightColor;
+                enemyParameters.color = brightColor;
             }
         }
 
