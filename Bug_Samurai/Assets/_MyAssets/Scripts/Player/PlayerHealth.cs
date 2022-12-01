@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] float volumeDamage = 0.5f;
 
     [SerializeField] float timeNoDamageWindow = 1;
+    [SerializeField] int health = 100;
     Animator animator;
     bool canMoveAfterDamage = false;
     AudioSource audioSource;
@@ -20,6 +21,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
+        PlayerParameters playerParameters = GetComponent<PlayerParameters>();
+        health = playerParameters.health;
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         playerCombat = GetComponent<PlayerCombat>();
@@ -39,18 +42,28 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             print("Cannot be damaged");
             return;
         } 
-        DamagePlayer();
+        DamagePlayer(damage);
         noDamageWindowTimer = 0;
 
 
     }
 
-    void DamagePlayer(){
+    void DamagePlayer(int damage){
+        if(health-damage >= 0){
+            health -=damage;
+        } 
+        else{
+            health=0;
+        }
         playerCombat.SetIsAttacking(false);
         canMoveAfterDamage=false;
         playerControllerFSM.SendEvent("DAMAGED");
         animator.SetInteger("Damaged",1);
 
+    }
+
+    public int GetHealth(){
+        return health;
     }
 
     bool CanBeDamage(){

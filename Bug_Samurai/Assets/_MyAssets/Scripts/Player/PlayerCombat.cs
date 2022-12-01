@@ -52,6 +52,7 @@ public class PlayerCombat : MonoBehaviour
     bool isAttacking = false;
   
     Animator animator;
+
     AudioSource audioSource;
 
     float sheatAttackTimer = 0f;
@@ -59,11 +60,14 @@ public class PlayerCombat : MonoBehaviour
     Transform attackerTransform;
 
     PlayerParameters parameters;
+
     int currentAttackDamage;
 
     AttackTypes currentAttackType;
 
     bool enableSheatAttackCollider = false;
+
+
     void Start(){
         parameters = GetComponent<PlayerParameters>();
         animator = GetComponent<Animator>();
@@ -155,7 +159,6 @@ public class PlayerCombat : MonoBehaviour
 
     public void SheatAttackDamage(){
         OnSheatAttackEvent();
-        //attackerTransform.GetComponent<IDamageable>().Damage(transform,AttackTypes.SpecialAttack, (int)(parameters.baseAttackDamage*parameters.sheatAttackDamageMultiplier));
     }
 
     public void SheatPosture(bool isSheatPostureButtonPressed){
