@@ -25,4 +25,7 @@ public class PlayerParameters : MonoBehaviour
 
     [Range(0,5)]
     public float sheatAttackDamageMultiplier=3;
+
+    [Range(0,200)]
+    public int health = 100;
 }
