@@ -67,6 +67,7 @@ public class PlayerCombat : MonoBehaviour
 
     bool enableSheatAttackCollider = false;
 
+    bool isSheatAttackSuccessfull = true;
 
     void Start(){
         parameters = GetComponent<PlayerParameters>();
@@ -129,8 +130,9 @@ public class PlayerCombat : MonoBehaviour
 #endregion
 #region SheatAttack
 
-    public bool CanDoSheatAttack(){
+    public bool IsPlayerEnabledToSheatAttack(){
         if(sheatAttackTimer< sheatAttackMaxTime){
+            isSheatAttackSuccessfull = true;
             return true;
         }
         else{
@@ -155,6 +157,8 @@ public class PlayerCombat : MonoBehaviour
         animator.SetInteger("Attack",60);
         //Timing to Parry
         sheatAttackTimer=0;
+        isSheatAttackSuccessfull = false;
+
     }
 
     public void SheatAttackDamage(){
@@ -198,6 +202,15 @@ public class PlayerCombat : MonoBehaviour
 
     public void PlaySheatAttackSFX(){
         audioSource.PlayOneShot(audioSheatAttack, volumeSheatAttack);
+    }
+
+    public void WasSheatAttackApplied(){
+        if(isSheatAttackSuccessfull){
+            animator.SetInteger("Attack",100);
+        }
+        else{
+            animator.SetInteger("Attack",95);
+        }
     }
 
 #endregion
