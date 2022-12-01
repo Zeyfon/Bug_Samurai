@@ -33,7 +33,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     }
 
     public void Damage(Transform attackerTransform, AttackTypes attackTypes, int damage){
-        if(playerCombat.CanDoSheatAttack() && animator.GetInteger("Attack") != 0){
+        if(playerCombat.IsPlayerEnabledToSheatAttack() && animator.GetInteger("Attack") != 0){
             print("SheatAttack");
             playerCombat.EnableSheatAttackDamageDelivery();
             return;
