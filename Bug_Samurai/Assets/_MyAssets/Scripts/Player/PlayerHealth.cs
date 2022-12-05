@@ -18,11 +18,19 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     PlayerCombat playerCombat;
 
     float noDamageWindowTimer = 0;
+
+    float maxHealth;
+
+    public delegate void MaxHealthIncrease(float extraHealth);
+    public event MaxHealthIncrease OnMaxHealthIncrease;
+
     // Start is called before the first frame update
     void Start()
     {
+
         PlayerParameters playerParameters = GetComponent<PlayerParameters>();
         health = playerParameters.health;
+        maxHealth = health;  // This max health later will need to be updated according to the saving point
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         playerCombat = GetComponent<PlayerCombat>();
@@ -80,5 +88,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void DamagedSound(){
         audioSource.PlayOneShot(audioDamage,volumeDamage);
+    }
+
+    public void IncreaseMaxHealth(float extraHealth){
+        maxHealth += extraHealth;
+        health += (int)extraHealth;
+        OnMaxHealthIncrease(extraHealth);
     }
 }
