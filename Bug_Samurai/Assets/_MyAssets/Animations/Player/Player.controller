@@ -846,8 +846,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sheat Posture Exit 0
-  m_Speed: 0.5
+  m_Name: Sheat Attack Recovery
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 6672684922687739238}
@@ -860,7 +860,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: a798a0b3632b53a4ca4752654c7bd6fc, type: 2}
+  m_Motion: {fileID: 7400000, guid: f7246016580a7a64997dbf419b5f9604, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
