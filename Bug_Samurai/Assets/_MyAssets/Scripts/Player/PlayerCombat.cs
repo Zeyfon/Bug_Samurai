@@ -80,9 +80,9 @@ public class PlayerCombat : MonoBehaviour
     }
 
     public void AttackEnded(){
-       // print("Attack Ended");
+        print("Attack Ended");
         SetIsAttacking(false);
-        animator.SetInteger("Attack",0);
+        animator.SetInteger("Attack",100);
     }
 
     public bool CheckingAttackStatus(){
@@ -130,6 +130,14 @@ public class PlayerCombat : MonoBehaviour
 #endregion
 #region SheatAttack
 
+
+    public bool IsSheatAttacking(){
+        return animator.GetInteger("Attack")!=100;
+    }
+
+    public bool IsSheatAttackPostureExit(){
+        return animator.GetInteger("Attack") == 55;
+    }
     public bool IsPlayerEnabledToSheatAttack(){
         if(sheatAttackTimer< sheatAttackMaxTime){
             isSheatAttackSuccessfull = true;
@@ -167,11 +175,12 @@ public class PlayerCombat : MonoBehaviour
 
     public void SheatPosture(bool isSheatPostureButtonPressed){
 
-        if(isSheatPostureButtonPressed && animator.GetInteger("Attack")<50){
+        if(isSheatPostureButtonPressed){
             SetIsAttacking(true);
             animator.SetInteger("Attack",50);
         }
         if(!isSheatPostureButtonPressed){
+            SetIsAttacking(false);
             sheatAttackTimer=sheatAttackMaxTime;
             animator.SetInteger("Attack",55);
         }

@@ -75,8 +75,8 @@ public class EnemeyProceduralGeneration : MonoBehaviour
             int quantityOfEnemies = Random.Range(minEnemyQuantity,maxEnemyQuantity);
             if(quantityOfEnemies <=0) quantityOfEnemies = 1;
             int innerCounter=0;
-            print("Quantit of Enemies " + quantityOfEnemies);
-            print(spawnLocation.gameObject.name);
+            //print("Quantit of Enemies " + quantityOfEnemies);
+            //print(spawnLocation.gameObject.name);
             for(int i=0; i<quantityOfEnemies;i++){
 
                 Vector3 thisEnemySpawnPosition = new Vector3(Random.Range(-spawnFromOriginDistanceRange,spawnFromOriginDistanceRange)+spawnLocation.localPosition.x,spawnLocation.localPosition.y,spawnLocation.localPosition.z);
@@ -84,11 +84,11 @@ public class EnemeyProceduralGeneration : MonoBehaviour
 
                 ThisEnemyParameters parameters = SetInitialParameters();
                 InstantiateEnemy(parameters, thisEnemySpawnPosition);
-                print("Inner Counter" + ++innerCounter);
+               // print("Inner Counter" + ++innerCounter);
                 }
                 else isManagerAway=true;
             }
-            print("Outer Counter" + ++counter);
+            //print("Outer Counter" + ++counter);
 
         }
     }
@@ -155,7 +155,7 @@ public class EnemeyProceduralGeneration : MonoBehaviour
 
         //Defense guy
         if(templateParameters.hasDefense){
-            print("Blue one");
+            //print("Blue one");
             enemyParameters.sprite = squareSprite;
             if (templateParameters.quantityOfAttacks>1){
                 //print("Red one");
@@ -169,7 +169,7 @@ public class EnemeyProceduralGeneration : MonoBehaviour
             //enemyParameters.color = Color.blue;
         //Three Attacks Combo Guy
         else if (templateParameters.quantityOfAttacks>1){
-            print("Red one");
+            //print("Red one");
             enemyParameters.sprite = triangleSprite;
             if (!templateParameters.canBeInterruptedByAnything){
                 //print("Red one");
