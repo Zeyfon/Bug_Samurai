@@ -861,6 +861,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerUP Health
       objectReference: {fileID: 0}
+    - target: {fileID: 2653222572689984678, guid: dc0851a8dfaf9454f957d5a4c434c72a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6328391327433302347, guid: dc0851a8dfaf9454f957d5a4c434c72a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -987,7 +991,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4375133543914893899, guid: 5a5109ea15f7599408a50034781d8821, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a5109ea15f7599408a50034781d8821, type: 3}
