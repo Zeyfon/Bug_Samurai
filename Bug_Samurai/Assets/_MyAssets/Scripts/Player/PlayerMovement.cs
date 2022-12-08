@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Systems.Movement.SlopeControl;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,7 +9,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask playerMask;
     
     [Header("Running Settings")]
-    [SerializeField] float velocity = 3;
+
+    [SerializeField] PhysicsMaterial2D noFriction;
+    [SerializeField] PhysicsMaterial2D lowFriction;
+    [SerializeField] float baseSpeed = 3;
+
+    [Header ("Slope Management")]
+    [SerializeField] float slopeCheckDistance = 0.5f;
+
+    [SerializeField] float maxSlopeAngle = 40f;
+    [SerializeField] LayerMask whatIsGround;
 
     [SerializeField] AudioClip runningAudio;
     [Range(0,1)]
@@ -47,7 +57,10 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 evadeForceDirection;
     PlayerParameters parameters;
+
+    SlopeControl slope;
     void Awake(){
+        slope = new SlopeControl();
         parameters = GetComponent<PlayerParameters>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -73,11 +86,66 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("Speed",0);
         }
     }
+
+
+
     //Method called by the playerControllerFSM in the Idle/Moving State
     public void PlayerMovement_Move(Vector2 move){
-        currentMovementForce = new Vector2(move.x* parameters.movementSpeed,rb.velocity.y);
-        Move(currentMovementForce);
+        animator.SetFloat("Speed",(Mathf.Abs(move.x)));
+        //currentMovementForce = new Vector2(move.x* parameters.movementSpeed,rb.velocity.y);
+        //Move(currentMovementForce);
+        Movement(move, true, 1,1);
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="movementDirection"></param> Must be normalized
+    /// <param name="isGrounded"></param>
+    /// <param name="speedFactor"></param>
+    /// <param name="speedModifier"></param>
+    void Movement(Vector2 movementDirection, bool isGrounded,float speedFactor, float speedModifier)
+    {
+        float speedModified = baseSpeed * speedFactor * speedModifier;
+        float xVelocity = 0;
+
+        if (!isGrounded)
+        {
+            rb.sharedMaterial = noFriction;
+            xVelocity = movementDirection.x * speedModified;
+            rb.velocity = new Vector2(xVelocity, rb.velocity.y);
+        }
+
+        else if (movementDirection.magnitude == 0)
+        {
+            rb.sharedMaterial = lowFriction;
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+        else
+        {
+            rb.sharedMaterial = noFriction;
+            Vector2 directionAfterSlope = slope.GetMovementDirectionWithSlopecontrol(transform.position, movementDirection, slopeCheckDistance, whatIsGround);
+            if (directionAfterSlope.sqrMagnitude == 0)
+            {
+                //Entering this part means that the slope raycast does not detect any ground and the isGround bool is still true
+                xVelocity = movementDirection.x * speedModified;// * Mathf.Abs(movementDirectionNormalized.x);
+                rb.velocity = new Vector2(xVelocity, rb.velocity.y);
+            }
+            else
+            {
+                xVelocity = directionAfterSlope.x * speedModified;
+                float yVelocity = directionAfterSlope.y * speedModified;
+                rb.velocity = new Vector2(xVelocity, yVelocity);
+            }
+        }
+        //print(xVelocity);
+
+
+        //print(movementDireciton.magnitude);
+        //print(rb.velocity);
+    }
+
+
+
 
     public void AttackMovement(){
         rb.velocity = new Vector2(0,rb.velocity.y);
@@ -89,6 +157,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Flip(Vector2 move)
     {
+
         float xInput = move.x;
         //print(transform.rotation.eulerAngles.y);
     //The use of this method implies that you can Flip

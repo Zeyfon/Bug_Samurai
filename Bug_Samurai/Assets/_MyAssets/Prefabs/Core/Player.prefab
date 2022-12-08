@@ -543,6 +543,7 @@ GameObject:
   - component: {fileID: 4447915171210409066}
   - component: {fileID: 1726523136020924551}
   - component: {fileID: 6124330598644160470}
+  - component: {fileID: 4842948433768473544}
   - component: {fileID: 5089992514595569142}
   - component: {fileID: 3170160367232892860}
   - component: {fileID: 5659728997865879991}
@@ -614,7 +615,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -625,8 +626,24 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 1.7}
+  m_Size: {x: 0.6, y: 1.4}
   m_EdgeRadius: 0
+--- !u!58 &4842948433768473544
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4447915171210409065}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.55}
+  serializedVersion: 2
+  m_Radius: 0.3
 --- !u!114 &5089992514595569142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3024,7 +3041,14 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 64
-  velocity: 3
+  noFriction: {fileID: 6200000, guid: 07aadb815236a6047bd4de01147ed091, type: 2}
+  lowFriction: {fileID: 6200000, guid: b4486968f546ca143a6de64eec850613, type: 2}
+  baseSpeed: 3
+  slopeCheckDistance: 0.5
+  maxSlopeAngle: 40
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 2048
   runningAudio: {fileID: 8300000, guid: 4331fd034f2e8a84581ba8dbf9b42303, type: 3}
   volumeRunning: 0.5
   evadeBackwardImpulse: 25

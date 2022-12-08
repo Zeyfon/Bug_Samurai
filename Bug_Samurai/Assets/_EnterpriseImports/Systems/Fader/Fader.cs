@@ -1,10 +1,27 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace PSmash.Core
+namespace Systems.Fader
 {
-    public class SpriteFader
+    public class Fader
     {
+        /// <summary>
+        /// Turns the screen from black to colored in the given time
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        public IEnumerator FadeOut(CanvasGroup canvasGroup, float time)
+        {
+            canvasGroup.alpha = 0;
+            while (canvasGroup.alpha < 1)
+            {
+                
+                canvasGroup.alpha += 1 * (Time.deltaTime / time);
+                yield return null;
+            }
+        }
+
+
         public IEnumerator FadeOut(SpriteRenderer r, float time)
         {
             r.color = new Color(r.color.r,r.color.g,r.color.b,0) ;
@@ -17,6 +34,21 @@ namespace PSmash.Core
                     r.color = new Color(r.color.r, r.color.g, r.color.b, r.color.a + (Time.deltaTime / time));
                 }
 
+                yield return null;
+            }
+        }
+
+        /// <summary>
+        /// Turns the screen from colored to black in the given time
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        public IEnumerator FadeIn(CanvasGroup canvasGroup, float time)
+        {
+            canvasGroup.alpha = 1;
+            while (canvasGroup.alpha > 0)
+            {
+                canvasGroup.alpha -= 1 * (Time.deltaTime / time);
                 yield return null;
             }
         }
@@ -36,6 +68,15 @@ namespace PSmash.Core
 
                 yield return null;
             }
+        }
+
+        /// <summary>
+        /// Turns the screen to black inmediately
+        /// </summary>
+        public IEnumerator InstantFadeOut(CanvasGroup canvasGroup)
+        {
+            canvasGroup.alpha = 0;
+            yield return null;
         }
 
         public IEnumerator InstantFadeOut(SpriteRenderer r)
