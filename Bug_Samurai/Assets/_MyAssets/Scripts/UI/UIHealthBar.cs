@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PSmash.Core;
+using Systems.Fader;
 
 public class UIHealthBar : MonoBehaviour
 {
