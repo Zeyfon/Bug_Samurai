@@ -1,28 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Systems.Movement.SlopeControl;
+using Systems.Movement.SlopeMovementControl2D;
 
 public class PlayerMovement : MonoBehaviour
 {
+#region SerializedFields
     [SerializeField] LayerMask ghostPlayerMask;
     [SerializeField] LayerMask playerMask;
     
+
     [Header("Running Settings")]
-
-    [SerializeField] PhysicsMaterial2D noFriction;
-    [SerializeField] PhysicsMaterial2D lowFriction;
     [SerializeField] float baseSpeed = 3;
-
-    [Header ("Slope Management")]
-    [SerializeField] float slopeCheckDistance = 0.5f;
-
-    [SerializeField] float maxSlopeAngle = 40f;
-    [SerializeField] LayerMask whatIsGround;
-
     [SerializeField] AudioClip runningAudio;
     [Range(0,1)]
     [SerializeField] float volumeRunning = 0.5f;
+
 
     [Header("Evade Settings")]
     [Header("Evade Forces")]
@@ -31,15 +24,15 @@ public class PlayerMovement : MonoBehaviour
     [Range(0,30)]
     [SerializeField] float evadeForwardConstantSpeed = 15f;
 
-    [Header("Evade VFX")]
 
+    [Header("Evade VFX")]
     [SerializeField] GameObject forwardEvadeVFX;
     [SerializeField] Transform forwardEvadeVFXTransform;    
     [SerializeField] GameObject backwardsEvadeVFX;
     [SerializeField] Transform backwardsEvadeVFXTransform;
     
-    [Header("Evade SFX")]
 
+    [Header("Evade SFX")]
     [SerializeField] AudioClip evadeFrontalAudio;
     [Range(0,1)]
     [SerializeField] float evadeFrontalVolume =0.5f;
@@ -47,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     [Range(0,1)]
     [SerializeField] float evadeBackwardVolume =0.5f;
 
+#endregion
     Rigidbody2D rb;
     Animator animator;
     AudioSource audioSource;
@@ -57,10 +51,11 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 evadeForceDirection;
     PlayerParameters parameters;
+    TiltedGroundMovement2D tiltedGroundMovement2D;
 
-    SlopeControl slope;
-    void Awake(){
-        slope = new SlopeControl();
+    void Awake()
+    {
+        tiltedGroundMovement2D = GetComponent<TiltedGroundMovement2D>();
         parameters = GetComponent<PlayerParameters>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -94,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Speed",(Mathf.Abs(move.x)));
         //currentMovementForce = new Vector2(move.x* parameters.movementSpeed,rb.velocity.y);
         //Move(currentMovementForce);
-        Movement(move, true, 1,1);
+        tiltedGroundMovement2D.Move(move, true, 1,1, baseSpeed);
     }
     /// <summary>
     /// 
@@ -103,46 +98,7 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="isGrounded"></param>
     /// <param name="speedFactor"></param>
     /// <param name="speedModifier"></param>
-    void Movement(Vector2 movementDirection, bool isGrounded,float speedFactor, float speedModifier)
-    {
-        float speedModified = baseSpeed * speedFactor * speedModifier;
-        float xVelocity = 0;
 
-        if (!isGrounded)
-        {
-            rb.sharedMaterial = noFriction;
-            xVelocity = movementDirection.x * speedModified;
-            rb.velocity = new Vector2(xVelocity, rb.velocity.y);
-        }
-
-        else if (movementDirection.magnitude == 0)
-        {
-            rb.sharedMaterial = lowFriction;
-            rb.velocity = new Vector2(0, rb.velocity.y);
-        }
-        else
-        {
-            rb.sharedMaterial = noFriction;
-            Vector2 directionAfterSlope = slope.GetMovementDirectionWithSlopecontrol(transform.position, movementDirection, slopeCheckDistance, whatIsGround);
-            if (directionAfterSlope.sqrMagnitude == 0)
-            {
-                //Entering this part means that the slope raycast does not detect any ground and the isGround bool is still true
-                xVelocity = movementDirection.x * speedModified;// * Mathf.Abs(movementDirectionNormalized.x);
-                rb.velocity = new Vector2(xVelocity, rb.velocity.y);
-            }
-            else
-            {
-                xVelocity = directionAfterSlope.x * speedModified;
-                float yVelocity = directionAfterSlope.y * speedModified;
-                rb.velocity = new Vector2(xVelocity, yVelocity);
-            }
-        }
-        //print(xVelocity);
-
-
-        //print(movementDireciton.magnitude);
-        //print(rb.velocity);
-    }
 
 
 
@@ -217,9 +173,10 @@ public class PlayerMovement : MonoBehaviour
     public void ApplyFrontaEvadeForce(){
         //print("Applying Frontal Force");
         //TODO Later this evadeForceDirection will need to be updated at run time if we implement slopes
-        evadeForceDirection = new Vector2(movementDireciton.x,0);//Must be a normalized vector. Only looks for direction
-        currentMovementForce =evadeForceDirection*parameters.forwardEvadeSpeed;
-        Move(currentMovementForce);
+        // evadeForceDirection = new Vector2(movementDireciton.x,0);//Must be a normalized vector. Only looks for direction
+        // currentMovementForce =evadeForceDirection*parameters.forwardEvadeSpeed;
+        // Move(currentMovementForce);
+        tiltedGroundMovement2D.Move(movementDireciton, true,parameters.forwardEvadeSpeed,1,1);
     }
     public void ApplyBackwardEvadeForce(){
             //print("Applying Backward Force");

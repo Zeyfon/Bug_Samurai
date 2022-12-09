@@ -553,6 +553,7 @@ GameObject:
   - component: {fileID: 737860673617551703}
   - component: {fileID: 232856945668372445}
   - component: {fileID: 3910425966814261249}
+  - component: {fileID: 8645962906188071018}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -3273,14 +3274,7 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 64
-  noFriction: {fileID: 6200000, guid: 07aadb815236a6047bd4de01147ed091, type: 2}
-  lowFriction: {fileID: 6200000, guid: b4486968f546ca143a6de64eec850613, type: 2}
   baseSpeed: 3
-  slopeCheckDistance: 0.5
-  maxSlopeAngle: 40
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 2048
   runningAudio: {fileID: 8300000, guid: 4331fd034f2e8a84581ba8dbf9b42303, type: 3}
   volumeRunning: 0.5
   evadeBackwardImpulse: 25
@@ -3432,6 +3426,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d3eb448cd2cac44aa5057ab4e03749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8645962906188071018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4447915171210409065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a19262ec0fb4542a9c250ec809612d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noFriction: {fileID: 6200000, guid: 07aadb815236a6047bd4de01147ed091, type: 2}
+  lowFriction: {fileID: 6200000, guid: b4486968f546ca143a6de64eec850613, type: 2}
+  slopeCheckDistance: 1.5
+  maxSlopeAngle: 40
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &4755680749052540439
 GameObject:
   m_ObjectHideFlags: 0
