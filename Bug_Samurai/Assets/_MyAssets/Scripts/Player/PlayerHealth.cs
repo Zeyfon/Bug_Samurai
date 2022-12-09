@@ -19,7 +19,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     float noDamageWindowTimer = 0;
 
-    float maxHealth;
+    int maxHealth;
 
     public delegate void MaxHealthIncrease(float extraHealth);
     public event MaxHealthIncrease OnMaxHealthIncrease;
@@ -41,6 +41,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     }
 
     public void Damage(Transform attackerTransform, AttackTypes attackTypes, int damage){
+   
         if(playerCombat.IsPlayerEnabledToSheatAttack() && animator.GetInteger("Attack") != 0){
             print("SheatAttack");
             playerCombat.EnableSheatAttackDamageDelivery();
@@ -57,10 +58,13 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     }
 
     void DamagePlayer(int damage){
+        print("Damage  " + damage);
         if(health-damage >= 0){
+            print("Damaged");
             health -=damage;
         } 
         else{
+            print("Dead");
             health=0;
         }
         playerCombat.SetIsAttacking(false);
@@ -91,8 +95,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     }
 
     public void IncreaseMaxHealth(float extraHealth){
-        maxHealth += extraHealth;
+        maxHealth += (int)extraHealth;
         health += (int)extraHealth;
         OnMaxHealthIncrease(extraHealth);
+    }
+
+    public void RegenHealth(){
+        health = maxHealth;
     }
 }

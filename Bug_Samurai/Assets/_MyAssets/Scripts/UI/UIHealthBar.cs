@@ -69,6 +69,8 @@ public class UIHealthBar : MonoBehaviour
             healthBarBackgroundTransform.localScale = healthBarTransform.localScale;
         }
 
+
+        healthBarTransform.localScale = new Vector3(currentHealth / scaleHealth, healthBarTransform.localScale.y, healthBarTransform.localScale.z);
         timerToStartDecreasingBackground += Time.deltaTime;
     }
 
