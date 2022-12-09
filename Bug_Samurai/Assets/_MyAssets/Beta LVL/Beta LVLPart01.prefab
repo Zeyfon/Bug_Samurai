@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2718563169148391466}
   - component: {fileID: 6691606477035915257}
   - component: {fileID: 3890373024668590155}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Beta LVLPart01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

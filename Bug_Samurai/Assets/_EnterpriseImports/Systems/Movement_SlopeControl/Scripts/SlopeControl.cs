@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Systems.Movement.SlopeControl
+namespace Systems.Movement.SlopeMovementControl2D
 {
     /// <summary>
     /// With several raycasts the entity will determine if it is over a slope and if it can move based on the maxAngle allowed
