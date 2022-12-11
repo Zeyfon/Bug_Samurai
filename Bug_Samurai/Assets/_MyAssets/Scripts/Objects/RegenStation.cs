@@ -5,11 +5,11 @@ using UnityEngine;
 public class RegenStation : MonoBehaviour, IInteractable
 {
 
-    public InteractionTypes Interact(){
+    public Transform Interact(){
         PlaySFX();
         PlayVFX();
         GetComponent<Collider2D>().enabled = false;
-        return InteractionTypes.RegenStation;
+        return transform;
     }
 
     void PlaySFX(){

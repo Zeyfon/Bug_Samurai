@@ -47,14 +47,14 @@ namespace Systems.Movement.SlopeMovementControl2D
                 Vector2 directionAfterSlope = slope.GetMovementDirectionWithSlopecontrol(transform.position, movementDirection, slopeCheckDistance, whatIsGround);
                 if (directionAfterSlope.sqrMagnitude == 0)
                 {
-                    print("Direction not detected");
+                    //print("Direction not detected");
                     //Entering this part means that the slope raycast does not detect any ground and the isGround bool is still true
                     xVelocity = movementDirection.x * speedModified;// * Mathf.Abs(movementDirectionNormalized.x);
                     rb.velocity = new Vector2(xVelocity, rb.velocity.y);
                 }
                 else
                 {
-                    print("Direction Detected");
+                    //print("Direction Detected");
                     xVelocity = directionAfterSlope.x * speedModified;
                     float yVelocity = directionAfterSlope.y * speedModified;
                     rb.velocity = new Vector2(xVelocity, yVelocity);
