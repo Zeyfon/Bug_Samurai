@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - RegenStation
+  - Portal
   layers:
   - Default
   - TransparentFX
