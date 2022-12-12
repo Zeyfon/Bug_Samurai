@@ -56,7 +56,7 @@ namespace Systems.Fader
         public IEnumerator FadeIn(SpriteRenderer r, float time)
         {
 
-            r.color = new Color(r.color.r,r.color.g,r.color.b,1) ;
+            //r.color = new Color(r.color.r,r.color.g,r.color.b,r.color.a) ;
             while (r.color.a > 0)
             {
                 if(r.color.a - (Time.deltaTime / time)<0){
