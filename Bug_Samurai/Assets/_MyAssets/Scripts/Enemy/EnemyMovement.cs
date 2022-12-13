@@ -1,26 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Systems.Movement.SlopeMovementControl2D;
 
 public class EnemyMovement : MonoBehaviour
 {
     [Range(0,10)]
     [SerializeField] float speed = 4.0f;
+
     Rigidbody2D rb;
 
     EnemyParameters parameters;
+
+    TiltedGroundMovement2D tiltedGroundMovement2D;
     // Start is called before the first frame update
     void Start()
     {
+        tiltedGroundMovement2D = GetComponent<TiltedGroundMovement2D>();
         rb = GetComponent<Rigidbody2D>();
         parameters = GetComponent<EnemyParameters>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("Player")){
@@ -78,10 +78,8 @@ public class EnemyMovement : MonoBehaviour
 
     public void Move(GameObject player){
         LookAtPlayer(player.transform);
-        //rb.velocity = new Vector2(2,0);
-        //rb.velocity = new Vector2(Vector2.right.x,0)*speed;
-        speed = parameters.movementSpeed;
-        rb.velocity = new Vector2(transform.right.x,rb.velocity.y)*speed;
+        tiltedGroundMovement2D.Move(Vector2.left, true, parameters.movementSpeed,1,1);
+
         //print("Enemy is moving");
     }
 
