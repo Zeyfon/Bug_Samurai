@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2623485809952153627, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
+      propertyPath: m_Size.x
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 4263014547066302609, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -129,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: detectionColliderSize.x
-      value: 6
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: detectionColliderSize.y
@@ -137,6 +141,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9204723250173969856, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: fsm.variables.floatVariables.Array.data[0].value
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9204723250173969856, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
+      propertyPath: fsm.variables.floatVariables.Array.data[2].value
       value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -121,15 +121,15 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     private bool IsPlayerInFront(Transform attackerTransform)
     {
         Vector3 toTarget = (attackerTransform.position - transform.position).normalized;
-        print("To target Vector " + toTarget);
+        //print("To target Vector " + toTarget);
         if (Vector3.Dot(toTarget, transform.right) > 0)
         {
-            Debug.Log("Target is in front of this game object.");
+            //Debug.Log("Target is in front of this game object.");
             return true;
         }
         else
         {
-            Debug.Log("Target is not in front of this game object.");
+            //Debug.Log("Target is not in front of this game object.");
             return false;
         }
     }
