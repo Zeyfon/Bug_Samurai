@@ -34,9 +34,9 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    void LookAtPlayer(Transform playerTransform){
+    public void LookAtPlayer(GameObject player){
         //print("Looking at Player");
-        if(IsPlayerAtBack(playerTransform)){
+        if(IsPlayerAtBack(player.transform)){
             Flip();
         }
     }
@@ -77,7 +77,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
     public void Move(GameObject player){
-        LookAtPlayer(player.transform);
+        LookAtPlayer(player);
         tiltedGroundMovement2D.Move(Vector2.left, true, parameters.movementSpeed,1,1);
 
         //print("Enemy is moving");
