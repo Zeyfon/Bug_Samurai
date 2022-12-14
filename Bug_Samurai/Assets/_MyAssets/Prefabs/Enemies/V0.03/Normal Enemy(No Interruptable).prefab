@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2623485809952153627, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
+      propertyPath: m_Size.x
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 4263014547066302609, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -104,8 +108,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
+      propertyPath: quantityOfAttacks
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: detectionColliderSize.x
-      value: 9
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: detectionColliderSize.y
@@ -118,6 +130,10 @@ PrefabInstance:
     - target: {fileID: 9204723250173969856, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: fsm.variables.floatVariables.Array.data[0].value
       value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9204723250173969856, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
+      propertyPath: fsm.variables.floatVariables.Array.data[2].value
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
