@@ -8,18 +8,12 @@ public class EnemyTemplateBodyRenderer : MonoBehaviour
     void Start()
     {
         EnemyParameters parameters = GetComponentInParent<EnemyParameters>();
-
+        print("Looking to set body color");
         if(parameters == null)  return;
         
         SpriteRenderer bodyRenderer = GetComponent<SpriteRenderer>();
         bodyRenderer.sprite = parameters.sprite;
         bodyRenderer.color = parameters.color;
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        print("Body color set");
     }
 }

@@ -18,6 +18,9 @@ public class EnemyParameters:MonoBehaviour
         public Sprite sprite;
         public Color color;
 
+        [Header("Only for Defense Enemy")]
+        public bool canBeDamagedFromBehind;
+        
         [Header("Testing Purpose")]
         public bool canBeDamaged;
 }

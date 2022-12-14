@@ -16,7 +16,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [SerializeField] SpriteRenderer bodyRenderer;
     [SerializeField] Material normalMaterial;
     [SerializeField] Material damageMaterial;
-    [SerializeField] EnemyType enemyType;
+    //[SerializeField] EnemyType enemyType;
     [SerializeField] int health = 50;
     [SerializeField] bool canBeDamaged = true;
 
@@ -31,32 +31,40 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     AttackTypes attackType;
 
-    enum EnemyType{
-        Heavy,
-        Fast,
-        Normal,
-    }
+    // enum EnemyType{
+    //     Heavy,
+    //     Fast,
+    //     Normal,
+    // }
     // Start is called before the first frame update
+    EnemyParameters parameters;
+    GameObject player;
     void Start()
     {
-        EnemyParameters parameters = GetComponent<EnemyParameters>();
+        parameters = GetComponent<EnemyParameters>();
         health = parameters.health;
         canBeDamaged = parameters.canBeDamaged;
         SetMaterial(normalMaterial);
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update(){
         stunTimer += Time.deltaTime;
+        IsPlayerInFront(player.transform);
     }
+
 
     void SetMaterial(Material material){
         bodyRenderer.material = material;
     }
 
-    public void Damage(Transform attackerTransform, AttackTypes attackType, int damage){
-        if(IsStunned() && !GetComponent<EnemyCombat>().GetCanBeInterruptedByAnyAttack()){
+    public void Damage(Transform attackerTransform, AttackTypes attackType, int damage)
+    {
+
+        if (IsStunned() && !GetComponent<EnemyCombat>().GetCanBeInterruptedByAnyAttack())
+        {
             print("Damage while stunned");
             NoInterruptionDamage();
             HealthDamage(damage);
@@ -64,29 +72,65 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             return;
         }
         //Recevies a Special Attack
-        if(attackType == AttackTypes.SpecialAttack){
+        if (attackType == AttackTypes.SpecialAttack)
+        {
             print("Special Attack Damage");
             //enemyControllerFSM.SendEvent("SPECIAL_ATTACK");
             InterruptionDamage();
             HealthDamage(damage);
         }
         //Receives a Normal Attack
-        else{
-            if(GetComponent<EnemyCombat>().GetHasDefense()){
+        else
+        {
+            if (IsDefending(attackerTransform))
+            {
                 print("Defense");
                 GetComponent<EnemyCombat>().StartDefense();
                 enemyControllerFSM.SendEvent("DEFENSE");
             }
-            else if(GetComponent<EnemyCombat>().GetCanBeInterruptedByAnyAttack()){
+            else if (GetComponent<EnemyCombat>().GetCanBeInterruptedByAnyAttack())
+            {
                 print("Normal Interruption damage");
                 InterruptionDamage();
                 HealthDamage(damage);
             }
-            else{
+            else
+            {
                 print("Simple No Interruption Damage");
                 NoInterruptionDamage();
                 HealthDamage(damage);
             }
+        }
+    }
+
+    private bool IsDefending(Transform playerTransform)
+    {   
+        bool hasDefense = GetComponent<EnemyCombat>().GetHasDefense();
+        //If Enemy is being attacked from behind and can be damaged from behind
+        if(!hasDefense || (hasDefense && parameters.canBeDamagedFromBehind && !IsPlayerInFront(playerTransform))){
+            //Will not defense
+            return false;
+        }
+        // For everything else
+        else{
+            //Will defense
+            return true;
+        }
+    }
+
+    private bool IsPlayerInFront(Transform attackerTransform)
+    {
+        Vector3 toTarget = (attackerTransform.position - transform.position).normalized;
+        print("To target Vector " + toTarget);
+        if (Vector3.Dot(toTarget, transform.right) > 0)
+        {
+            Debug.Log("Target is in front of this game object.");
+            return true;
+        }
+        else
+        {
+            Debug.Log("Target is not in front of this game object.");
+            return false;
         }
     }
 
