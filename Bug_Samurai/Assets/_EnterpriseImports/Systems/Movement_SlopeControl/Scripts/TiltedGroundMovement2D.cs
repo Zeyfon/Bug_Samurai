@@ -62,7 +62,9 @@ namespace Systems.Movement.SlopeMovementControl2D
             }
             //print("Speed " + rb.velocity);
         }
-
+    public void SetHighFrictionMaterial(){
+        rb.sharedMaterial = lowFriction;
+    }
     //To verify the direction to which the ground is looked for and check if was detected or not
     void OnDrawGizmosSelected()
     {

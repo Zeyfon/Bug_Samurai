@@ -34,9 +34,9 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    void LookAtPlayer(Transform playerTransform){
+    public void LookAtPlayer(GameObject player){
         //print("Looking at Player");
-        if(IsPlayerAtBack(playerTransform)){
+        if(IsPlayerAtBack(player.transform)){
             Flip();
         }
     }
@@ -77,8 +77,10 @@ public class EnemyMovement : MonoBehaviour
     }
 
     public void Move(GameObject player){
-        LookAtPlayer(player.transform);
-        tiltedGroundMovement2D.Move(Vector2.left, true, parameters.movementSpeed,1,1);
+        LookAtPlayer(player);
+        print(Vector3.right);
+        print(Vector2.right);
+        tiltedGroundMovement2D.Move(transform.right, true, parameters.movementSpeed,1,1);
 
         //print("Enemy is moving");
     }
@@ -89,5 +91,9 @@ public class EnemyMovement : MonoBehaviour
 
     public void Stop(){
         rb.velocity = new Vector2(0,rb.velocity.y);
+    }
+
+    public void SetHighFrictionMaterial(){
+        tiltedGroundMovement2D.SetHighFrictionMaterial();
     }
 }

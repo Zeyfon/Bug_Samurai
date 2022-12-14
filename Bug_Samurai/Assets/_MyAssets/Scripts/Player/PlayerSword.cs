@@ -14,6 +14,8 @@ public class PlayerSword : MonoBehaviour
     void Start(){
         playerCombat = GetComponentInParent<PlayerCombat>();
     }
+
+
     public void EnableSwordCollider(){
         //print("Sword Enabled");
         rb.WakeUp();
@@ -31,7 +33,7 @@ public class PlayerSword : MonoBehaviour
         //print("An object was found :"+ other.gameObject.name);
         if (other.TryGetComponent(out IDamageable iDamageable)){
                 if(!damageables.Contains(iDamageable)){
-                    iDamageable.Damage(transform.parent.parent.transform,playerCombat.GetCurrentAttackType(), playerCombat.GetCurrentAttackDamage());
+                    iDamageable.Damage(GetComponentInParent<PlayerCombat>().transform,playerCombat.GetCurrentAttackType(), playerCombat.GetCurrentAttackDamage());
                     damageables.Add(iDamageable);
                 }
             //print("Damege done to ");

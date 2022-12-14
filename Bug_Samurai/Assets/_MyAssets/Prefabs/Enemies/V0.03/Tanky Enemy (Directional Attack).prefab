@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2623485809952153627, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
+      propertyPath: m_Size.x
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 4263014547066302609, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -53,71 +57,83 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4263014547066302614, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: m_Name
-      value: Aggresive Enemy
+      value: Tanky Enemy (Directional Attack)
       objectReference: {fileID: 0}
     - target: {fileID: 5119484305548945285, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: m_Size.x
-      value: 1.7
+      value: 4.3
       objectReference: {fileID: 0}
     - target: {fileID: 5119484305548945285, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: m_Offset.x
-      value: 0.85
+      value: 2.15
       objectReference: {fileID: 0}
     - target: {fileID: 7013595933869000557, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 89b68e06723b4224d90090f0424d23a8, type: 3}
+      objectReference: {fileID: -1181746703, guid: 565ce465e5270c3448e0bdfb5073af00, type: 3}
     - target: {fileID: 7013595933869000557, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.5564703
       objectReference: {fileID: 0}
     - target: {fileID: 7013595933869000557, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 0.5564703
       objectReference: {fileID: 0}
     - target: {fileID: 7013595933869000557, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 0.5754717
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: attack
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: health
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 89b68e06723b4224d90090f0424d23a8, type: 3}
+      objectReference: {fileID: -1181746703, guid: 565ce465e5270c3448e0bdfb5073af00, type: 3}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: color.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: color.b
-      value: 0.009433985
+      value: 0.4693396
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: color.g
-      value: 0.009433985
+      value: 0.4693396
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: color.r
-      value: 0.009433985
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
+      propertyPath: hasDefense
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: movementSpeed
-      value: 3.5
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: quantityOfAttacks
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
+      propertyPath: canBeDamagedFromBehind
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: detectionColliderSize.x
-      value: 10
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: detectionColliderSize.y
@@ -125,11 +141,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9204723250173969856, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: fsm.variables.floatVariables.Array.data[0].value
-      value: 1.4
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9204723250173969856, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: fsm.variables.floatVariables.Array.data[2].value
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
