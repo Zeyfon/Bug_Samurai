@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 1161850887839455558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -54.69, y: 5.19, z: -0.13802627}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.6875, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1161850887785004989}
@@ -104,7 +104,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 475889ae439233f4ab963c3aae4e3b0b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 99b380e9988ed5043b72a9c2454c6386, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -202,8 +202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0259d52ca35ccc44cad4bd23223f9257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageSound: {fileID: 8300000, guid: a17bd737e8d8cc3479e3f82c3a1e468a, type: 3}
-  damageVolume: 0.5
+  damageSound: {fileID: 8300000, guid: f38d28204915e1045b8371390cf71edb, type: 3}
+  damageVolume: 1
   fadeInTime: 2
   breakVFX: {fileID: 9067312723426285028, guid: 23c042da2a6bf0e4baf3492d51486d82, type: 3}
   breakVFXOrigin: {fileID: 7249392723448858045}
