@@ -1,0 +1,186 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1087599463889053781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6099269690881682766}
+  - component: {fileID: 4793869053958092548}
+  m_Layer: 12
+  m_Name: AreaHiderBody
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6099269690881682766
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087599463889053781}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8917033184208962599}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &4793869053958092548
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087599463889053781}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -398114993
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 0.5943396, g: 0.40810588, b: 0.042052325, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!1001 &7755219817535175578
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1161850887839455558, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: m_Name
+      value: BreakableObjectWithHiddenArea
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161850887839455561, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161850887839455561, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161850887839455561, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161850887839455561, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161850887839455561, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161850887839455561, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161850887839455561, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161850887839455561, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161850887839455561, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161850887839455561, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161850887839455561, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161850887839455671, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: damageVFX
+      value: 
+      objectReference: {fileID: 1364070156239491832, guid: 07a8e2860b637574e823432af59dac30, type: 3}
+    - target: {fileID: 1161850887839455671, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: destroyVFX
+      value: 
+      objectReference: {fileID: 962401135209959635, guid: b61b9f2ad9438834c97bf701fe47d415, type: 3}
+    - target: {fileID: 1161850887839455671, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: damageVFXOrigin
+      value: 
+      objectReference: {fileID: 1097496292440440359}
+    - target: {fileID: 1161850887839455671, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: destroyVFXOrigin
+      value: 
+      objectReference: {fileID: 2967215982143384291}
+    - target: {fileID: 1161850887839455671, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: objectFadeOutTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161850887839455671, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: areaHiderFadeOutTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161850887839455671, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: areaHiderSpriteRenderer
+      value: 
+      objectReference: {fileID: 4793869053958092548}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+--- !u!4 &1097496292440440359 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7249392723448858045, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+  m_PrefabInstance: {fileID: 7755219817535175578}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2967215982143384291 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4795691914378891641, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+  m_PrefabInstance: {fileID: 7755219817535175578}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8917033184208962599 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1161850887785004989, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+  m_PrefabInstance: {fileID: 7755219817535175578}
+  m_PrefabAsset: {fileID: 0}

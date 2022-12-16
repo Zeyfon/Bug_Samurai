@@ -44,3 +44,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: InGameFrontal
+    uniqueID: 3896852303
+    locked: 0

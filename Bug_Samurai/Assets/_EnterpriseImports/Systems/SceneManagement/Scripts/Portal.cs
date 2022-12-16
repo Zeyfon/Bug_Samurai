@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Systems.Fader;
 
 namespace Systems.SceneManagement
 {
@@ -16,17 +17,11 @@ namespace Systems.SceneManagement
         [SerializeField] DestinationIdentifier destination;
         [SerializeField] bool isActivatedByButtonPress;
 
-
         [Header("FX")]
         [SerializeField] AudioClip teleportAudio;
         [SerializeField] float teleportVolume = 0.5f;
         [SerializeField] GameObject teleportVFX;
         [SerializeField] Transform teleportVFXOrigin;
-
-        // [Header("Fading Settings")]
-        // [SerializeField] float fadeInTime = 2f;
-        // [SerializeField] float fadeOutTime = 1f;
-        // [SerializeField] float fadeWaitTime = 1f;
 
         Transform spawnPoint;
         private void Start(){
@@ -66,18 +61,18 @@ namespace Systems.SceneManagement
         }
 
 
-    void CreateVFXGameObject(GameObject vfxTemplate, Transform originTransform){
-        GameObject vfx = GameObject.Instantiate(vfxTemplate, originTransform.position, originTransform.rotation);
-        vfx.transform.localScale = originTransform.localScale;
-        StartCoroutine(DestroyObject(vfx));
-    }
-    IEnumerator DestroyObject(GameObject vfx){
-        ParticleSystem particles = vfx.GetComponent<ParticleSystem>();
-        while(particles.isPlaying){
-            yield return null;
+        void CreateVFXGameObject(GameObject vfxTemplate, Transform originTransform){
+            GameObject vfx = GameObject.Instantiate(vfxTemplate, originTransform.position, originTransform.rotation);
+            vfx.transform.localScale = originTransform.localScale;
+            StartCoroutine(DestroyObject(vfx));
         }
-        Destroy(vfx);
-    }
+        IEnumerator DestroyObject(GameObject vfx){
+            ParticleSystem particles = vfx.GetComponent<ParticleSystem>();
+            while(particles.isPlaying){
+                yield return null;
+            }
+            Destroy(vfx);
+        }
         public void PlayerInkoveTransition(){
             StartCoroutine(Transition());
         }
@@ -90,19 +85,20 @@ namespace Systems.SceneManagement
             //     yield break;
             // }
             // DontDestroyOnLoad(gameObject);
+            if(OnPortalTriggered != null)
+            {
+                OnPortalTriggered(false);
+            }
+            else
+            {
+                Debug.LogWarning("Portal cannot disable current Player controller");
+                
+            }
 
-            // UIFader fader = FindObjectOfType<UIFader>();
-            // print(fader.gameObject.name);
-            // if(OnPortalTriggered != null)
-            // {
-            //     OnPortalTriggered(false);
-            // }
-            // else
-            // {
-            //     Debug.LogWarning("Portal cannot disable current Player controller");
-            // }
-            // yield return fader.FadeOut(fadeOutTime);
+            UIFader fader = FindObjectOfType<UIFader>();
+            if(fader != null) yield return fader.FadeOut();
 
+            ////////////////////////////////////////////////////// SAVING PROCESS //////////////////////////////////////////////
             
             //SavingWrapper savingWrapper = GameObject.FindObjectOfType<SavingWrapper>();
             //savingWrapper.Save();
@@ -119,6 +115,8 @@ namespace Systems.SceneManagement
 
             //print("Other Scene Loaded");
             //savingWrapper.Load();
+
+
             Portal otherPortal = GetOtherPortal();
 
             if(otherPortal != null)
@@ -128,8 +126,8 @@ namespace Systems.SceneManagement
                 //savingWrapper.Save();
 
                 // yield return new WaitForSeconds(fadeWaitTime);
-
-                // yield return fader.FadeIn(fadeInTime);
+                yield return fader.FaderWaitingTime();  //Only for now. Later this can be deleted
+                yield return fader.FadeIn();
 
                 // if (OnPortalTriggered != null)
                 //     OnPortalTriggered(true);

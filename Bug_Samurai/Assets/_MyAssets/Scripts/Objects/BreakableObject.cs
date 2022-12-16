@@ -5,51 +5,83 @@ using Systems.Fader;
 
 public class BreakableObject : MonoBehaviour, IDamageable
 {
+    [SerializeField] int quantityOfHitsTillDestroyed;
+
+    [Header("Damage Parameters")]
     [SerializeField] AudioClip damageSound;
     [SerializeField] float damageVolume;
-    [SerializeField] float fadeInTime;
 
-    [SerializeField] GameObject breakVFX;
-    [SerializeField] Transform breakVFXOrigin;
+    [SerializeField] GameObject damageVFX;
+    [SerializeField] Transform damageVFXOrigin;
+
+    [Header("Destroy Parameters")]
+    [SerializeField] AudioClip destroySound;
+
+    [SerializeField] float destroyVolume;
+
+    [SerializeField] GameObject destroyVFX;
+    [SerializeField] Transform destroyVFXOrigin;
+
+    [Header("Area Hider Parameters")]
+
+    [SerializeField] SpriteRenderer areaHiderSpriteRenderer;
+    [SerializeField] float areaHiderFadeOutTime;
+
+
 
     AudioSource audioSource;
 
-    bool wasAttacked = false;
+    int counter = 0;
     void Start(){
         audioSource = GetComponent<AudioSource>();
     }
 
     public void Damage(Transform transform, AttackTypes attackType, int damage)
     {
-        PlaySFX();
-        PlayVFX();
-        if(wasAttacked) return;
-        DisableObject();
-        wasAttacked = true;
+        counter++;
+        if(counter<quantityOfHitsTillDestroyed){
+            DamageObject();
+
+        }
+        else if(counter == quantityOfHitsTillDestroyed){
+            DestroyObject();
+        }
     }
 
-    void PlaySFX(){
-        StartCoroutine(PlayAudio());
+    void DamageObject(){
+        PlaySFX(damageSound, damageVolume);
+        PlayVFX(damageVFX, damageVFXOrigin);
     }
 
-    void DisableObject(){
-        StartCoroutine(FadeInSprite());
+    void DestroyObject(){
+        PlaySFX(destroySound, destroyVolume);
+        PlayVFX(destroyVFX,destroyVFXOrigin);
+        GetComponent<Collider2D>().enabled = false;
+        StartCoroutine(FadeOutCoroutine());
     }
 
-    void PlayVFX(){
-        CreateVFXGameObject(breakVFX, breakVFXOrigin);
+    void PlaySFX(AudioClip sound, float volume){
+        StartCoroutine(PlayAudio(sound, volume));
     }
 
-    IEnumerator FadeInSprite(){
-        SpriteRenderer r = GetComponentInChildren<SpriteRenderer>();
+    void PlayVFX(GameObject vfx, Transform vfxOrigin){
+        CreateVFXGameObject(vfx, vfxOrigin);
+    }
+
+    IEnumerator FadeOutCoroutine(){
+        yield return ObjectFadeOut(areaHiderSpriteRenderer, areaHiderFadeOutTime);
+        //GetComponent<Collider2D>().enabled = false;
+    }
+
+    IEnumerator ObjectFadeOut(SpriteRenderer r, float time){
         Fader fader = new Fader();
-        yield return fader.FadeIn(r, fadeInTime);
+        yield return fader.FadeIn(r, time);
         GetComponent<Collider2D>().enabled = false;
     }
 
-    IEnumerator PlayAudio(){
-        audioSource.clip = damageSound;
-        audioSource.volume = damageVolume;
+    IEnumerator PlayAudio(AudioClip sound, float volume){
+        audioSource.clip = sound;
+        audioSource.volume = volume;
         audioSource.Play();
         while(audioSource.isPlaying){
             yield return null;
