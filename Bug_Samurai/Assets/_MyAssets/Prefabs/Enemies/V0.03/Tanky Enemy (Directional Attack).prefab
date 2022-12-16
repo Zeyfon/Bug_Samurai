@@ -94,22 +94,22 @@ PrefabInstance:
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: sprite
       value: 
-      objectReference: {fileID: -1181746703, guid: 565ce465e5270c3448e0bdfb5073af00, type: 3}
+      objectReference: {fileID: 21300000, guid: 89b68e06723b4224d90090f0424d23a8, type: 3}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: color.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: color.b
-      value: 0.4693396
+      value: 0.8455281
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: color.g
-      value: 0.4693396
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: color.r
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: hasDefense

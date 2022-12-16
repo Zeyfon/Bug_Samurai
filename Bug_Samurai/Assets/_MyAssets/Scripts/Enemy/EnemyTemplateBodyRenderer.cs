@@ -8,6 +8,7 @@ public class EnemyTemplateBodyRenderer : MonoBehaviour
     void Start()
     {
         EnemyParameters parameters = GetComponentInParent<EnemyParameters>();
+        if(!parameters.isUpdatingVisuals) return;
         print("Looking to set body color");
         if(parameters == null)  return;
         

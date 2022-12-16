@@ -2691,6 +2691,7 @@ MonoBehaviour:
   canBeInterruptedByAnything: 0
   health: 0
   attack: 0
+  isUpdatingVisuals: 0
   sprite: {fileID: 0}
   color: {r: 0, g: 0, b: 0, a: 0}
   canBeDamagedFromBehind: 0

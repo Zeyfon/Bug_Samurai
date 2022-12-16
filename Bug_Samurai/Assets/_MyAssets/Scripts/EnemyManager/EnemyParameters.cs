@@ -15,6 +15,7 @@ public class EnemyParameters:MonoBehaviour
         public int attack;
         
         [Header("Visual Design")]
+        public bool isUpdatingVisuals = false;
         public Sprite sprite;
         public Color color;
 
