@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Bug_Samurai/Assets/_MyAssets/Scenes/Test.unity.meta
 guid: ae15baa0374f2564db8b6371e5ce99b7
+========
+guid: b305ce8041c14114c91c4025fdc38d6e
+folderAsset: yes
+>>>>>>>> BetaLEVEL:Bug_Samurai/Assets/_MyAssets/Beta LVL/Beta LVL.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
