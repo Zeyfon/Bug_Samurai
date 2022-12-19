@@ -159,7 +159,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     void NoInterruptionDamage(){
         PlayDamageSound();
-
+        StartCoroutine(VisualDamageCoroutine());
     }
 
     IEnumerator VisualDamageCoroutine(){
