@@ -23,7 +23,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public delegate void MaxHealthIncrease(float maxHealth, float currentHealth, bool isMaxHealthIncrease);
     public event MaxHealthIncrease OnHealthIncrease;
-
+    
+    public delegate void PlayerDied();
+    public static event PlayerDied OnPlayerDeaths;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +67,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         } 
         else{
             print("Dead");
+            if(OnPlayerDeaths!=null) OnPlayerDeaths();
             health=0;
         }
         playerCombat.SetIsAttacking(false);
