@@ -21,8 +21,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     int maxHealth;
 
-    public delegate void MaxHealthIncrease(float extraHealth);
-    public event MaxHealthIncrease OnMaxHealthIncrease;
+    public delegate void MaxHealthIncrease(float maxHealth, float currentHealth, bool isMaxHealthIncrease);
+    public event MaxHealthIncrease OnHealthIncrease;
 
     // Start is called before the first frame update
     void Start()
@@ -78,6 +78,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         return health;
     }
 
+    public int GetMaxHealth(){
+        return maxHealth;
+    }
+
     bool CanBeDamage(){
         return noDamageWindowTimer >timeNoDamageWindow;
     }
@@ -96,11 +100,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void IncreaseMaxHealth(float extraHealth){
         maxHealth += (int)extraHealth;
-        health += (int)extraHealth;
-        OnMaxHealthIncrease(extraHealth);
+        OnHealthIncrease(maxHealth, health, true);
+        health = maxHealth;
     }
 
     public void RegenHealth(){
+        OnHealthIncrease(maxHealth,health, false);
         health = maxHealth;
     }
 }
