@@ -21,22 +21,14 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [SerializeField] bool canBeDamaged = true;
 
 
-
     AudioSource audioSource;
     Animator animator;
 
     float stunTimer = 0;
     float stunMaxTimer = 0;
 
-
     AttackTypes attackType;
 
-    // enum EnemyType{
-    //     Heavy,
-    //     Fast,
-    //     Normal,
-    // }
-    // Start is called before the first frame update
     EnemyParameters parameters;
     GameObject player;
     void Start()

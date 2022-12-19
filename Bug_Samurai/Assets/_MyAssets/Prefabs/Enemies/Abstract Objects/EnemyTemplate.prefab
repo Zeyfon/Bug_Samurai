@@ -2753,10 +2753,10 @@ MonoBehaviour:
   audioGetDamaged: {fileID: 8300000, guid: a17bd737e8d8cc3479e3f82c3a1e468a, type: 3}
   volumeDamaged: 0.5
   stunnedTime: 2.5
-  damageVisualTime: 0.5
+  damageVisualTime: 0.3
   bodyRenderer: {fileID: 7013595933869000557}
   normalMaterial: {fileID: 2100000, guid: bfa98a6555cbd904193769528edc530d, type: 2}
-  damageMaterial: {fileID: 2100000, guid: 9c3a316d64e6b774d8dcda187169bd9a, type: 2}
+  damageMaterial: {fileID: 2100000, guid: 9618c1ccbc7ce284089a4c413f709f39, type: 2}
   health: 50
   canBeDamaged: 1
 --- !u!114 &9055836057122212700
