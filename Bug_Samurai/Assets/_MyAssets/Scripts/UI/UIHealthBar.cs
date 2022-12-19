@@ -18,6 +18,8 @@ public class UIHealthBar : MonoBehaviour
     [SerializeField] float idleTime = 3;
     [SerializeField] float fadeOutTime = 0.5f;
 
+    [SerializeField] float timeToIncreaseHealth = 2f;
+
     float healthScale = 1;
 
     float currentHealth = 0;
@@ -25,6 +27,8 @@ public class UIHealthBar : MonoBehaviour
     float timerToStartDecreasingBackground = Mathf.Infinity;
 
     float scaleIncrease = 0;
+
+   // float currentMaxHealth;
     // Start is called before the first frame update
     void Awake()
     {
@@ -36,70 +40,77 @@ public class UIHealthBar : MonoBehaviour
     {
         healthBarCanvas.GetComponent<CanvasGroup>().alpha=0;
         currentHealth = playerHealth.GetHealth();
-        scaleIncrease = currentHealth / scaleHealth;
+  //      currentMaxHealth = currentHealth;
     }
 
     void OnEnable(){
-        playerHealth.OnMaxHealthIncrease += IncreaseMaxHealth;
+        playerHealth.OnHealthIncrease += IncreaseHealth;
     }
 
     void OnDisable(){
-        playerHealth.OnMaxHealthIncrease -= IncreaseMaxHealth;
+        playerHealth.OnHealthIncrease -= IncreaseHealth;
     }
 
     void Update(){
 
         if(playerHealth.GetHealth()<currentHealth){
-            print("Player got hit");
             PlayerJustGotHit();
         }
-        else if(playerHealth.GetHealth()>currentHealth)
-        {
-        healthBarTransform.localScale = new Vector3(currentHealth / scaleHealth, healthBarTransform.localScale.y, healthBarTransform.localScale.z);
-        healthBarBackgroundTransform.localScale = new Vector3(currentHealth / scaleHealth, healthBarBackgroundTransform.localScale.y, healthBarBackgroundTransform.localScale.z);
-        healthBarCanvas.transform.localScale = new Vector3(((playerHealth.GetHealth()-currentHealth) / scaleHealth) + healthBarCanvas.transform.localScale.x, healthBarCanvas.transform.localScale.y, healthBarCanvas.transform.localScale.z);
-        currentHealth = playerHealth.GetHealth();
-        }
-
-
         if(timerToStartDecreasingBackground > timeToStartDecreasingBackground && healthBarTransform.localScale.x < healthBarBackgroundTransform.localScale.x){
             healthBarBackgroundTransform.localScale=new Vector3(healthBarBackgroundTransform.localScale.x-(decreasingBarSpeed/100)*Time.deltaTime,healthBarBackgroundTransform.localScale.y,healthBarBackgroundTransform.localScale.z);
         }
         else if(healthBarBackgroundTransform.localScale.x < healthBarTransform.localScale.x){
             healthBarBackgroundTransform.localScale = healthBarTransform.localScale;
         }
-
-
-        healthBarTransform.localScale = new Vector3(currentHealth / scaleHealth, healthBarTransform.localScale.y, healthBarTransform.localScale.z);
         timerToStartDecreasingBackground += Time.deltaTime;
     }
 
     void PlayerJustGotHit(){
+        print("Player got hit");
         timerToStartDecreasingBackground = 0;
         currentHealth = playerHealth.GetHealth();
+        healthBarTransform.localScale = new Vector3(currentHealth / scaleHealth, healthBarTransform.localScale.y, healthBarTransform.localScale.z);
     }
 
-    void IncreaseMaxHealth(float extraHealth){
+    void IncreaseHealth(float healthValueToReach, float initialHealth, bool isMaxHealthIncrease){
         print("UI Ready to VFX Increase Max Health");
-        PerformVFXMaxHealthIncrease(extraHealth);
-        //Perform the max health increase
-    }
+        if(isMaxHealthIncrease) StartCoroutine(IncreaseMaxHealthVFX(healthValueToReach, initialHealth));
+        else StartCoroutine(IncreaseHealthVFX(healthValueToReach, initialHealth));
+    }   
 
-    void PerformVFXMaxHealthIncrease(float extraHealth){
-        healthBarCanvas.transform.localScale =  new Vector3((scaleHealth+extraHealth)/scaleHealth,healthBarCanvas.transform.localScale.y,healthBarCanvas.transform.localScale.z);
-        StartCoroutine(HealthIncreaseVFX());
-    }
-
-    IEnumerator HealthIncreaseVFX(){
+    IEnumerator IncreaseMaxHealthVFX(float healthValueToReach, float initialHealth){
         CanvasGroup canvasGroup = healthBarCanvas.GetComponent<CanvasGroup>();
-        print(canvasGroup);
+        healthBarCanvas.transform.localScale = new Vector3((healthValueToReach + 5) / scaleHealth,healthBarCanvas.transform.localScale.y,healthBarCanvas.transform.localScale.z);
         Fader uiFader = new Fader();
-        print("Starting Fading process");
-        yield return uiFader.FadeOut(canvasGroup, fadeInTime);
-        print("Middel part");
-        yield return new WaitForSeconds(idleTime);
-        yield return uiFader.FadeIn(canvasGroup,fadeOutTime);
 
-        print("Ending Fading Process");
+        yield return uiFader.FadeOut(canvasGroup, fadeInTime);
+
+        float deltaHealth = healthValueToReach-initialHealth;
+        while(initialHealth < healthValueToReach){
+            initialHealth += (( deltaHealth * Time.deltaTime) / timeToIncreaseHealth);
+
+            if(initialHealth >= healthValueToReach) initialHealth = healthValueToReach;
+            print(initialHealth);
+
+            healthBarTransform.localScale = new Vector3(initialHealth/scaleHealth, healthBarTransform.localScale.y, healthBarTransform.localScale.z);
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForSeconds(idleTime);
+
+        yield return uiFader.FadeIn(canvasGroup,fadeOutTime);
+    }
+
+    IEnumerator IncreaseHealthVFX(float healthValueToReach, float initialHealth){
+        float deltaHealth = healthValueToReach-initialHealth;
+        while(initialHealth < healthValueToReach){
+            initialHealth += (( deltaHealth * Time.deltaTime) / timeToIncreaseHealth);
+
+            if(initialHealth >= healthValueToReach) initialHealth = healthValueToReach;
+            print(initialHealth);
+
+            healthBarTransform.localScale = new Vector3(initialHealth/scaleHealth, healthBarTransform.localScale.y, healthBarTransform.localScale.z);
+            yield return new WaitForEndOfFrame();
+        }
     }
 }
