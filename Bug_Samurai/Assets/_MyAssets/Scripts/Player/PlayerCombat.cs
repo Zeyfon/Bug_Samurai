@@ -91,6 +91,7 @@ public class PlayerCombat : MonoBehaviour
 
 #region Combo Attack
     public void StartAttack(){
+        playerMovement.SetHighFrictioPhysicsMaterial();
         SetIsAttacking(true);
         animator.SetInteger("Attack", 1);
     }
@@ -174,7 +175,7 @@ public class PlayerCombat : MonoBehaviour
     }
 
     public void SheatPosture(bool isSheatPostureButtonPressed){
-
+        playerMovement.SetHighFrictioPhysicsMaterial();
         if(isSheatPostureButtonPressed){
             SetIsAttacking(true);
             animator.SetInteger("Attack",50);

@@ -101,7 +101,9 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-
+    public void SetHighFrictioPhysicsMaterial(){
+        tiltedGroundMovement2D.SetHighFrictionMaterial();
+    }
 
     public void AttackMovement(){
         rb.velocity = new Vector2(0,rb.velocity.y);
