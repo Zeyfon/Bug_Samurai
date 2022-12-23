@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 168957160224950877, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
+      propertyPath: attackVFX
+      value: 
+      objectReference: {fileID: 836417217330253377, guid: da288a2b8e74dcd47a957befc137afed, type: 3}
     - target: {fileID: 2623485809952153627, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: m_Size.x
       value: 18
@@ -58,6 +62,22 @@ PrefabInstance:
     - target: {fileID: 4263014547066302614, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: m_Name
       value: Normal Enemy(No Interruptable)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541592148756673425, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.79686
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541592148756673425, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99962
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541592148756673425, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.027566712
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541592148756673425, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 3.159
       objectReference: {fileID: 0}
     - target: {fileID: 5119484305548945285, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: m_Size.x
@@ -133,7 +153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9204723250173969856, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: fsm.variables.floatVariables.Array.data[2].value
-      value: 3
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
