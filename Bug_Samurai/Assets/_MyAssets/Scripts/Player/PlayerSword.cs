@@ -35,6 +35,7 @@ public class PlayerSword : MonoBehaviour
                 if(!damageables.Contains(iDamageable)){
                     iDamageable.Damage(GetComponentInParent<PlayerCombat>().transform,playerCombat.GetCurrentAttackType(), playerCombat.GetCurrentAttackDamage());
                     damageables.Add(iDamageable);
+                    //print(iDamageable);
                 }
             //print("Damege done to ");
         }

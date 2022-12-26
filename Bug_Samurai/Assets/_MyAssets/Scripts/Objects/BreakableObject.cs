@@ -28,7 +28,6 @@ public class BreakableObject : MonoBehaviour, IDamageable
     [SerializeField] float areaHiderFadeOutTime;
 
 
-
     AudioSource audioSource;
 
     int counter = 0;
@@ -36,15 +35,21 @@ public class BreakableObject : MonoBehaviour, IDamageable
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void Damage(Transform transform, AttackTypes attackType, int damage)
+    public void Damage(Transform playerTransform, AttackTypes attackType, int damage)
     {
+        RaycastHit2D hit =  Physics2D.Raycast(playerTransform.position, playerTransform.right,3.0f, LayerMask.GetMask("Ground"));
+        if(hit){
+            print(hit.point);
+            damageVFXOrigin.transform.position = hit.point;
+            print(damageVFXOrigin.transform.position);
+        }
         counter++;
-        if(counter<quantityOfHitsTillDestroyed){
+        if(counter == quantityOfHitsTillDestroyed){
+            DestroyObject();
+        }
+        else{
             DamageObject();
 
-        }
-        else if(counter == quantityOfHitsTillDestroyed){
-            DestroyObject();
         }
     }
 

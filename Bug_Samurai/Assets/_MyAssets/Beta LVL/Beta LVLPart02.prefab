@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3565678153169623199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7379539123902605048}
+  m_Layer: 0
+  m_Name: hitvfx
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7379539123902605048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3565678153169623199}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1027918045146541910}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4055296810037304345
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,6 +843,7 @@ GameObject:
   - component: {fileID: 2718563169148391466}
   - component: {fileID: 6691606477035915257}
   - component: {fileID: 3890373024668590155}
+  - component: {fileID: 422754615341393526}
   m_Layer: 11
   m_Name: Beta LVLPart02
   m_TagString: Untagged
@@ -842,6 +874,7 @@ Transform:
   - {fileID: 5861423194400768925}
   - {fileID: 678426039397594815}
   - {fileID: 3463061133276481039}
+  - {fileID: 1027918045146541910}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -855,7 +888,7 @@ SpriteShapeRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -1600,6 +1633,61 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &422754615341393526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4383131942116302252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0259d52ca35ccc44cad4bd23223f9257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quantityOfHitsTillDestroyed: 0
+  damageSound: {fileID: 8300000, guid: 99b380e9988ed5043b72a9c2454c6386, type: 3}
+  damageVolume: 0.5
+  damageVFX: {fileID: 5006902587877455861, guid: 28e3e099063311f439f5a38096f63cad, type: 3}
+  damageVFXOrigin: {fileID: 7379539123902605048}
+  destroySound: {fileID: 0}
+  destroyVolume: 0
+  destroyVFX: {fileID: 0}
+  destroyVFXOrigin: {fileID: 0}
+  areaHiderSpriteRenderer: {fileID: 0}
+  areaHiderFadeOutTime: 0
+--- !u!1 &5754937443566312830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1027918045146541910}
+  m_Layer: 0
+  m_Name: VFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1027918045146541910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5754937443566312830}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -198.85568, y: 9.111354, z: -0.05316972}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7379539123902605048}
+  m_Father: {fileID: 1542099049290183837}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6618189802192975191
 GameObject:
   m_ObjectHideFlags: 0
