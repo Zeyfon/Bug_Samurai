@@ -8,7 +8,7 @@ public class PlayerAttackBehavior : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
        //animator.SetInteger("Attack", animator.GetInteger("Attack")+1);
-       animator.SetInteger("Attack",10);
+       animator.SetInteger("Attack",animator.GetInteger("Attack") + 1);
     }
 
     // OnStateUpdate is called before OnStateUpdate is called on any state inside this state machine
@@ -44,6 +44,6 @@ public class PlayerAttackBehavior : StateMachineBehaviour
     // OnStateMachineExit is called when exiting a state machine via its Exit Node
     override public void OnStateMachineExit(Animator animator, int stateMachinePathHash)
     {
-        animator.GetComponent<PlayerCombat>().AttackEnded();
+        animator.SetInteger("Attack",100);
     }
 }

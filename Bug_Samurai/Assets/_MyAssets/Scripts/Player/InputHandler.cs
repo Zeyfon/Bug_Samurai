@@ -33,7 +33,7 @@ public class InputHandler : MonoBehaviour
 
     private void OnEnable() 
     {
-        attackAction.performed += Attack;
+        //attackAction.performed += Attack;
         sheatPosture.performed += SheatPosture;
         evasionAction.performed += Evasion;
 
@@ -41,8 +41,9 @@ public class InputHandler : MonoBehaviour
 
     private void OnDisable() 
     {
-        attackAction.performed -= Attack;
+        //attackAction.performed -= Attack;
         sheatPosture.performed += SheatPosture;
+        evasionAction.performed += Evasion;
     }
 
     private void Start() {
@@ -55,12 +56,20 @@ public class InputHandler : MonoBehaviour
     void Update()
     {
         movementInput.Value = moveAction.ReadValue<Vector2>();
+        if(attackAction.WasPressedThisFrame()){
+            //print("Attack button pressed");
+            playerControllerFSM.SendEvent("ATTACKBUTTONPRESSED");
+        }
+        if(attackAction.WasReleasedThisFrame()){
+            //print("Attack button release");
+            playerControllerFSM.SendEvent("ATTACKBUTTONRELEASED");
+        }
     }
 
-    void Attack(InputAction.CallbackContext context)
-    {
-        playerControllerFSM.SendEvent("ATTACKCOMMAND");
-    }
+    // void Attack(InputAction.CallbackContext context)
+    // {
+    //     playerControllerFSM.SendEvent("ATTACKCOMMAND");
+    // }
 
     void SheatPosture(InputAction.CallbackContext context){
         isPostureButtonPressed = !isPostureButtonPressed;

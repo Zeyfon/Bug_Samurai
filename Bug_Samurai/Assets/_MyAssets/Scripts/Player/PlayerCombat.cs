@@ -9,55 +9,49 @@ public class PlayerCombat : MonoBehaviour
 {
 
     [Header("Connection Classes")]
-    [SerializeField] PlayMakerFSM playerControllerFSM;
+    //[SerializeField] PlayMakerFSM playerControllerFSM;
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] PlayerSword comboAttackSword;
     [SerializeField] PlayerSword sheatAttackSword;
 
-    [Header("Sheat Attack")]
-    [SerializeField] GameObject sheatAttackReadySignalVFX;
-    [SerializeField] Transform sheatAttackReadySignalTransform;
+    //[Header("Sheat Attack")]
 
-    [SerializeField] GameObject sheatAttackHitEnemyVFX;
-    [SerializeField] Transform sheatAttackHitEnemyVFXTransform;
-    [Range(0,2)]
-    [SerializeField] float sheatAttackMaxTime = 2.0f;
+    //[Range(0,2)]
+    //[SerializeField] float sheatAttackMaxTime = 2.0f;
 
-    [Header("Audios with Volumes")]
-    [SerializeField] AudioClip attackAudio1;
-    [Range(0,1)]
-    [SerializeField] float volumeAttack1 = 0.5f;
-    [SerializeField] AudioClip attackAudio2;
-    [Range(0,1)]
-    [SerializeField] float volumeAttack2 = 0.5f;
+    //[Header("Audios with Volumes")]
+   // [SerializeField] AudioClip attackAudio1;
+    //[Range(0,1)]
+    //[SerializeField] float volumeAttack1 = 0.5f;
+    //[SerializeField] AudioClip attackAudio2;
+    //[Range(0,1)]
+    //[SerializeField] float volumeAttack2 = 0.5f;
 
 
-    [SerializeField] AudioClip audioSheatAttack;
-    [Range(0,1)]
-    [SerializeField] float volumeSheatAttack = 0.5f;
+    //[SerializeField] AudioClip audioSheatAttack;
+    //[Range(0,1)]
+    //[SerializeField] float volumeSheatAttack = 0.5f;
 
-    [Header("Slash VFXs")]
-    [SerializeField] GameObject combotAttack1VFX;
-    [SerializeField] Transform vfx1Transform;
-    [SerializeField] GameObject combotAttack2VFX;
-    [SerializeField] Transform vfxTransform;
-    [SerializeField] GameObject sheatAttackPerformedVFX;
-    [SerializeField] Transform vfxSheatAttackPerformedTransform;
+    //[Header("Slash VFXs")]
+    //[SerializeField] GameObject combotAttack1VFX;
+    //[SerializeField] Transform vfx1Transform;
+    //[SerializeField] GameObject combotAttack2VFX;
+   // [SerializeField] Transform vfxTransform;
 
     [SerializeField] CinemachineVirtualCamera vCam;
-    [SerializeField] int damage = 10;
+    //[SerializeField] int damage = 10;
 
-    public static event Action OnSheatAttackEvent;
+    public static event Action OnSheatAttackDeliverDamage;
 
     bool isAttacking = false;
   
     Animator animator;
 
-    AudioSource audioSource;
+    //AudioSource audioSource;
 
-    float sheatAttackTimer = 0f;
+    //float sheatAttackTimer = 0f;
     
-    Transform attackerTransform;
+    //Transform attackerTransform;
 
     PlayerParameters parameters;
 
@@ -65,35 +59,37 @@ public class PlayerCombat : MonoBehaviour
 
     AttackTypes currentAttackType;
 
-    bool enableSheatAttackCollider = false;
+    //bool enableSheatAttackCollider = false;
 
-    bool isSheatAttackSuccessfull = true;
+    //bool isSheatAttackSuccessfull = true;
+
+    bool canDoSheatAttack = true;
 
     void Start(){
         parameters = GetComponent<PlayerParameters>();
         animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
+        //audioSource = GetComponent<AudioSource>();
     }
 
-    void Update(){
-        sheatAttackTimer +=Time.deltaTime;
-    }
+    // void Update(){
+    //     sheatAttackTimer +=Time.deltaTime;
+    // }
 
-    public void AttackEnded(){
-        print("Attack Ended");
-        SetIsAttacking(false);
-        animator.SetInteger("Attack",100);
-    }
+    // public void AttackEnded(){
+    //     print("Attack Ended");
+    //     animator.SetInteger("Attack",100);
+    // }
 
-    public bool CheckingAttackStatus(){
-        return isAttacking;
+    //Method used by PlayerControllerFSM
+    public bool HasComboAttackAnimationEnded(){
+        return animator.GetInteger("Attack") != 100;
     }
 
 #region Combo Attack
-    public void StartAttack(){
+    //Method used by PlayerControllerFSM
+    public void ComboAttack(){
         playerMovement.SetHighFrictioPhysicsMaterial();
-        SetIsAttacking(true);
-        animator.SetInteger("Attack", 1);
+        animator.SetInteger("Attack", 10);
     }
 
     public void ContinueAttack(){
@@ -115,76 +111,58 @@ public class PlayerCombat : MonoBehaviour
         comboAttackSword.DisableSwordCollider();
     }
 
-    public void PlayComboAttack1VFX(){
-        CreateVFXGameObject(combotAttack1VFX,vfx1Transform);
-    }
-    public void PlayComboAttack2VFX(){
-        CreateVFXGameObject(combotAttack2VFX,vfxTransform);
-    } 
-    public void PlayComboAttack2SFX(){
-        audioSource.PlayOneShot(attackAudio2, volumeAttack1);
-    }
-    public void PlayComboAttack1SFX(){
-        audioSource.PlayOneShot(attackAudio1, volumeAttack2);
-    }
+    // public void PlayComboAttack1VFX(){
+    //     CreateVFXGameObject(combotAttack1VFX,vfx1Transform);
+    // }
+    // public void PlayComboAttack2VFX(){
+    //     CreateVFXGameObject(combotAttack2VFX,vfxTransform);
+    // } 
+    // public void PlayComboAttack2SFX(){
+    //     audioSource.PlayOneShot(attackAudio2, volumeAttack1);
+    // }
+    // public void PlayComboAttack1SFX(){
+    //     audioSource.PlayOneShot(attackAudio1, volumeAttack2);
+    // }
 
 #endregion
+///////////////////////////////// SHEAT ATTACK /////////////////////////////////////////////
 #region SheatAttack
 
-
-    public bool IsSheatAttacking(){
-        return animator.GetInteger("Attack")!=100;
+    //Used by PlayerControllerFSM
+    public bool HaveSheatAttackAnimationsEnded(){
+        return animator.GetInteger("Attack") == 100;
+    }
+    //Used by PlayerControllerFSM
+    public void SheatAttackPostureChargeExit(){
+        animator.SetInteger("Attack", 55);
     }
 
-    public bool IsSheatAttackPostureExit(){
-        return animator.GetInteger("Attack") == 55;
-    }
-    public bool IsPlayerEnabledToSheatAttack(){
-        if(sheatAttackTimer< sheatAttackMaxTime){
-            isSheatAttackSuccessfull = true;
-            return true;
-        }
-        else{
-            return false;
-        } 
-    }
-
-    public void EnableSheatAttackDamageDelivery(){
-        enableSheatAttackCollider=true;
-    }
-
-    public void DeliverSheatAttackDamage(){
-        if(enableSheatAttackCollider){
-            EnableSheatAttackCollider();
-            enableSheatAttackCollider = false;
-            PlaySheatAttackHitEnemyVFX();
-        } 
-    }
-
-    public void StartSheatAttack(){
-        //Animation
+    //Used by PlayerControllerFSM
+    public void PerformSheatAttack(){
+        print("Perform Sheat Attack");
         animator.SetInteger("Attack",60);
-        //Timing to Parry
-        sheatAttackTimer=0;
-        isSheatAttackSuccessfull = false;
-
+        //SetIsPerformingSheatAttack(true);
     }
-
-    public void SheatAttackDamage(){
-        OnSheatAttackEvent();
-    }
-
-    public void SheatPosture(bool isSheatPostureButtonPressed){
+    //Used by PlayerControllerFSM
+    public void SheatAttackPostureCharge(){
         playerMovement.SetHighFrictioPhysicsMaterial();
-        if(isSheatPostureButtonPressed){
-            SetIsAttacking(true);
-            animator.SetInteger("Attack",50);
-        }
-        if(!isSheatPostureButtonPressed){
-            SetIsAttacking(false);
-            sheatAttackTimer=sheatAttackMaxTime;
-            animator.SetInteger("Attack",55);
-        }
+        animator.SetInteger("Attack",50);
+    }
+    //Used by PlayerControllerFSM
+    public bool IsSheatAttackPostureCharged(){
+        return animator.GetInteger("Attack") == 52;
+    }
+
+    // void SetIsPerformingSheatAttack(bool state){
+    //     canDoSheatAttack = state;
+    // }
+
+    public void EnableDamageToEnemiesWithSheatAttack(){
+        animator.SetInteger("Attack",70);
+    }
+
+    public bool IsPerformingSheatAttack(){
+        return animator.GetInteger("Attack") >= 60;
     }
 
     void EnableSheatAttackCollider(){
@@ -193,38 +171,31 @@ public class PlayerCombat : MonoBehaviour
         sheatAttackSword.EnableSwordCollider();
     }
 
+
+
+
+
+    //Used by Sheat Attack Animation
+    public void DeliverSheatAttackDamage(){
+        if(animator.GetInteger("Attack") == 70){
+            EnableSheatAttackCollider();
+        }
+    }
+
+
+    //Used by Sheat Attack Animation
+    // public void PlaySheatAttackSFX(){
+    //     audioSource.PlayOneShot(audioSheatAttack, volumeSheatAttack);
+    // }
+    //Used by Sheat Attack Animation 
     public void DisableSheatAttackCollider(){
         sheatAttackSword.DisableSwordCollider();
     }
 
-    public void PlaySheatAttackStartSignalVFX(){
-        CreateVFXGameObject(sheatAttackReadySignalVFX,sheatAttackReadySignalTransform);
-    }
-
-    public void PlaySheatAttackPerformedVFX(){
-        CreateVFXGameObject(sheatAttackPerformedVFX,vfxSheatAttackPerformedTransform);
-    }
-
-    public void PlaySheatAttackHitEnemyVFX(){
-        CreateVFXGameObject(sheatAttackHitEnemyVFX,sheatAttackHitEnemyVFXTransform);
-    }
-
-
-    public void PlaySheatAttackSFX(){
-        audioSource.PlayOneShot(audioSheatAttack, volumeSheatAttack);
-    }
-
-    public void WasSheatAttackApplied(){
-        if(isSheatAttackSuccessfull){
-            animator.SetInteger("Attack",100);
-        }
-        else{
-            animator.SetInteger("Attack",95);
-        }
-    }
 
 #endregion
 
+//////////////////////////////////////// GENERAL //////////////////////////////////////////////////////
     void SetCurrentAttackDaamge(int damage){
         currentAttackDamage = damage;
     }
@@ -245,18 +216,6 @@ public class PlayerCombat : MonoBehaviour
         isAttacking = state;
     }
 
-    void CreateVFXGameObject(GameObject vfxTemplate, Transform originTransform){
-        GameObject vfx = GameObject.Instantiate(vfxTemplate, originTransform.position, originTransform.rotation);
-        vfx.transform.localScale = originTransform.localScale;
-        StartCoroutine(DestroyObject(vfx));
-    }
-    IEnumerator DestroyObject(GameObject vfx){
-        ParticleSystem particles = vfx.GetComponent<ParticleSystem>();
-        while(particles.isPlaying){
-            yield return null;
-        }
-        Destroy(vfx);
-    }
 
 #region CameraMovement
     public void PlayCameraSheatAttackMovement(){
@@ -274,4 +233,18 @@ public class PlayerCombat : MonoBehaviour
         animator.SetInteger("Attack",0);
         SetIsAttacking(false);
     }
+
+
+    // void CreateVFXGameObject(GameObject vfxTemplate, Transform originTransform){
+    //     GameObject vfx = GameObject.Instantiate(vfxTemplate, originTransform.position, originTransform.rotation);
+    //     vfx.transform.localScale = originTransform.localScale;
+    //     StartCoroutine(DestroyObject(vfx));
+    // }
+    // IEnumerator DestroyObject(GameObject vfx){
+    //     ParticleSystem particles = vfx.GetComponent<ParticleSystem>();
+    //     while(particles.isPlaying){
+    //         yield return null;
+    //     }
+    //     Destroy(vfx);
+    // }
 }

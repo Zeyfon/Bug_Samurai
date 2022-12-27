@@ -78,8 +78,8 @@ public class EnemyMovement : MonoBehaviour
 
     public void Move(GameObject player){
         LookAtPlayer(player);
-        print(Vector3.right);
-        print(Vector2.right);
+        //print(Vector3.right);
+        //print(Vector2.right);
         tiltedGroundMovement2D.Move(transform.right, true, parameters.movementSpeed,1,1);
 
         //print("Enemy is moving");

@@ -522,16 +522,7 @@ AnimationClip:
     path: Body/Body/Sword/SwordSprite
     classID: 1
     script: {fileID: 0}
-  m_PPtrCurves:
-  - curve:
-    - time: 0
-      value: {fileID: 9067312723426285028, guid: 23c042da2a6bf0e4baf3492d51486d82, type: 3}
-    - time: 0.23333333
-      value: {fileID: 3183103670429015080, guid: 5ad16c75c8ae2934cbb9b699a7120f47, type: 3}
-    attribute: sheatAttackHitEnemyVFX
-    path: 
-    classID: 114
-    script: {fileID: 11500000, guid: 114c99b5cb90d8944b082243026c8501, type: 3}
+  m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -603,13 +594,6 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 0
-      attribute: 855383553
-      script: {fileID: 11500000, guid: 114c99b5cb90d8944b082243026c8501, type: 3}
-      typeID: 114
-      customType: 0
-      isPPtrCurve: 1
-    - serializedVersion: 2
       path: 1430092418
       attribute: 1
       script: {fileID: 0}
@@ -658,9 +642,7 @@ AnimationClip:
       typeID: 4
       customType: 0
       isPPtrCurve: 0
-    pptrCurveMapping:
-    - {fileID: 9067312723426285028, guid: 23c042da2a6bf0e4baf3492d51486d82, type: 3}
-    - {fileID: 3183103670429015080, guid: 5ad16c75c8ae2934cbb9b699a7120f47, type: 3}
+    pptrCurveMapping: []
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -2330,7 +2312,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.33333334
-    functionName: PlaySheatAttackSFX
+    functionName: PlaySheatAttackPerformedSFX
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -2350,8 +2332,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.75
-    functionName: WasSheatAttackApplied
+  - time: 0.5833333
+    functionName: PlaySheatAttackDamageDeliveredSFX
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.6333333
+    functionName: PlaySheatAttackPerformedVFX
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
