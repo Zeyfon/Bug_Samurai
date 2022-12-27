@@ -5,44 +5,46 @@ using System;
 public class PlayerVFXSFX : MonoBehaviour
 {
     [Header("Combo Attack")]
+
+
+    [SerializeField] GameObject combotAttack1VFX;
+    [SerializeField] Transform vfx1Transform;
     [SerializeField] AudioClip attackAudio1;
     [Range(0,1)]
     [SerializeField] float volumeAttack1 = 0.5f;
+
+    [SerializeField] GameObject combotAttack2VFX;
+    [SerializeField] Transform vfxTransform;
     [SerializeField] AudioClip attackAudio2;
     [Range(0,1)]
     [SerializeField] float volumeAttack2 = 0.5f;
-
-
-    [SerializeField] AudioClip audioSheatAttack;
-    [Range(0,1)]
-    [SerializeField] float volumeSheatAttack = 0.5f;
-    [SerializeField] GameObject combotAttack1VFX;
-    [SerializeField] Transform vfx1Transform;
-    [SerializeField] GameObject combotAttack2VFX;
-    [SerializeField] Transform vfxTransform;
 
 
     [Header("Sheat Attack")]
     [SerializeField] GameObject sheatAttackPostureChargeReadyVFX;
     [SerializeField] Transform sheatAttackPostureChargeReadyVFXOrigin;
     [SerializeField] AudioClip sheatAttackPostureChargeReadySFX;
-    [SerializeField] float sheatAttackPostureChargeReadySFXVolume;
+    [Range(0,1)]
+    [SerializeField] float sheatAttackPostureChargeReadySFXVolume = 0.5f;
 
     [SerializeField] GameObject sheatAttackPostureChargedLoopVFX;
     [SerializeField] Transform sheatAttackPostureChargedLoopOrigin;
     [SerializeField] AudioClip sheatAttackPostureChargedLoopSFX;
-    [SerializeField] float sheatAttackPostureChargedLoopSFXVolume;
+    [Range(0,1)]
+    [SerializeField] float sheatAttackPostureChargedLoopSFXVolume = 0.5f;
 
 
     [SerializeField] GameObject sheatAttackVFX;
     [SerializeField] Transform sheatAttackVFXOrigin;
     [SerializeField] AudioClip sheatAttackSFX;
-    [SerializeField] float sheatAttackSFXVolume;
+    [Range(0,1)]
+    [SerializeField] float sheatAttackSFXVolume = 0.5f;
 
     [SerializeField] GameObject sheatAttackDamageDeliveredVFX;
     [SerializeField] Transform sheatAttackDamageDeliveredVFXOrigin;
     [SerializeField] AudioClip sheatAttackDamageDeliveredSFX;
-    [SerializeField] float sheatAttackDamageDeliveredSFXVolume;
+    [Range(0,1)]
+    [SerializeField] float sheatAttackDamageDeliveredSFXVolume = 0.5f;
 
     public static event Action OnSheatAttackDeliverDamage;
 
@@ -55,19 +57,25 @@ public class PlayerVFXSFX : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+
+    // Used by Combo Attack 1 Animation
     public void PlayComboAttack1VFX(){
         CreateVFXGameObject(combotAttack1VFX,vfx1Transform);
     }
-    public void PlayComboAttack2VFX(){
-        CreateVFXGameObject(combotAttack2VFX,vfxTransform);
-    } 
-    public void PlayComboAttack2SFX(){
-        audioSource.PlayOneShot(attackAudio2, volumeAttack1);
-    }
+    // Used by Combo Attack 1 Animation
     public void PlayComboAttack1SFX(){
         audioSource.PlayOneShot(attackAudio1, volumeAttack2);
     }
 
+
+    // Used by Combo Attack 2 Animation
+    public void PlayComboAttack2VFX(){
+        CreateVFXGameObject(combotAttack2VFX,vfxTransform);
+    } 
+    // Used by Combo Attack 2 Animation
+    public void PlayComboAttack2SFX(){
+        audioSource.PlayOneShot(attackAudio2, volumeAttack1);
+    }
 
 
     //Used by Sheat Attack Posture Charge Animation
@@ -80,7 +88,6 @@ public class PlayerVFXSFX : MonoBehaviour
     }
 
 
-
     //Used by Sheat Attack Posture Charged Loop Animation
     public void PlaySheatAttackPostureChargedLoopVFX(){
         CreateVFXGameObject(sheatAttackPostureChargedLoopVFX, sheatAttackPostureChargedLoopOrigin);
@@ -89,7 +96,6 @@ public class PlayerVFXSFX : MonoBehaviour
     public void PlaySheatAttackPostureChargedLoopSFX(){
         audioSource.PlayOneShot(sheatAttackPostureChargedLoopSFX, sheatAttackPostureChargedLoopSFXVolume);
     }
-
 
 
     //Used by Sheat Attack Animation

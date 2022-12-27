@@ -12,16 +12,16 @@ public class Interaction : MonoBehaviour
 
 
     private void OnTriggerEnter2D(Collider2D other) {
-        print("Something is detected");
+        print("Interactable detected: " + other.gameObject.name);
         if(other.CompareTag("RegenStation")){
             interactableCollider = other;
-            print("Player entered regen station");
+            //print("Player entered regen station");
             canInteractWithEnvironment = true;
         }
         if(other.CompareTag("Portal")){
             interactableCollider = other;
             canInteractWithEnvironment = true;
-            print("Player entered Portal");
+            //print("Player entered Portal");
         }
     }
 
@@ -29,11 +29,11 @@ public class Interaction : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other) {
         if(other.CompareTag("RegenStation")){
             interactableCollider = null;
-            print("Player exited regen station");
+            //print("Player exited regen station");
             canInteractWithEnvironment = false;
         }
         if(other.CompareTag("Portal")){
-            print("Player exited Portal");
+            //print("Player exited Portal");
             interactableCollider = null;
             canInteractWithEnvironment = false;
         }

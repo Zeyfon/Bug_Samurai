@@ -253,6 +253,37 @@ Transform:
   m_Father: {fileID: 4498906711672072463}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 62.46}
+--- !u!1 &1702312521195723847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4469905244146840622}
+  m_Layer: 6
+  m_Name: VFXSheatPostureLoopOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4469905244146840622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702312521195723847}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.13, y: -0.24, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4498906711672072463}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2009933717782493544
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,7 +477,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3903421464727036365}
   m_Layer: 6
-  m_Name: VFXSheatAttackReady
+  m_Name: VFXSheatPostureReadyOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3321,23 +3352,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114c99b5cb90d8944b082243026c8501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerControllerFSM: {fileID: 5659728997865879991}
   playerMovement: {fileID: 2191504155436253058}
   comboAttackSword: {fileID: 2421439158994392472}
   sheatAttackSword: {fileID: 833527916163101683}
-  sheatAttackMaxTime: 0.5
-  attackAudio1: {fileID: 8300000, guid: d2a2da07ffbe080428bc02a1103ab2f6, type: 3}
-  volumeAttack1: 0.5
-  attackAudio2: {fileID: 8300000, guid: cf2a2a9bbd4164c499eb669b4fe3899f, type: 3}
-  volumeAttack2: 0.5
-  audioSheatAttack: {fileID: 8300000, guid: cf2a2a9bbd4164c499eb669b4fe3899f, type: 3}
-  volumeSheatAttack: 0.5
-  combotAttack1VFX: {fileID: 373540190890739687, guid: 27cb069e4c03924438c45221523df0cc, type: 3}
-  vfx1Transform: {fileID: 1436650973316791149}
-  combotAttack2VFX: {fileID: 373540190890739687, guid: 27cb069e4c03924438c45221523df0cc, type: 3}
-  vfxTransform: {fileID: 1144058674169044623}
   vCam: {fileID: 0}
-  damage: 10
 --- !u!114 &2191504155436253058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3539,32 +3557,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a23cee31230af8943a11545e8b4bad87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAudio1: {fileID: 8300000, guid: d2a2da07ffbe080428bc02a1103ab2f6, type: 3}
-  volumeAttack1: 0.5
-  attackAudio2: {fileID: 8300000, guid: cf2a2a9bbd4164c499eb669b4fe3899f, type: 3}
-  volumeAttack2: 0.5
-  audioSheatAttack: {fileID: 8300000, guid: cf2a2a9bbd4164c499eb669b4fe3899f, type: 3}
-  volumeSheatAttack: 0.5
   combotAttack1VFX: {fileID: 373540190890739687, guid: 27cb069e4c03924438c45221523df0cc, type: 3}
   vfx1Transform: {fileID: 1436650973316791149}
+  attackAudio1: {fileID: 8300000, guid: d2a2da07ffbe080428bc02a1103ab2f6, type: 3}
+  volumeAttack1: 0.7
   combotAttack2VFX: {fileID: 373540190890739687, guid: 27cb069e4c03924438c45221523df0cc, type: 3}
   vfxTransform: {fileID: 1144058674169044623}
-  sheatAttackPostureChargeReadyVFX: {fileID: 0}
-  sheatAttackPostureChargeReadyVFXOrigin: {fileID: 0}
-  sheatAttackPostureChargeReadySFX: {fileID: 0}
-  sheatAttackPostureChargeReadySFXVolume: 0
-  sheatAttackPostureChargedLoopVFX: {fileID: 0}
-  sheatAttackPostureChargedLoopOrigin: {fileID: 0}
-  sheatAttackPostureChargedLoopSFX: {fileID: 0}
-  sheatAttackPostureChargedLoopSFXVolume: 0
-  sheatAttackVFX: {fileID: 0}
-  sheatAttackVFXOrigin: {fileID: 0}
-  sheatAttackSFX: {fileID: 0}
-  sheatAttackSFXVolume: 0
-  sheatAttackDamageDeliveredVFX: {fileID: 0}
-  sheatAttackDamageDeliveredVFXOrigin: {fileID: 0}
-  sheatAttackDamageDeliveredSFX: {fileID: 0}
-  sheatAttackDamageDeliveredSFXVolume: 0
+  attackAudio2: {fileID: 8300000, guid: cf2a2a9bbd4164c499eb669b4fe3899f, type: 3}
+  volumeAttack2: 0.7
+  sheatAttackPostureChargeReadyVFX: {fileID: 7681821613543600161, guid: f00585eb1d3761e4eb76dcce81aa6162, type: 3}
+  sheatAttackPostureChargeReadyVFXOrigin: {fileID: 3903421464727036365}
+  sheatAttackPostureChargeReadySFX: {fileID: 8300000, guid: cc5e3e47f0a5c5143a25dfe6f6b3072b, type: 3}
+  sheatAttackPostureChargeReadySFXVolume: 0.5
+  sheatAttackPostureChargedLoopVFX: {fileID: 9067312723426285028, guid: 23c042da2a6bf0e4baf3492d51486d82, type: 3}
+  sheatAttackPostureChargedLoopOrigin: {fileID: 4469905244146840622}
+  sheatAttackPostureChargedLoopSFX: {fileID: 8300000, guid: 99b380e9988ed5043b72a9c2454c6386, type: 3}
+  sheatAttackPostureChargedLoopSFXVolume: 0.5
+  sheatAttackVFX: {fileID: 5361373205181104358, guid: e4e5e371dda07414780985fce5287a0e, type: 3}
+  sheatAttackVFXOrigin: {fileID: 8300229456850720505}
+  sheatAttackSFX: {fileID: 8300000, guid: cf2a2a9bbd4164c499eb669b4fe3899f, type: 3}
+  sheatAttackSFXVolume: 0.5
+  sheatAttackDamageDeliveredVFX: {fileID: 8482821253585752479, guid: b2d1a7e3c779c334183600eee56341df, type: 3}
+  sheatAttackDamageDeliveredVFXOrigin: {fileID: 1065731396475038168}
+  sheatAttackDamageDeliveredSFX: {fileID: 8300000, guid: e91e06c385d1b1645bca2cef09c8668c, type: 3}
+  sheatAttackDamageDeliveredSFXVolume: 0.5
 --- !u!1 &4755680749052540439
 GameObject:
   m_ObjectHideFlags: 0
@@ -3719,7 +3735,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4498906711672072463}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 27.172}
 --- !u!1 &7168995064111474202
 GameObject:
@@ -3750,7 +3766,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4498906711672072463}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7666617677069919087
 GameObject:
@@ -3935,6 +3951,7 @@ Transform:
   - {fileID: 8787215287298024201}
   - {fileID: 3982982200623870286}
   - {fileID: 3903421464727036365}
+  - {fileID: 4469905244146840622}
   - {fileID: 8300229456850720505}
   - {fileID: 1065731396475038168}
   m_Father: {fileID: 4447915171210409066}

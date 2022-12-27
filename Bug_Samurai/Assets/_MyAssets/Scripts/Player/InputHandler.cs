@@ -57,11 +57,11 @@ public class InputHandler : MonoBehaviour
     {
         movementInput.Value = moveAction.ReadValue<Vector2>();
         if(attackAction.WasPressedThisFrame()){
-            print("Attack button pressed");
+            //print("Attack button pressed");
             playerControllerFSM.SendEvent("ATTACKBUTTONPRESSED");
         }
         if(attackAction.WasReleasedThisFrame()){
-            print("Attack button release");
+            //print("Attack button release");
             playerControllerFSM.SendEvent("ATTACKBUTTONRELEASED");
         }
     }
