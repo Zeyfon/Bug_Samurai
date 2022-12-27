@@ -143,6 +143,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1161850887839455562, guid: d55f040065cb9d44591305f8977fd494, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 24aa429638fdd5849b7a0d60c3bd056c, type: 3}
     - target: {fileID: 1161850887839455671, guid: d55f040065cb9d44591305f8977fd494, type: 3}
       propertyPath: damageVFX
       value: 
