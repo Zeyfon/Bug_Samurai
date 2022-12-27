@@ -20,7 +20,7 @@ namespace Systems.Movement.SlopeMovementControl2D
         {
             slope = new SlopeControl();
             rb = GetComponent<Rigidbody2D>();
-            print(slope);
+            //print(slope);
         }
 
         public void Move(Vector2 movementDirection, bool isGrounded, float baseSpeed, float speedFactor, float speedModifier)

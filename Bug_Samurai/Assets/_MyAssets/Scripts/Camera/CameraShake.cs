@@ -12,7 +12,7 @@ namespace PSmash.Core
 
 
         private void OnEnable() {
-            PlayerCombat.OnSheatAttackEvent += PlayCameraShake;    
+            PlayerCombat.OnSheatAttackDeliverDamage += PlayCameraShake;    
         }
         public void PlayCameraShake()
         {

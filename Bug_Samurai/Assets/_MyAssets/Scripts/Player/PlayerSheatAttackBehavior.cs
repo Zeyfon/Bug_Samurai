@@ -7,7 +7,7 @@ public class PlayerSheatAttackBehavior : StateMachineBehaviour
     // OnStateEnter is called before OnStateEnter is called on any state inside this state machine
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetInteger("Attack",animator.GetInteger("Attack"));
+        animator.SetInteger("Attack",animator.GetInteger("Attack") + 1);
     }
 
     // OnStateUpdate is called before OnStateUpdate is called on any state inside this state machine
@@ -43,6 +43,6 @@ public class PlayerSheatAttackBehavior : StateMachineBehaviour
     // OnStateMachineExit is called when exiting a state machine via its Exit Node
     override public void OnStateMachineExit(Animator animator, int stateMachinePathHash)
     {
-       animator.GetComponent<PlayerCombat>().AttackEnded();
+       animator.SetInteger("Attack",100);
     }
 }

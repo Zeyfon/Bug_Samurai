@@ -554,6 +554,7 @@ GameObject:
   - component: {fileID: 232856945668372445}
   - component: {fileID: 3910425966814261249}
   - component: {fileID: 8645962906188071018}
+  - component: {fileID: 5026037098040016249}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -692,7 +693,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 409.4922
+        x: 329.4922
         y: 103.265625
         width: 100
         height: 32
@@ -753,10 +754,10 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 406.2422
-        y: 203.17969
-        width: 175
-        height: 80
+        x: 325.01562
+        y: 163.98438
+        width: 187
+        height: 64
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
@@ -771,19 +772,10 @@ MonoBehaviour:
         linkTarget: 0
         colorIndex: 0
       - fsmEvent:
-          name: ATTACKCOMMAND
+          name: ATTACKBUTTONPRESSED
           isSystemEvent: 0
           isGlobal: 0
         toState: Can Interact With Environment
-        linkStyle: 0
-        linkConstraint: 0
-        linkTarget: 0
-        colorIndex: 0
-      - fsmEvent:
-          name: ENABLESHEATPOSTURE
-          isSystemEvent: 0
-          isGlobal: 0
-        toState: SheatPosture
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
@@ -801,15 +793,13 @@ MonoBehaviour:
         actionNames:
         - HutongGames.PlayMaker.Actions.CallMethod
         - HutongGames.PlayMaker.Actions.CallMethod
-        - HutongGames.PlayMaker.Actions.BoolTest
         customNames:
         - 
         - 
-        - 
-        actionEnabled: 010101
-        actionIsOpen: 010101
-        actionStartIndex: 00000000070000000e000000
-        actionHashCodes: ca51e900ca51e900a4c8bf00
+        actionEnabled: 0101
+        actionIsOpen: 0101
+        actionStartIndex: 0000000007000000
+        actionHashCodes: ca51e900ca51e900
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams: []
@@ -948,29 +938,21 @@ MonoBehaviour:
         fsmEnumParams: []
         fsmFloatParams: []
         fsmIntParams: []
-        fsmBoolParams:
-        - useVariable: 1
-          name: isSheatPostureButtonPressed
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: 0
+        fsmBoolParams: []
         fsmVector2Params: []
         fsmVector3Params: []
         fsmColorParams: []
         fsmRectParams: []
         fsmQuaternionParams: []
-        stringParams:
-        - ENABLESHEATPOSTURE
-        - 
-        byteData: 0100010001
+        stringParams: []
+        byteData: 01000100
         arrayParamSizes: 0100000001000000
         arrayParamTypes:
         - HutongGames.PlayMaker.FsmVar
         - HutongGames.PlayMaker.FsmVar
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 18000000120000000c0000002700000027000000010000000100000018000000120000000c0000002700000027000000010000000100000011000000170000001700000001000000
+        paramDataType: 18000000120000000c0000002700000027000000010000000100000018000000120000000c00000027000000270000000100000001000000
         paramName:
         - behaviour
         - methodName
@@ -986,20 +968,16 @@ MonoBehaviour:
         - storeResult
         - everyFrame
         - manualUI
-        - boolVariable
-        - isTrue
-        - isFalse
-        - everyFrame
-        paramDataPos: 000000000000000000000000000000000100000000000000010000000100000001000000010000000200000003000000020000000300000000000000000000000100000004000000
-        paramByteDataSize: 000000000000000000000000000000000000000001000000010000000000000000000000000000000000000000000000010000000100000000000000000000000000000001000000
-    - name: Start Attack
+        paramDataPos: 0000000000000000000000000000000001000000000000000100000001000000010000000100000002000000030000000200000003000000
+        paramByteDataSize: 0000000000000000000000000000000000000000010000000100000000000000000000000000000000000000000000000100000001000000
+    - name: ComboAttack
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 1106.8516
-        y: 213.19531
-        width: 103
+        x: 923.35156
+        y: 201.875
+        width: 112
         height: 32
       isBreakpoint: 0
       isSequence: 1
@@ -1009,7 +987,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: Checking
+        toState: Has Combot Attack Animation Ended
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
@@ -1040,7 +1018,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: StartAttack
+          value: ComboAttack
         fsmObjectParams:
         - useVariable: 0
           name: 
@@ -1103,33 +1081,33 @@ MonoBehaviour:
         - sendEvent
         paramDataPos: 00000000000000000000000000000000000000000100000000000000
         paramByteDataSize: 00000000000000000000000000000000010000000100000000000000
-    - name: Checking
-      description: 
+    - name: Has Combot Attack Animation Ended
+      description: While Attack Button is still pressed
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 885.6719
-        y: 277.4375
-        width: 148
+        x: 927.3672
+        y: 339.10156
+        width: 248
         height: 48
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
       transitions:
       - fsmEvent:
-          name: ACTIONENDED
+          name: ATTACKBUTTONRELEASED
           isSystemEvent: 0
           isGlobal: 0
-        toState: Reset Values
+        toState: Has Combo Attack Animation Ended 2
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
         colorIndex: 0
       - fsmEvent:
-          name: ATTACKCOMMAND
+          name: STARTSHEATATTACK
           isSystemEvent: 0
           isGlobal: 0
-        toState: Attack
+        toState: Sheat Attack Posture Charge
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
@@ -1160,10 +1138,10 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: CheckingAttackStatus
+          value: HasComboAttackAnimationEnded
         fsmObjectParams:
-        - useVariable: 0
-          name: 
+        - useVariable: 1
+          name: combatComponent
           tooltip: 
           showInInspector: 0
           networkSync: 0
@@ -1212,7 +1190,7 @@ MonoBehaviour:
         fsmQuaternionParams: []
         stringParams:
         - 
-        - ACTIONENDED
+        - STARTSHEATATTACK
         byteData: 010001
         arrayParamSizes: 00000000
         arrayParamTypes:
@@ -1233,119 +1211,12 @@ MonoBehaviour:
         - everyFrame
         paramDataPos: 00000000000000000000000000000000000000000100000000000000000000000100000002000000
         paramByteDataSize: 00000000000000000000000000000000010000000100000000000000000000000000000001000000
-    - name: Attack
-      description: 
-      colorIndex: 0
-      position:
-        serializedVersion: 2
-        x: 1122.0156
-        y: 293.5625
-        width: 100
-        height: 32
-      isBreakpoint: 0
-      isSequence: 0
-      hideUnused: 0
-      transitions:
-      - fsmEvent:
-          name: FINISHED
-          isSystemEvent: 1
-          isGlobal: 0
-        toState: Checking
-        linkStyle: 0
-        linkConstraint: 0
-        linkTarget: 0
-        colorIndex: 0
-      actionData:
-        actionNames:
-        - HutongGames.PlayMaker.Actions.CallMethod
-        customNames:
-        - 
-        actionEnabled: 01
-        actionIsOpen: 01
-        actionStartIndex: 00000000
-        actionHashCodes: ca51e900
-        unityObjectParams: []
-        fsmGameObjectParams: []
-        fsmOwnerDefaultParams: []
-        animationCurveParams: []
-        functionCallParams: []
-        fsmTemplateControlParams: []
-        fsmEventTargetParams: []
-        fsmPropertyParams: []
-        layoutOptionParams: []
-        fsmStringParams:
-        - useVariable: 0
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: ContinueAttack
-        fsmObjectParams:
-        - useVariable: 0
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          typeName: PlayerCombat
-          value: {fileID: 1892958101206381320}
-        fsmVarParams:
-        - variableName: 
-          objectType: 
-          useVariable: 0
-          type: -1
-          floatValue: 0
-          intValue: 0
-          boolValue: 0
-          stringValue: 
-          vector4Value: {x: 0, y: 0, z: 0, w: 0}
-          objectReference: {fileID: 0}
-          arrayValue:
-            useVariable: 0
-            name: 
-            tooltip: 
-            showInInspector: 0
-            networkSync: 0
-            type: -1
-            objectTypeName: 
-            floatValues: []
-            intValues: 
-            boolValues: 
-            stringValues: []
-            vector4Values: []
-            objectReferences: []
-        fsmArrayParams: []
-        fsmEnumParams: []
-        fsmFloatParams: []
-        fsmIntParams: []
-        fsmBoolParams: []
-        fsmVector2Params: []
-        fsmVector3Params: []
-        fsmColorParams: []
-        fsmRectParams: []
-        fsmQuaternionParams: []
-        stringParams: []
-        byteData: 0000
-        arrayParamSizes: 00000000
-        arrayParamTypes:
-        - HutongGames.PlayMaker.FsmVar
-        customTypeSizes: 
-        customTypeNames: []
-        paramDataType: 18000000120000000c000000270000000100000001000000
-        paramName:
-        - behaviour
-        - methodName
-        - parameters
-        - storeResult
-        - everyFrame
-        - manualUI
-        paramDataPos: 000000000000000000000000000000000000000001000000
-        paramByteDataSize: 000000000000000000000000000000000100000001000000
     - name: Damaged
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 659.96094
+        x: 579.96094
         y: 105.0625
         width: 118
         height: 32
@@ -1509,42 +1380,33 @@ MonoBehaviour:
         - updateType
         paramDataPos: 000000000000000000000000000000000000000001000000020000000000000000000000010000000600000001000000010000000100000001000000070000000800000009000000
         paramByteDataSize: 000000000000000000000000000000000100000001000000040000000000000000000000000000000100000000000000000000000000000000000000010000000100000004000000
-    - name: SheatPosture
+    - name: Sheat Attack Posture Charge
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 120.22656
-        y: 211.35156
-        width: 179
-        height: 64
+        x: 916.9922
+        y: 432.6953
+        width: 202
+        height: 48
       isBreakpoint: 0
-      isSequence: 1
+      isSequence: 0
       hideUnused: 0
       transitions:
       - fsmEvent:
-          name: FINISHED
-          isSystemEvent: 1
+          name: ATTACKBUTTONRELEASED
+          isSystemEvent: 0
           isGlobal: 0
-        toState: SheatPosture
+        toState: Sheat Attack Posture Charge Exit
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
         colorIndex: 0
       - fsmEvent:
-          name: ATTACKCOMMAND
+          name: SHEATATTACKCHARGED
           isSystemEvent: 0
           isGlobal: 0
-        toState: SheatAttack
-        linkStyle: 0
-        linkConstraint: 0
-        linkTarget: 0
-        colorIndex: 0
-      - fsmEvent:
-          name: DISABLESHEATPOSTURE
-          isSystemEvent: 0
-          isGlobal: 0
-        toState: SheatAttack Posture Exit
+        toState: Sheat Attack Posture Charged
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
@@ -1554,16 +1416,14 @@ MonoBehaviour:
         - HutongGames.PlayMaker.Actions.CallMethodAdvanced
         - HutongGames.PlayMaker.Actions.CallMethodAdvanced
         - HutongGames.PlayMaker.Actions.BoolTest
-        - HutongGames.PlayMaker.Actions.NextFrameEvent
         customNames:
         - 
         - 
         - 
-        - 
-        actionEnabled: 01010101
-        actionIsOpen: 01010101
-        actionStartIndex: 00000000080000000f00000013000000
-        actionHashCodes: 6d6181036d618103a4c8bf0088611604
+        actionEnabled: 010101
+        actionIsOpen: 010101
+        actionStartIndex: 00000000070000000e000000
+        actionHashCodes: 6d6181036d618103a4c8bf00
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams: []
@@ -1579,13 +1439,13 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: SheatPosture
+          value: SheatAttackPostureCharge
         - useVariable: 0
           name: 
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: IsSheatAttackPostureExit
+          value: IsSheatAttackPostureCharged
         fsmObjectParams:
         - useVariable: 1
           name: combatComponent
@@ -1602,30 +1462,6 @@ MonoBehaviour:
           typeName: PlayerCombat
           value: {fileID: 1892958101206381320}
         fsmVarParams:
-        - variableName: isSheatPostureButtonPressed
-          objectType: UnityEngine.Object
-          useVariable: 1
-          type: 2
-          floatValue: 0
-          intValue: 0
-          boolValue: 0
-          stringValue: 
-          vector4Value: {x: 0, y: 0, z: 0, w: 0}
-          objectReference: {fileID: 0}
-          arrayValue:
-            useVariable: 0
-            name: 
-            tooltip: 
-            showInInspector: 0
-            networkSync: 0
-            type: -1
-            objectTypeName: 
-            floatValues: []
-            intValues: 
-            boolValues: 
-            stringValues: []
-            vector4Values: []
-            objectReferences: []
         - variableName: 
           objectType: 
           useVariable: 0
@@ -1650,7 +1486,7 @@ MonoBehaviour:
             stringValues: []
             vector4Values: []
             objectReferences: []
-        - variableName: canContinue
+        - variableName: isSheatAttackCharged
           objectType: UnityEngine.Object
           useVariable: 1
           type: 2
@@ -1680,7 +1516,7 @@ MonoBehaviour:
         fsmIntParams: []
         fsmBoolParams:
         - useVariable: 1
-          name: canContinue
+          name: isSheatAttackCharged
           tooltip: 
           showInInspector: 0
           networkSync: 0
@@ -1691,22 +1527,20 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams:
-        - DISABLESHEATPOSTURE
+        - SHEATATTACKCHARGED
         - 
-        - FINISHED
-        byteData: 00000000000000000000000000
-        arrayParamSizes: 0100000000000000
+        byteData: 00000000000000010000000001
+        arrayParamSizes: 0000000000000000
         arrayParamTypes:
         - HutongGames.PlayMaker.FsmVar
         - HutongGames.PlayMaker.FsmVar
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 18000000120000000c000000270000002700000001000000010000000700000018000000120000000c000000270000000100000001000000070000001100000017000000170000000100000017000000
+        paramDataType: 18000000120000000c0000002700000001000000010000000700000018000000120000000c0000002700000001000000010000000700000011000000170000001700000001000000
         paramName:
         - behaviour
         - methodName
         - parameters
-        - 
         - storeResult
         - manualUI
         - everyFrame
@@ -1722,15 +1556,14 @@ MonoBehaviour:
         - isTrue
         - isFalse
         - everyFrame
-        - sendEvent
-        paramDataPos: 0000000000000000000000000000000001000000000000000100000002000000010000000100000001000000020000000600000007000000080000000000000000000000010000000c00000002000000
-        paramByteDataSize: 0000000000000000000000000000000000000000010000000100000004000000000000000000000000000000000000000100000001000000040000000000000000000000000000000100000000000000
+        paramDataPos: 00000000000000000000000000000000000000000100000002000000010000000100000001000000010000000600000007000000080000000000000000000000010000000c000000
+        paramByteDataSize: 000000000000000000000000000000000100000001000000040000000000000000000000000000000000000001000000010000000400000000000000000000000000000001000000
     - name: Reset Values
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 414.33594
+        x: 334.33594
         y: 333.09375
         width: 107
         height: 32
@@ -1884,14 +1717,14 @@ MonoBehaviour:
         - sendEvent
         paramDataPos: 000000000000000000000000000000000000000001000000020000000100000001000000010000000100000006000000070000000800000000000000
         paramByteDataSize: 000000000000000000000000000000000100000001000000040000000000000000000000000000000000000001000000010000000400000000000000
-    - name: SheatAttack
+    - name: Have Sheat Attack Animations Ended
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 117.171875
-        y: 333.72656
-        width: 118
+        x: 242.52344
+        y: 474.5625
+        width: 249
         height: 32
       isBreakpoint: 0
       isSequence: 0
@@ -1909,16 +1742,14 @@ MonoBehaviour:
       actionData:
         actionNames:
         - HutongGames.PlayMaker.Actions.CallMethodAdvanced
-        - HutongGames.PlayMaker.Actions.CallMethodAdvanced
         - HutongGames.PlayMaker.Actions.BoolTest
         customNames:
         - 
         - 
-        - 
-        actionEnabled: 010101
-        actionIsOpen: 010101
-        actionStartIndex: 00000000070000000e000000
-        actionHashCodes: 6d6181036d618103a4c8bf00
+        actionEnabled: 0101
+        actionIsOpen: 0101
+        actionStartIndex: 0000000007000000
+        actionHashCodes: 6d618103a4c8bf00
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams: []
@@ -1934,13 +1765,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: StartSheatAttack
-        - useVariable: 0
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: IsSheatAttacking
+          value: HaveSheatAttackAnimationsEnded
         fsmObjectParams:
         - useVariable: 1
           name: combatComponent
@@ -1949,38 +1774,7 @@ MonoBehaviour:
           networkSync: 0
           typeName: PlayerCombat
           value: {fileID: 1892958101206381320}
-        - useVariable: 1
-          name: combatComponent
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          typeName: PlayerCombat
-          value: {fileID: 1892958101206381320}
         fsmVarParams:
-        - variableName: 
-          objectType: 
-          useVariable: 0
-          type: -1
-          floatValue: 0
-          intValue: 0
-          boolValue: 0
-          stringValue: 
-          vector4Value: {x: 0, y: 0, z: 0, w: 0}
-          objectReference: {fileID: 0}
-          arrayValue:
-            useVariable: 0
-            name: 
-            tooltip: 
-            showInInspector: 0
-            networkSync: 0
-            type: -1
-            objectTypeName: 
-            floatValues: []
-            intValues: 
-            boolValues: 
-            stringValues: []
-            vector4Values: []
-            objectReferences: []
         - variableName: isAttacking
           objectType: UnityEngine.Object
           useVariable: 1
@@ -2022,24 +1816,16 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams:
-        - 
         - ACTIONENDED
-        byteData: 00000000000000010000000001
-        arrayParamSizes: 0000000000000000
+        - 
+        byteData: 00010000000001
+        arrayParamSizes: 00000000
         arrayParamTypes:
-        - HutongGames.PlayMaker.FsmVar
         - HutongGames.PlayMaker.FsmVar
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 18000000120000000c0000002700000001000000010000000700000018000000120000000c0000002700000001000000010000000700000011000000170000001700000001000000
+        paramDataType: 18000000120000000c0000002700000001000000010000000700000011000000170000001700000001000000
         paramName:
-        - behaviour
-        - methodName
-        - parameters
-        - storeResult
-        - manualUI
-        - everyFrame
-        - updateType
         - behaviour
         - methodName
         - parameters
@@ -2051,15 +1837,15 @@ MonoBehaviour:
         - isTrue
         - isFalse
         - everyFrame
-        paramDataPos: 00000000000000000000000000000000000000000100000002000000010000000100000001000000010000000600000007000000080000000000000000000000010000000c000000
-        paramByteDataSize: 000000000000000000000000000000000100000001000000040000000000000000000000000000000000000001000000010000000400000000000000000000000000000001000000
+        paramDataPos: 0000000000000000000000000000000000000000010000000200000000000000000000000100000006000000
+        paramByteDataSize: 0000000000000000000000000000000001000000010000000400000000000000000000000000000001000000
     - name: Start Evade
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 750.3203
-        y: 341.0547
+        x: 72.0625
+        y: 231.88281
         width: 143
         height: 48
       isBreakpoint: 0
@@ -2293,8 +2079,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 742.78125
-        y: 422.39844
+        x: 64.52344
+        y: 313.22656
         width: 118
         height: 32
       isBreakpoint: 0
@@ -2471,8 +2257,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 743.6172
-        y: 478.21094
+        x: 65.359375
+        y: 369.03906
         width: 128
         height: 32
       isBreakpoint: 0
@@ -2644,134 +2430,12 @@ MonoBehaviour:
         - everyFrame
         paramDataPos: 000000000000000000000000000000000000000001000000020000000100000001000000010000000100000006000000070000000800000000000000010000000000000001000000020000000c000000
         paramByteDataSize: 0000000000000000000000000000000001000000010000000400000000000000000000000000000000000000010000000100000004000000000000000000000000000000000000000000000001000000
-    - name: SheatAttack Posture Exit
-      description: 
-      colorIndex: 0
-      position:
-        serializedVersion: 2
-        x: 54.625
-        y: 389.89844
-        width: 178
-        height: 32
-      isBreakpoint: 0
-      isSequence: 0
-      hideUnused: 0
-      transitions:
-      - fsmEvent:
-          name: ACTIONENDED
-          isSystemEvent: 0
-          isGlobal: 0
-        toState: Reset Values
-        linkStyle: 0
-        linkConstraint: 0
-        linkTarget: 0
-        colorIndex: 0
-      actionData:
-        actionNames:
-        - HutongGames.PlayMaker.Actions.CallMethodAdvanced
-        - HutongGames.PlayMaker.Actions.BoolTest
-        customNames:
-        - 
-        - 
-        actionEnabled: 0101
-        actionIsOpen: 0101
-        actionStartIndex: 0000000007000000
-        actionHashCodes: 6d618103a4c8bf00
-        unityObjectParams: []
-        fsmGameObjectParams: []
-        fsmOwnerDefaultParams: []
-        animationCurveParams: []
-        functionCallParams: []
-        fsmTemplateControlParams: []
-        fsmEventTargetParams: []
-        fsmPropertyParams: []
-        layoutOptionParams: []
-        fsmStringParams:
-        - useVariable: 0
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: IsSheatAttacking
-        fsmObjectParams:
-        - useVariable: 1
-          name: combatComponent
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          typeName: PlayerCombat
-          value: {fileID: 1892958101206381320}
-        fsmVarParams:
-        - variableName: isAttacking
-          objectType: UnityEngine.Object
-          useVariable: 1
-          type: 2
-          floatValue: 0
-          intValue: 0
-          boolValue: 0
-          stringValue: 
-          vector4Value: {x: 0, y: 0, z: 0, w: 0}
-          objectReference: {fileID: 0}
-          arrayValue:
-            useVariable: 0
-            name: 
-            tooltip: 
-            showInInspector: 0
-            networkSync: 0
-            type: -1
-            objectTypeName: 
-            floatValues: []
-            intValues: 
-            boolValues: 
-            stringValues: []
-            vector4Values: []
-            objectReferences: []
-        fsmArrayParams: []
-        fsmEnumParams: []
-        fsmFloatParams: []
-        fsmIntParams: []
-        fsmBoolParams:
-        - useVariable: 1
-          name: isAttacking
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: 0
-        fsmVector2Params: []
-        fsmVector3Params: []
-        fsmColorParams: []
-        fsmRectParams: []
-        fsmQuaternionParams: []
-        stringParams:
-        - 
-        - ACTIONENDED
-        byteData: 00010000000001
-        arrayParamSizes: 00000000
-        arrayParamTypes:
-        - HutongGames.PlayMaker.FsmVar
-        customTypeSizes: 
-        customTypeNames: []
-        paramDataType: 18000000120000000c0000002700000001000000010000000700000011000000170000001700000001000000
-        paramName:
-        - behaviour
-        - methodName
-        - parameters
-        - storeResult
-        - manualUI
-        - everyFrame
-        - updateType
-        - boolVariable
-        - isTrue
-        - isFalse
-        - everyFrame
-        paramDataPos: 0000000000000000000000000000000000000000010000000200000000000000000000000100000006000000
-        paramByteDataSize: 0000000000000000000000000000000001000000010000000400000000000000000000000000000001000000
     - name: Can Interact With Environment
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 709.77344
+        x: 629.77344
         y: 172.64062
         width: 208
         height: 48
@@ -2792,7 +2456,7 @@ MonoBehaviour:
           name: NO
           isSystemEvent: 0
           isGlobal: 0
-        toState: Start Attack
+        toState: ComboAttack
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
@@ -2902,8 +2566,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 442.46094
-        y: 481.2578
+        x: 629.5781
+        y: 259.28906
         width: 180
         height: 32
       isBreakpoint: 0
@@ -3005,6 +2669,415 @@ MonoBehaviour:
         - updateType
         paramDataPos: 00000000000000000000000000000000000000000100000002000000
         paramByteDataSize: 00000000000000000000000000000000010000000100000004000000
+    - name: Has Combo Attack Animation Ended 2
+      description: 'While Attack Button has been relesaed
+
+'
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 636.46094
+        y: 323.7422
+        width: 255
+        height: 48
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: ATTACKBUTTONPRESSED
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: ComboAttack
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: ACTIONENDED
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Reset Values
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.CallMethod
+        - HutongGames.PlayMaker.Actions.BoolTest
+        customNames:
+        - 
+        - 
+        actionEnabled: 0101
+        actionIsOpen: 0101
+        actionStartIndex: 0000000006000000
+        actionHashCodes: ca51e900a4c8bf00
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: HasComboAttackAnimationEnded
+        fsmObjectParams:
+        - useVariable: 1
+          name: combatComponent
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          typeName: PlayerCombat
+          value: {fileID: 1892958101206381320}
+        fsmVarParams:
+        - variableName: isAttacking
+          objectType: UnityEngine.Object
+          useVariable: 1
+          type: 2
+          floatValue: 0
+          intValue: 0
+          boolValue: 0
+          stringValue: 
+          vector4Value: {x: 0, y: 0, z: 0, w: 0}
+          objectReference: {fileID: 0}
+          arrayValue:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            type: -1
+            objectTypeName: 
+            floatValues: []
+            intValues: 
+            boolValues: 
+            stringValues: []
+            vector4Values: []
+            objectReferences: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams:
+        - useVariable: 1
+          name: isAttacking
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams:
+        - 
+        - ACTIONENDED
+        byteData: 010001
+        arrayParamSizes: 00000000
+        arrayParamTypes:
+        - HutongGames.PlayMaker.FsmVar
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 18000000120000000c00000027000000010000000100000011000000170000001700000001000000
+        paramName:
+        - behaviour
+        - methodName
+        - parameters
+        - storeResult
+        - everyFrame
+        - manualUI
+        - boolVariable
+        - isTrue
+        - isFalse
+        - everyFrame
+        paramDataPos: 00000000000000000000000000000000000000000100000000000000000000000100000002000000
+        paramByteDataSize: 00000000000000000000000000000000010000000100000000000000000000000000000001000000
+    - name: Sheat Attack Posture Charged
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 914.40625
+        y: 510.02344
+        width: 210
+        height: 32
+      isBreakpoint: 0
+      isSequence: 1
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: ATTACKBUTTONRELEASED
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: SheatAttack
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      actionData:
+        actionNames: []
+        customNames: []
+        actionEnabled: 
+        actionIsOpen: 
+        actionStartIndex: 
+        actionHashCodes: 
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 
+        paramName: []
+        paramDataPos: 
+        paramByteDataSize: 
+    - name: SheatAttack
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 685.5547
+        y: 522.97656
+        width: 104
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: Have Sheat Attack Animations Ended
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.CallMethodAdvanced
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 6d618103
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: PerformSheatAttack
+        fsmObjectParams:
+        - useVariable: 1
+          name: combatComponent
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          typeName: PlayerCombat
+          value: {fileID: 1892958101206381320}
+        fsmVarParams:
+        - variableName: 
+          objectType: 
+          useVariable: 0
+          type: -1
+          floatValue: 0
+          intValue: 0
+          boolValue: 0
+          stringValue: 
+          vector4Value: {x: 0, y: 0, z: 0, w: 0}
+          objectReference: {fileID: 0}
+          arrayValue:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            type: -1
+            objectTypeName: 
+            floatValues: []
+            intValues: 
+            boolValues: 
+            stringValues: []
+            vector4Values: []
+            objectReferences: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 000000000000
+        arrayParamSizes: 00000000
+        arrayParamTypes:
+        - HutongGames.PlayMaker.FsmVar
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 18000000120000000c00000027000000010000000100000007000000
+        paramName:
+        - behaviour
+        - methodName
+        - parameters
+        - storeResult
+        - manualUI
+        - everyFrame
+        - updateType
+        paramDataPos: 00000000000000000000000000000000000000000100000002000000
+        paramByteDataSize: 00000000000000000000000000000000010000000100000004000000
+    - name: Sheat Attack Posture Charge Exit
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 629.72656
+        y: 447.4922
+        width: 227
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: Have Sheat Attack Animations Ended
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.CallMethodAdvanced
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 6d618103
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: SheatAttackPostureChargeExit
+        fsmObjectParams:
+        - useVariable: 1
+          name: combatComponent
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          typeName: PlayerCombat
+          value: {fileID: 1892958101206381320}
+        fsmVarParams:
+        - variableName: 
+          objectType: 
+          useVariable: 0
+          type: -1
+          floatValue: 0
+          intValue: 0
+          boolValue: 0
+          stringValue: 
+          vector4Value: {x: 0, y: 0, z: 0, w: 0}
+          objectReference: {fileID: 0}
+          arrayValue:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            type: -1
+            objectTypeName: 
+            floatValues: []
+            intValues: 
+            boolValues: 
+            stringValues: []
+            vector4Values: []
+            objectReferences: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 000000000000
+        arrayParamSizes: 00000000
+        arrayParamTypes:
+        - HutongGames.PlayMaker.FsmVar
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 18000000120000000c00000027000000010000000100000007000000
+        paramName:
+        - behaviour
+        - methodName
+        - parameters
+        - storeResult
+        - manualUI
+        - everyFrame
+        - updateType
+        paramDataPos: 00000000000000000000000000000000000000000100000002000000
+        paramByteDataSize: 00000000000000000000000000000000010000000100000004000000
     events:
     - name: FINISHED
       isSystemEvent: 1
@@ -3012,7 +3085,13 @@ MonoBehaviour:
     - name: ACTIONENDED
       isSystemEvent: 0
       isGlobal: 0
-    - name: ATTACKCOMMAND
+    - name: ATTACKBUTTONPRESSED
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: ATTACKBUTTONRELEASED
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: BACKWARDEVADE
       isSystemEvent: 0
       isGlobal: 0
     - name: DAMAGED
@@ -3027,19 +3106,22 @@ MonoBehaviour:
     - name: EVADE
       isSystemEvent: 0
       isGlobal: 0
-    - name: SHEATATTACK
-      isSystemEvent: 0
-      isGlobal: 0
     - name: FRONTALEVADE
       isSystemEvent: 0
       isGlobal: 0
-    - name: BACKWARDEVADE
+    - name: NO
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: SHEATATTACK
       isSystemEvent: 0
       isGlobal: 0
     - name: YES
       isSystemEvent: 0
       isGlobal: 0
-    - name: NO
+    - name: SHEATATTACKCHARGED
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: STARTSHEATATTACK
       isSystemEvent: 0
       isGlobal: 0
     globalTransitions:
@@ -3094,6 +3176,12 @@ MonoBehaviour:
         value: 0
       - useVariable: 1
         name: canInteractWithEnvironment
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
+      - useVariable: 1
+        name: isSheatAttackCharged
         tooltip: 
         showInInspector: 0
         networkSync: 0
@@ -3153,7 +3241,7 @@ MonoBehaviour:
       enumVariables: []
       categories:
       - 
-      variableCategoryIDs: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+      variableCategoryIDs: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     description: 
     docUrl: 
     showStateLabel: 0
@@ -3237,10 +3325,6 @@ MonoBehaviour:
   playerMovement: {fileID: 2191504155436253058}
   comboAttackSword: {fileID: 2421439158994392472}
   sheatAttackSword: {fileID: 833527916163101683}
-  sheatAttackReadySignalVFX: {fileID: 7681821613543600161, guid: f00585eb1d3761e4eb76dcce81aa6162, type: 3}
-  sheatAttackReadySignalTransform: {fileID: 3903421464727036365}
-  sheatAttackHitEnemyVFX: {fileID: 9067312723426285028, guid: 23c042da2a6bf0e4baf3492d51486d82, type: 3}
-  sheatAttackHitEnemyVFXTransform: {fileID: 1065731396475038168}
   sheatAttackMaxTime: 0.5
   attackAudio1: {fileID: 8300000, guid: d2a2da07ffbe080428bc02a1103ab2f6, type: 3}
   volumeAttack1: 0.5
@@ -3252,8 +3336,6 @@ MonoBehaviour:
   vfx1Transform: {fileID: 1436650973316791149}
   combotAttack2VFX: {fileID: 373540190890739687, guid: 27cb069e4c03924438c45221523df0cc, type: 3}
   vfxTransform: {fileID: 1144058674169044623}
-  sheatAttackPerformedVFX: {fileID: 1462283702018711274, guid: a977d758164395145bb01826d494a9be, type: 3}
-  vfxSheatAttackPerformedTransform: {fileID: 8300229456850720505}
   vCam: {fileID: 0}
   damage: 10
 --- !u!114 &2191504155436253058
@@ -3445,6 +3527,44 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 2048
+--- !u!114 &5026037098040016249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4447915171210409065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a23cee31230af8943a11545e8b4bad87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackAudio1: {fileID: 8300000, guid: d2a2da07ffbe080428bc02a1103ab2f6, type: 3}
+  volumeAttack1: 0.5
+  attackAudio2: {fileID: 8300000, guid: cf2a2a9bbd4164c499eb669b4fe3899f, type: 3}
+  volumeAttack2: 0.5
+  audioSheatAttack: {fileID: 8300000, guid: cf2a2a9bbd4164c499eb669b4fe3899f, type: 3}
+  volumeSheatAttack: 0.5
+  combotAttack1VFX: {fileID: 373540190890739687, guid: 27cb069e4c03924438c45221523df0cc, type: 3}
+  vfx1Transform: {fileID: 1436650973316791149}
+  combotAttack2VFX: {fileID: 373540190890739687, guid: 27cb069e4c03924438c45221523df0cc, type: 3}
+  vfxTransform: {fileID: 1144058674169044623}
+  sheatAttackPostureChargeReadyVFX: {fileID: 0}
+  sheatAttackPostureChargeReadyVFXOrigin: {fileID: 0}
+  sheatAttackPostureChargeReadySFX: {fileID: 0}
+  sheatAttackPostureChargeReadySFXVolume: 0
+  sheatAttackPostureChargedLoopVFX: {fileID: 0}
+  sheatAttackPostureChargedLoopOrigin: {fileID: 0}
+  sheatAttackPostureChargedLoopSFX: {fileID: 0}
+  sheatAttackPostureChargedLoopSFXVolume: 0
+  sheatAttackVFX: {fileID: 0}
+  sheatAttackVFXOrigin: {fileID: 0}
+  sheatAttackSFX: {fileID: 0}
+  sheatAttackSFXVolume: 0
+  sheatAttackDamageDeliveredVFX: {fileID: 0}
+  sheatAttackDamageDeliveredVFXOrigin: {fileID: 0}
+  sheatAttackDamageDeliveredSFX: {fileID: 0}
+  sheatAttackDamageDeliveredSFXVolume: 0
 --- !u!1 &4755680749052540439
 GameObject:
   m_ObjectHideFlags: 0

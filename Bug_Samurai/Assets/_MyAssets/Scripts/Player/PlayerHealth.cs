@@ -44,9 +44,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void Damage(Transform attackerTransform, AttackTypes attackTypes, int damage){
    
-        if(playerCombat.IsPlayerEnabledToSheatAttack() && animator.GetInteger("Attack") != 0){
-            print("SheatAttack");
-            playerCombat.EnableSheatAttackDamageDelivery();
+        if(playerCombat.IsPerformingSheatAttack() && animator.GetInteger("Attack") != 0){
+            //print("SheatAttack");
+            playerCombat.EnableDamageToEnemiesWithSheatAttack();
             return;
         }
         if(!CanBeDamage()){
@@ -55,8 +55,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         } 
         DamagePlayer(damage);
         noDamageWindowTimer = 0;
-
-
     }
 
     void DamagePlayer(int damage){
@@ -74,7 +72,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         canMoveAfterDamage=false;
         playerControllerFSM.SendEvent("DAMAGED");
         animator.SetInteger("Damaged",1);
-
     }
 
     public int GetHealth(){
