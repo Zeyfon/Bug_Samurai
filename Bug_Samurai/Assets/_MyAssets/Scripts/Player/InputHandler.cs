@@ -42,8 +42,8 @@ public class InputHandler : MonoBehaviour
     private void OnDisable() 
     {
         //attackAction.performed -= Attack;
-        sheatPosture.performed += SheatPosture;
-        evasionAction.performed += Evasion;
+        sheatPosture.performed -= SheatPosture;
+        evasionAction.performed -= Evasion;
     }
 
     private void Start() {
@@ -55,6 +55,7 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print(input.currentControlScheme);
         movementInput.Value = moveAction.ReadValue<Vector2>();
         if(attackAction.WasPressedThisFrame()){
             //print("Attack button pressed");
