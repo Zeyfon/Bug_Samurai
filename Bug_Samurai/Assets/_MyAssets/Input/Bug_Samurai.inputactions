@@ -29,7 +29,7 @@
                     "id": "79771980-dd8b-43d0-af93-34251b84277a",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
@@ -220,7 +220,7 @@
                 {
                     "name": "",
                     "id": "143bb1cd-cc10-4eca-a2f0-a3664166fe91",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
@@ -276,7 +276,7 @@
                     "name": "",
                     "id": "fa1d5ca7-7326-4b1e-bcd8-faa832c1895b",
                     "path": "<Mouse>/rightButton",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "SheatPosture",
@@ -287,9 +287,20 @@
                     "name": "",
                     "id": "09e67c03-f8d7-4476-a507-4bf45deff256",
                     "path": "<Keyboard>/shift",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "Evasion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "df2ba8ec-1a0c-49de-9f13-54a4fd43d019",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "Evasion",
                     "isComposite": false,
                     "isPartOfComposite": false
