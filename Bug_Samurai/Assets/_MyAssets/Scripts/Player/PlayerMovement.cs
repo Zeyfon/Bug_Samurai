@@ -5,7 +5,7 @@ using Systems.Movement.SlopeMovementControl2D;
 
 public class PlayerMovement : MonoBehaviour
 {
-#region SerializedFields
+    #region SerializedFields
     [SerializeField] LayerMask ghostPlayerMask;
     [SerializeField] LayerMask playerMask;
     
@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float evadeBackwardImpulse = 15f;
     [Range(0,30)]
     [SerializeField] float evadeForwardConstantSpeed = 15f;
+    [Range(0,3)]
+    [SerializeField] float evadeCoolDownTime = 1f;
 
 
     [Header("Evade VFX")]
@@ -53,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
     PlayerParameters parameters;
     TiltedGroundMovement2D tiltedGroundMovement2D;
 
+    float evadeCoolDownTimer = 100f;
+
     void Awake()
     {
         tiltedGroundMovement2D = GetComponent<TiltedGroundMovement2D>();
@@ -69,6 +73,8 @@ public class PlayerMovement : MonoBehaviour
             animator.SetInteger("Evade",0);
             EvadeEnded();
         }
+
+        evadeCoolDownTimer += Time.deltaTime;
     }
 
     void Move(Vector2 currentMoveForce){
@@ -142,6 +148,11 @@ public class PlayerMovement : MonoBehaviour
     public void RunningSound(){
         audioSource.PlayOneShot(runningAudio, volumeRunning);
     }
+
+    public bool CanEvade()
+    {
+        return evadeCoolDownTimer > evadeCoolDownTime;
+    }
     public void StartEvade(Vector2 movementDirection){
 
         Flip(movementDirection);
@@ -169,6 +180,7 @@ public class PlayerMovement : MonoBehaviour
 
     void EvadeEnded(){
         evadeState=5;
+        evadeCoolDownTimer = 0;
         //print("Evade Ended");
     }
 
