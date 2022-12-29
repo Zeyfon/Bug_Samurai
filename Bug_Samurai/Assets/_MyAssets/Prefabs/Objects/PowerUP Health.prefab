@@ -13,11 +13,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4659581420042770467, guid: c6175d2227c85d8419deb663eb533e60, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.13123529
       objectReference: {fileID: 0}
     - target: {fileID: 4659581420042770467, guid: c6175d2227c85d8419deb663eb533e60, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.13123529
+      objectReference: {fileID: 0}
+    - target: {fileID: 4659581420042770467, guid: c6175d2227c85d8419deb663eb533e60, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.26247057
+      objectReference: {fileID: 0}
+    - target: {fileID: 4659581420042770467, guid: c6175d2227c85d8419deb663eb533e60, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0086
+      objectReference: {fileID: 0}
+    - target: {fileID: 4659581420042770467, guid: c6175d2227c85d8419deb663eb533e60, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0086
       objectReference: {fileID: 0}
     - target: {fileID: 6551549542874026739, guid: c6175d2227c85d8419deb663eb533e60, type: 3}
       propertyPath: m_RootOrder
@@ -66,7 +78,7 @@ PrefabInstance:
     - target: {fileID: 7176294903288505465, guid: c6175d2227c85d8419deb663eb533e60, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -2065985964, guid: 5d27927ab20292c4c805b76b33889aa0, type: 3}
+      objectReference: {fileID: 21300000, guid: 544cff775702634489f10ebfbbb33214, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6175d2227c85d8419deb663eb533e60, type: 3}
 --- !u!1 &2653222572689984678 stripped
@@ -86,4 +98,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 113c518c598b96e4a923def29b8e95af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraHealth: 20
+  extraHealth: 25

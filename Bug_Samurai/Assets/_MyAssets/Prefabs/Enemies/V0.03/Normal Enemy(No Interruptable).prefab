@@ -101,11 +101,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: attack
-      value: 10
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: health
-      value: 60
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7691088624509745556, guid: aa4981a577c43004fa7f9e36cd95f6cf, type: 3}
       propertyPath: sprite
