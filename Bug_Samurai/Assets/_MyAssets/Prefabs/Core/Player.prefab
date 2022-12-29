@@ -3468,7 +3468,7 @@ MonoBehaviour:
   backwardEvadeAnimationSpeedMultiplier: 1
   forwardEvadeSpeed: 20
   backwardEvadeSpeed: 15
-  baseAttackDamage: 20
+  baseAttackDamage: 15
   sheatAttackDamageMultiplier: 2.5
   health: 100
 --- !u!114 &1892958101206381320
