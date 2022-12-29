@@ -11,6 +11,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerUP Attack
       objectReference: {fileID: 0}
+    - target: {fileID: 4659581420042770467, guid: c6175d2227c85d8419deb663eb533e60, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1728285
+      objectReference: {fileID: 0}
+    - target: {fileID: 4659581420042770467, guid: c6175d2227c85d8419deb663eb533e60, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1728285
+      objectReference: {fileID: 0}
+    - target: {fileID: 4659581420042770467, guid: c6175d2227c85d8419deb663eb533e60, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1728285
+      objectReference: {fileID: 0}
+    - target: {fileID: 4659581420042770467, guid: c6175d2227c85d8419deb663eb533e60, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4659581420042770467, guid: c6175d2227c85d8419deb663eb533e60, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 6551549542874026739, guid: c6175d2227c85d8419deb663eb533e60, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -55,6 +75,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7176294903288505465, guid: c6175d2227c85d8419deb663eb533e60, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a472071c871c9da4ca3f0c06e6f39f9f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6175d2227c85d8419deb663eb533e60, type: 3}
 --- !u!1 &1602245623861912561 stripped
@@ -74,4 +98,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18071aeb45afe14c9df9a6525e66193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePowerUp: 10
+  damagePowerUp: 3
