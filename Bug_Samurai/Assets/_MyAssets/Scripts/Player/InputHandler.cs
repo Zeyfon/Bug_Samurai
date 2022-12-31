@@ -55,7 +55,7 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(input.currentControlScheme);
+        //print(input.currentControlScheme);
         movementInput.Value = moveAction.ReadValue<Vector2>();
         if(attackAction.WasPressedThisFrame()){
             //print("Attack button pressed");

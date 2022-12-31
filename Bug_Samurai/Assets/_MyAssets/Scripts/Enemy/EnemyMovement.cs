@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Systems.Movement.SlopeMovementControl2D;
 
@@ -13,12 +11,20 @@ public class EnemyMovement : MonoBehaviour
     EnemyParameters parameters;
 
     TiltedGroundMovement2D tiltedGroundMovement2D;
+    Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         tiltedGroundMovement2D = GetComponent<TiltedGroundMovement2D>();
         rb = GetComponent<Rigidbody2D>();
         parameters = GetComponent<EnemyParameters>();
+        animator = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        speed = rb.velocity.x;
+        animator.SetFloat("Speed", Mathf.Abs(speed));
     }
 
 
@@ -36,18 +42,27 @@ public class EnemyMovement : MonoBehaviour
 
     public void LookAtPlayer(GameObject player){
         //print("Looking at Player");
-        if(IsPlayerAtBack(player.transform)){
+        if(IsTargetAtBack(player.transform)){
             Flip();
         }
     }
 
-    bool IsPlayerAtBack(Transform playerTransform){
+    public void LookAtTarget(GameObject player)
+    {
+        //print("Looking at Player");
+        if (IsTargetAtBack(player.transform))
+        {
+            Flip();
+        }
+    }
+
+    bool IsTargetAtBack(Transform targetTransform){
         //print("Checking if player is at back");
         //print(transform.position.x-playerTransform.position.x + "  " +  transform.rotation.eulerAngles.y);
-        if(transform.position.x-playerTransform.position.x>0 && transform.rotation.eulerAngles.y==0){
+        if(transform.position.x-targetTransform.position.x>0 && transform.rotation.eulerAngles.y==0){
             return true;
         }
-        else if(transform.position.x-playerTransform.position.x<0 && transform.rotation.eulerAngles.y==180){
+        else if(transform.position.x-targetTransform.position.x<0 && transform.rotation.eulerAngles.y==180){
             return true;
         }
         else 
@@ -76,13 +91,10 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+
     public void Move(GameObject player){
         LookAtPlayer(player);
-        //print(Vector3.right);
-        //print(Vector2.right);
         tiltedGroundMovement2D.Move(transform.right, true, parameters.movementSpeed,1,1);
-
-        //print("Enemy is moving");
     }
 
     public void SetMovementSpeed(float speed){
@@ -91,9 +103,31 @@ public class EnemyMovement : MonoBehaviour
 
     public void Stop(){
         rb.velocity = new Vector2(0,rb.velocity.y);
+        SetHighFrictionMaterial();
     }
 
     public void SetHighFrictionMaterial(){
         tiltedGroundMovement2D.SetHighFrictionMaterial();
+    }
+
+    public void MoveTowardsTarget(GameObject target)
+    {
+        LookAtTarget(target);
+        tiltedGroundMovement2D.Move(transform.right, true, parameters.movementSpeed, 1, 1);
+    }
+
+    public void RunToTarget(GameObject target)
+    {
+        LookAtTarget(target);
+        tiltedGroundMovement2D.Move(transform.right, true, parameters.runningSpeed, 1, 1);
+    }
+
+    public void LookAtPlayer2()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (IsTargetAtBack(player.transform))
+        {
+            Flip();
+        }
     }
 }

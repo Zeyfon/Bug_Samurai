@@ -18,7 +18,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [SerializeField] Material damageMaterial;
     //[SerializeField] EnemyType enemyType;
     [SerializeField] int health = 50;
-    [SerializeField] bool canBeDamaged = true;
+    
+    bool canBeDamaged = true;
 
 
     AudioSource audioSource;

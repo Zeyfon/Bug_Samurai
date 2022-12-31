@@ -32,6 +32,11 @@ public class EnemyCombat : MonoBehaviour
     [SerializeReference] float attackAnimationSpeed = 1;
     [SerializeField] bool hasDefense;
     [SerializeField] bool canBeInterruptedByAnyAttack;
+
+    [Header("AOE Attack Parameters")]
+    [SerializeField] GameObject _aoeWaves;
+
+
     Animator animator;
     AudioSource audioSource;
     EnemyMovement movement;
@@ -96,7 +101,7 @@ public class EnemyCombat : MonoBehaviour
     // public void StartDefenseTimer(){
     //     defenseTime = Time.time + maxDefenseTime;
     // }
-
+    //Used by EnemyControllerFSM
     public void StartAttack(){
         movement.Stop();
         //SingleAttack
@@ -109,6 +114,22 @@ public class EnemyCombat : MonoBehaviour
             animator.SetInteger("Attack",50);
         }
 
+    }
+    //Used by EnemyController FSM
+    public void StartComboAttack()
+    {
+        movement.Stop();
+        animator.SetInteger("Attack", 50);
+    }
+
+    public void StartRunningAttack()
+    {
+        animator.SetInteger("Attack", 70);
+    }
+
+    public bool HasComboAttackEnded()
+    {
+        return animator.GetInteger("Attack") == 100;
     }
 
     public void AttackColliderEnable(){
@@ -185,4 +206,21 @@ public class EnemyCombat : MonoBehaviour
     public bool GetCanBeInterruptedByAnyAttack(){
         return parameters.canBeInterruptedByAnything;
     }
+
+
+    #region AOE Attack
+
+    public void StartAOEAttack()
+    {
+        animator.SetInteger("Attack", 90);
+    }
+
+    public void CreateAOEObjects()
+    {
+        GameObject.Instantiate(_aoeWaves, transform.position, Quaternion.identity);
+        GameObject.Instantiate(_aoeWaves, transform.position, Quaternion.Euler(new Vector3(0,180,0)));
+
+    }
+
+    #endregion
 }

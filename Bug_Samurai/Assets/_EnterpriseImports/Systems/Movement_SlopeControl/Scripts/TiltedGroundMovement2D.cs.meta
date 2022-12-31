@@ -3,7 +3,9 @@ guid: 78a19262ec0fb4542a9c250ec809612d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - noFriction: {fileID: 6200000, guid: 07aadb815236a6047bd4de01147ed091, type: 2}
+  - lowFriction: {fileID: 6200000, guid: 8e9b9bcac9b405f439db56e640fd5844, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
