@@ -615,14 +615,23 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 339.7422
-        y: 136.14844
+        x: 83.30469
+        y: 132.21875
         width: 100
-        height: 16
+        height: 32
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
-      transitions: []
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: Idle
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
       actionData:
         actionNames:
         - HutongGames.PlayMaker.Actions.FindGameObject
@@ -690,9 +699,9 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 325.3672
-        y: 451.28125
-        width: 120
+        x: 69.41406
+        y: 472.15625
+        width: 138
         height: 48
       isBreakpoint: 0
       isSequence: 0
@@ -708,7 +717,7 @@ MonoBehaviour:
         linkTarget: 0
         colorIndex: 0
       - fsmEvent:
-          name: RUNTOPLAYER
+          name: RUNTOPLAYER2
           isSystemEvent: 0
           isGlobal: 0
         toState: RunsToTarget
@@ -877,7 +886,7 @@ MonoBehaviour:
           networkSync: 0
           value: 0
         - useVariable: 1
-          name: maxWalkingTime
+          name: MaxWalkingTime
           tooltip: 
           showInInspector: 1
           networkSync: 0
@@ -912,7 +921,7 @@ MonoBehaviour:
         - 
         - 
         - 
-        - RUNTOPLAYER
+        - RUNTOPLAYER2
         byteData: 00010200000000010000000001010300000001
         arrayParamSizes: 0100000001000000
         arrayParamTypes:
@@ -959,8 +968,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 323.71094
-        y: 574.3906
+        x: 64.97656
+        y: 585.5469
         width: 148
         height: 32
       isBreakpoint: 0
@@ -1067,8 +1076,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 335.41406
-        y: 231.82031
+        x: 81.66406
+        y: 207.26562
         width: 126
         height: 32
       isBreakpoint: 0
@@ -1079,7 +1088,7 @@ MonoBehaviour:
           name: STARTACTIONS
           isSystemEvent: 0
           isGlobal: 0
-        toState: Is Player Close?
+        toState: Perform AOE
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
@@ -1187,8 +1196,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 316.23438
-        y: 648.8125
+        x: 542.40625
+        y: 597.5547
         width: 118
         height: 32
       isBreakpoint: 0
@@ -1309,7 +1318,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 1159.4297
+        x: 903.4297
         y: 109.63281
         width: 100
         height: 32
@@ -1421,7 +1430,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 1181.5703
+        x: 925.5703
         y: 380.46094
         width: 161
         height: 32
@@ -1529,7 +1538,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 888.8672
+        x: 632.8672
         y: 301.03125
         width: 105
         height: 32
@@ -1651,7 +1660,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 892.85156
+        x: 636.85156
         y: 92.984375
         width: 129
         height: 32
@@ -1782,7 +1791,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 680.6328
+        x: 424.6328
         y: 214.71094
         width: 100
         height: 32
@@ -1949,137 +1958,14 @@ MonoBehaviour:
         - everyFrame
         paramDataPos: 000000000000000000000000000000000000000001000000020000000100000001000000010000000100000006000000070000000800000000000000010000000c000000
         paramByteDataSize: 0000000000000000000000000000000001000000010000000400000000000000000000000000000000000000010000000100000004000000000000000000000001000000
-    - name: Will Combo Attack or Running Attack
-      description: 
-      colorIndex: 0
-      position:
-        serializedVersion: 2
-        x: 330.4453
-        y: 359.8672
-        width: 247
-        height: 48
-      isBreakpoint: 0
-      isSequence: 1
-      hideUnused: 0
-      transitions:
-      - fsmEvent:
-          name: WALKSTOPLAYER
-          isSystemEvent: 0
-          isGlobal: 0
-        toState: WalksToPlayer
-        linkStyle: 0
-        linkConstraint: 0
-        linkTarget: 0
-        colorIndex: 0
-      - fsmEvent:
-          name: RUNTOPLAYER
-          isSystemEvent: 0
-          isGlobal: 0
-        toState: RunsToTarget
-        linkStyle: 0
-        linkConstraint: 0
-        linkTarget: 0
-        colorIndex: 0
-      actionData:
-        actionNames:
-        - HutongGames.PlayMaker.Actions.RandomFloat
-        - HutongGames.PlayMaker.Actions.FloatCompare
-        customNames:
-        - 
-        - 
-        actionEnabled: 0101
-        actionIsOpen: 0101
-        actionStartIndex: 0000000003000000
-        actionHashCodes: 2ee017041bcdca04
-        unityObjectParams: []
-        fsmGameObjectParams: []
-        fsmOwnerDefaultParams: []
-        animationCurveParams: []
-        functionCallParams: []
-        fsmTemplateControlParams: []
-        fsmEventTargetParams: []
-        fsmPropertyParams: []
-        layoutOptionParams: []
-        fsmStringParams: []
-        fsmObjectParams: []
-        fsmVarParams: []
-        fsmArrayParams: []
-        fsmEnumParams: []
-        fsmFloatParams:
-        - useVariable: 0
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: 0
-        - useVariable: 0
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: 1
-        - useVariable: 1
-          name: randomFloat
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: 0
-        - useVariable: 1
-          name: randomFloat
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: 0
-        - useVariable: 1
-          name: randomThreshold
-          tooltip: 
-          showInInspector: 1
-          networkSync: 0
-          value: 0.3
-        - useVariable: 0
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: 0
-        fsmIntParams: []
-        fsmBoolParams: []
-        fsmVector2Params: []
-        fsmVector3Params: []
-        fsmColorParams: []
-        fsmRectParams: []
-        fsmQuaternionParams: []
-        stringParams:
-        - WALKSTOPLAYER
-        - RUNTOPLAYER
-        - WALKSTOPLAYER
-        byteData: 00
-        arrayParamSizes: 
-        arrayParamTypes: []
-        customTypeSizes: 
-        customTypeNames: []
-        paramDataType: 0f0000000f0000000f0000000f0000000f0000000f00000017000000170000001700000001000000
-        paramName:
-        - min
-        - max
-        - storeResult
-        - float1
-        - float2
-        - tolerance
-        - equal
-        - lessThan
-        - greaterThan
-        - everyFrame
-        paramDataPos: 00000000010000000200000003000000040000000500000000000000010000000200000000000000
-        paramByteDataSize: 00000000000000000000000000000000000000000000000000000000000000000000000001000000
     - name: RunsToTarget
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 659.03906
-        y: 433.71875
-        width: 114
+        x: 341.96875
+        y: 454.59375
+        width: 120
         height: 32
       isBreakpoint: 0
       isSequence: 0
@@ -2296,9 +2182,9 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 655.97656
-        y: 535.7969
-        width: 117
+        x: 337.7422
+        y: 540.21875
+        width: 137
         height: 32
       isBreakpoint: 0
       isSequence: 0
@@ -2404,16 +2290,16 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 335.1172
-        y: 298.89844
-        width: 138
+        x: 71.13281
+        y: 360.91406
+        width: 145
         height: 48
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
       transitions:
       - fsmEvent:
-          name: WALKSTOPLAYER
+          name: WALKSTOPLAYER2
           isSystemEvent: 0
           isGlobal: 0
         toState: WalksToPlayer
@@ -2422,10 +2308,10 @@ MonoBehaviour:
         linkTarget: 0
         colorIndex: 0
       - fsmEvent:
-          name: FINISHED
-          isSystemEvent: 1
+          name: RUNTOPLAYER2
+          isSystemEvent: 0
           isGlobal: 0
-        toState: Will Combo Attack or Running Attack
+        toState: RunsToTarget
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
@@ -2531,8 +2417,8 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams:
-        - WALKSTOPLAYER
-        - FINISHED
+        - WALKSTOPLAYER2
+        - RUNTOPLAYER2
         byteData: 00000000000000
         arrayParamSizes: 01000000
         arrayParamTypes:
@@ -2555,19 +2441,28 @@ MonoBehaviour:
         - everyFrame
         paramDataPos: 000000000000000000000000000000000100000000000000010000000200000000000000000000000100000006000000
         paramByteDataSize: 000000000000000000000000000000000000000001000000010000000400000000000000000000000000000001000000
-    - name: State 1
+    - name: AOE Attack
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 57.289062
-        y: 247.66406
+        x: 406.03125
+        y: 137.03906
         width: 106
-        height: 16
+        height: 32
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
-      transitions: []
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: Reset
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
       actionData:
         actionNames:
         - HutongGames.PlayMaker.Actions.CallMethodAdvanced
@@ -2654,17 +2549,134 @@ MonoBehaviour:
         - updateType
         paramDataPos: 00000000000000000000000000000000000000000100000002000000
         paramByteDataSize: 00000000000000000000000000000000010000000100000004000000
+    - name: Perform AOE
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 78.75781
+        y: 285.53906
+        width: 106
+        height: 48
+      isBreakpoint: 0
+      isSequence: 1
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: YES
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: AOE Attack
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: NO
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Is Player Close?
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.RandomFloat
+        - HutongGames.PlayMaker.Actions.FloatCompare
+        customNames:
+        - 
+        - 
+        actionEnabled: 0101
+        actionIsOpen: 0101
+        actionStartIndex: 0000000003000000
+        actionHashCodes: 2ee017041bcdca04
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
+        - useVariable: 1
+          name: _aoeAttackProbability
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        - useVariable: 1
+          name: _aoeAttackProbability
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        - useVariable: 1
+          name: AOEMaxAttackProbability
+          tooltip: 
+          showInInspector: 1
+          networkSync: 0
+          value: 0.33
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams:
+        - NO
+        - YES
+        - NO
+        byteData: 00
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 0f0000000f0000000f0000000f0000000f0000000f00000017000000170000001700000001000000
+        paramName:
+        - min
+        - max
+        - storeResult
+        - float1
+        - float2
+        - tolerance
+        - equal
+        - lessThan
+        - greaterThan
+        - everyFrame
+        paramDataPos: 00000000010000000200000003000000040000000500000000000000010000000200000000000000
+        paramByteDataSize: 00000000000000000000000000000000000000000000000000000000000000000000000001000000
     events:
     - name: FINISHED
       isSystemEvent: 1
       isGlobal: 0
-    - name: LOSTSIGHTOFPLAYER
-      isSystemEvent: 0
-      isGlobal: 0
     - name: ATTACK
-      isSystemEvent: 0
-      isGlobal: 0
-    - name: MOVETOWARDSPLAYER
       isSystemEvent: 0
       isGlobal: 0
     - name: ACTIONENDED
@@ -2677,12 +2689,6 @@ MonoBehaviour:
       isSystemEvent: 0
       isGlobal: 0
     - name: STUNENDED
-      isSystemEvent: 0
-      isGlobal: 0
-    - name: NORMAL_ATTACK
-      isSystemEvent: 0
-      isGlobal: 0
-    - name: SPECIAL_ATTACK
       isSystemEvent: 0
       isGlobal: 0
     - name: INTERRUPT
@@ -2706,9 +2712,15 @@ MonoBehaviour:
     - name: AOEATTACK
       isSystemEvent: 0
       isGlobal: 0
-    - name: RUNATTACK
+    - name: RUNNINGATTACK
       isSystemEvent: 0
-      isGlobal: 1
+      isGlobal: 0
+    - name: WALKSTOPLAYER2
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: RUNTOPLAYER2
+      isSystemEvent: 0
+      isGlobal: 0
     globalTransitions:
     - fsmEvent:
         name: INTERRUPT
@@ -2732,7 +2744,7 @@ MonoBehaviour:
         name: AOEATTACK
         isSystemEvent: 0
         isGlobal: 0
-      toState: State 1
+      toState: AOE Attack
       linkStyle: 0
       linkConstraint: 0
       linkTarget: 0
@@ -2747,10 +2759,28 @@ MonoBehaviour:
       linkTarget: 0
       colorIndex: 0
     - fsmEvent:
-        name: RUNATTACK
+        name: RUNTOPLAYER
         isSystemEvent: 0
-        isGlobal: 1
+        isGlobal: 0
       toState: RunsToTarget
+      linkStyle: 0
+      linkConstraint: 0
+      linkTarget: 0
+      colorIndex: 0
+    - fsmEvent:
+        name: WALKSTOPLAYER
+        isSystemEvent: 0
+        isGlobal: 0
+      toState: WalksToPlayer
+      linkStyle: 0
+      linkConstraint: 0
+      linkTarget: 0
+      colorIndex: 0
+    - fsmEvent:
+        name: RUNNINGATTACK
+        isSystemEvent: 0
+        isGlobal: 0
+      toState: RunningAttack
       linkStyle: 0
       linkConstraint: 0
       linkTarget: 0
@@ -2758,11 +2788,41 @@ MonoBehaviour:
     variables:
       floatVariables:
       - useVariable: 1
-        name: attackDistance
+        name: AOEMaxAttackProbability
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: 0.33
+      - useVariable: 1
+        name: AttackDistance
         tooltip: 
         showInInspector: 1
         networkSync: 0
         value: 2
+      - useVariable: 1
+        name: MaxWalkingTime
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: 2
+      - useVariable: 1
+        name: RandomThreshold
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: 0.3
+      - useVariable: 1
+        name: WaitingTimeBetweenAttacks
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: 2
+      - useVariable: 1
+        name: _aoeAttackProbability
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
       - useVariable: 1
         name: distanceToPlayer
         tooltip: 
@@ -2770,38 +2830,20 @@ MonoBehaviour:
         networkSync: 0
         value: 0
       - useVariable: 1
-        name: waitingTimeBetweenAttacks
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: 2
-      - useVariable: 1
         name: randomFloat
         tooltip: 
         showInInspector: 0
         networkSync: 0
         value: 0
       - useVariable: 1
-        name: randomThreshold
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: 0.3
-      - useVariable: 1
         name: walkingTime
         tooltip: 
         showInInspector: 0
         networkSync: 0
         value: 0
-      - useVariable: 1
-        name: maxWalkingTime
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: 2
       intVariables:
       - useVariable: 1
-        name: attackState
+        name: 
         tooltip: 
         showInInspector: 0
         networkSync: 0
@@ -2898,7 +2940,7 @@ MonoBehaviour:
       enumVariables: []
       categories:
       - 
-      variableCategoryIDs: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+      variableCategoryIDs: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     description: 
     docUrl: 
     showStateLabel: 0
@@ -2914,10 +2956,16 @@ MonoBehaviour:
     - name: AOEATTACK
       isSystemEvent: 0
       isGlobal: 0
-    - name: RUNATTACK
-      isSystemEvent: 0
-      isGlobal: 1
     - name: COMBOATTACK
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: WALKSTOPLAYER
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: RUNTOPLAYER
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: RUNNINGATTACK
       isSystemEvent: 0
       isGlobal: 0
     OutputEvents: []
@@ -2993,7 +3041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83218849586cbeb4c80c4200e7c04985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  Speed: 4
 --- !u!114 &168957160224950877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3056,11 +3104,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a19262ec0fb4542a9c250ec809612d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noFriction: {fileID: 6200000, guid: 07aadb815236a6047bd4de01147ed091, type: 2}
-  lowFriction: {fileID: 6200000, guid: b4486968f546ca143a6de64eec850613, type: 2}
-  slopeCheckDistance: 1.5
-  maxSlopeAngle: 40
-  whatIsGround:
+  NoFriction: {fileID: 6200000, guid: 07aadb815236a6047bd4de01147ed091, type: 2}
+  LowFriction: {fileID: 6200000, guid: 8e9b9bcac9b405f439db56e640fd5844, type: 2}
+  SlopeCheckDistance: 0.5
+  MaxSlopeAngle: 40
+  WhatIsGround:
     serializedVersion: 2
     m_Bits: 2048
 --- !u!114 &6325194571530484795

@@ -4,39 +4,39 @@ using Systems.Movement.SlopeMovementControl2D;
 public class EnemyMovement : MonoBehaviour
 {
     [Range(0,10)]
-    [SerializeField] float speed = 4.0f;
+    [SerializeField] float Speed = 4.0f;
 
-    Rigidbody2D rb;
+    Rigidbody2D _rb;
 
-    EnemyParameters parameters;
+    EnemyParameters _parameters;
 
-    TiltedGroundMovement2D tiltedGroundMovement2D;
-    Animator animator;
+    TiltedGroundMovement2D _tiltedGroundMovement2D;
+    Animator _animator;
     // Start is called before the first frame update
     void Start()
     {
-        tiltedGroundMovement2D = GetComponent<TiltedGroundMovement2D>();
-        rb = GetComponent<Rigidbody2D>();
-        parameters = GetComponent<EnemyParameters>();
-        animator = GetComponent<Animator>();
+        _tiltedGroundMovement2D = GetComponent<TiltedGroundMovement2D>();
+        _rb = GetComponent<Rigidbody2D>();
+        _parameters = GetComponent<EnemyParameters>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        speed = rb.velocity.x;
-        animator.SetFloat("Speed", Mathf.Abs(speed));
+        Speed = _rb.velocity.x;
+        _animator.SetFloat("Speed", Mathf.Abs(Speed));
     }
 
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("Player")){
-            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+            _rb.constraints = RigidbodyConstraints2D.FreezePositionX;
         }
     }
 
     private void OnCollisionExit2D(Collision2D other) {
         if(other.gameObject.CompareTag("Player")){
-            rb.constraints = RigidbodyConstraints2D.None;
+            _rb.constraints = RigidbodyConstraints2D.None;
         }
     }
 
@@ -74,52 +74,52 @@ public class EnemyMovement : MonoBehaviour
         Quaternion currentRotation = new Quaternion(0, 0, 0, 0);
         if (transform.rotation.eulerAngles.y == 180)
         {
-                //CreateDust();
-                //print("Change To Look Right");
-                Vector3 rotation = new Vector3(0, 0, 0);
-                currentRotation.eulerAngles = rotation;
-                transform.rotation = currentRotation;
-                //print("Enemy rotated");
+            //CreateDust();
+            //print("Change To Look Right");
+            Vector3 rotation = new Vector3(0, 0, 0);
+            currentRotation.eulerAngles = rotation;
+            transform.rotation = currentRotation;
+            //print("Enemy rotated");
         }
         else if (transform.rotation.eulerAngles.y == 0)
         {
-                //print("Change To Look Left");
-                Vector3 rotation = new Vector3(0, 180, 0);
-                currentRotation.eulerAngles = rotation;
-                transform.rotation = currentRotation;
-                //print("Enemy rotated");
+            //print("Change To Look Left");
+            Vector3 rotation = new Vector3(0, 180, 0);
+            currentRotation.eulerAngles = rotation;
+            transform.rotation = currentRotation;
+            //print("Enemy rotated");
         }
     }
 
 
     public void Move(GameObject player){
         LookAtPlayer(player);
-        tiltedGroundMovement2D.Move(transform.right, true, parameters.movementSpeed,1,1);
+        _tiltedGroundMovement2D.Move(transform.right, true, _parameters.movementSpeed,1,1);
     }
 
     public void SetMovementSpeed(float speed){
-        this.speed = speed;
+        this.Speed = speed;
     }
 
     public void Stop(){
-        rb.velocity = new Vector2(0,rb.velocity.y);
+        _rb.velocity = new Vector2(0,_rb.velocity.y);
         SetHighFrictionMaterial();
     }
 
     public void SetHighFrictionMaterial(){
-        tiltedGroundMovement2D.SetHighFrictionMaterial();
+        _tiltedGroundMovement2D.SetHighFrictionMaterial();
     }
 
     public void MoveTowardsTarget(GameObject target)
     {
         LookAtTarget(target);
-        tiltedGroundMovement2D.Move(transform.right, true, parameters.movementSpeed, 1, 1);
+        _tiltedGroundMovement2D.Move(transform.right, true, _parameters.movementSpeed, 1, 1);
     }
 
     public void RunToTarget(GameObject target)
     {
         LookAtTarget(target);
-        tiltedGroundMovement2D.Move(transform.right, true, parameters.runningSpeed, 1, 1);
+        _tiltedGroundMovement2D.Move(transform.right, true, _parameters.runningSpeed, 1, 1);
     }
 
     public void LookAtPlayer2()
