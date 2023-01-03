@@ -5,9 +5,6 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] PlayMakerFSM playerControllerFSM;
-    [SerializeField] AudioClip audioDamage;
-    [Range(0,1)]
-    [SerializeField] float volumeDamage = 0.5f;
 
     [SerializeField] float timeNoDamageWindow = 1;
     [SerializeField] int health = 100;
@@ -93,10 +90,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void SetCanMoveAfterDamage(){
         canMoveAfterDamage = true;
-    }
-
-    public void DamagedSound(){
-        audioSource.PlayOneShot(audioDamage,volumeDamage);
     }
 
     public void IncreaseMaxHealth(float extraHealth){

@@ -69,7 +69,7 @@ public class EnemyMovement : MonoBehaviour
             return false;
     }
 
-    public void Flip()
+    void Flip()
     {
         Quaternion currentRotation = new Quaternion(0, 0, 0, 0);
         if (transform.rotation.eulerAngles.y == 180)
