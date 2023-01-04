@@ -88,7 +88,7 @@ public class PlayerCombat : MonoBehaviour
 #region Combo Attack
     //Method used by PlayerControllerFSM
     public void ComboAttack(){
-        playerMovement.SetHighFrictioPhysicsMaterial();
+        playerMovement.StopMovement();
         animator.SetInteger("Attack", 10);
     }
 
@@ -145,7 +145,7 @@ public class PlayerCombat : MonoBehaviour
     }
     //Used by PlayerControllerFSM
     public void SheatAttackPostureCharge(){
-        playerMovement.SetHighFrictioPhysicsMaterial();
+        playerMovement.StopMovement();
         animator.SetInteger("Attack",50);
     }
     //Used by PlayerControllerFSM
