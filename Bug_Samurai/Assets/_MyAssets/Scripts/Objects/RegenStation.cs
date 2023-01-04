@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class RegenStation : MonoBehaviour, IInteractable
 {
+    [SerializeField] int RegenAmmount = 20;
 
+    public int GetRegenAmmount()
+    {
+        return RegenAmmount;
+    }
     public Transform Interact(){
         PlaySFX();
         PlayVFX();

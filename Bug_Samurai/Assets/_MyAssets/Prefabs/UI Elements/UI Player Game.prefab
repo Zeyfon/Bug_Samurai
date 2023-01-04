@@ -293,15 +293,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10eed6987af3a2c4a98d169941eb91cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBarTransform: {fileID: 6941681267485861468}
-  healthBarBackgroundTransform: {fileID: 216153174194211232}
-  healthBarCanvas: {fileID: 5862345144766009328}
-  scaleHealth: 100
-  decreasingBarSpeed: 10
-  timeToStartDecreasingBackground: 1
-  fadeInTime: 0.5
-  idleTime: 3
-  fadeOutTime: 2
+  _healthBarTransform: {fileID: 6941681267485861468}
+  _healthBarBackgroundTransform: {fileID: 216153174194211232}
+  _healthBarCanvas: {fileID: 4731698327921172493}
+  ScaleHealth: 100
+  DecreasingBackgroundSpeed: 0.1
+  TimeToStartDecreasingBackground: 1
+  FadeInTime: 0.5
+  IdleTime: 3
+  FadeOutTime: 2
+  TimeToIncreaseHealth: 2
 --- !u!1 &8064537449533966268
 GameObject:
   m_ObjectHideFlags: 0
