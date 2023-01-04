@@ -48,7 +48,8 @@ public class Interaction : MonoBehaviour
     public void Interact(){
         Transform interactionTransform = interactableCollider.GetComponent<IInteractable>().Interact();
         if(interactionTransform.GetComponent<RegenStation>()){
-            GetComponent<PlayerHealth>().RegenHealth();
+            int _regenAmount = interactionTransform.GetComponent<RegenStation>().GetRegenAmmount();
+            GetComponent<PlayerHealth>().RegenHealth(_regenAmount);
         }
         else if (interactionTransform.GetComponent<Portal>()){
             interactionTransform.GetComponent<Portal>().PlayerInkoveTransition();

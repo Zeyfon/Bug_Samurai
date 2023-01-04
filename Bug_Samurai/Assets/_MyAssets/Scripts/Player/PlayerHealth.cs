@@ -5,46 +5,51 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] PlayMakerFSM playerControllerFSM;
-
     [SerializeField] float timeNoDamageWindow = 1;
     [SerializeField] int health = 100;
-    Animator animator;
-    bool canMoveAfterDamage = false;
-    AudioSource audioSource;
 
-    PlayerCombat playerCombat;
-
-    float noDamageWindowTimer = 0;
-
-    int maxHealth;
-
-    public delegate void MaxHealthIncrease(float maxHealth, float currentHealth, bool isMaxHealthIncrease);
-    public event MaxHealthIncrease OnHealthIncrease;
-    
+    public delegate void MaxHealthIncrease(
+        float maxHealth,
+        float currentHealth);
+    public event MaxHealthIncrease OnMaxHealthIncrease;
+    public delegate void HealthRegen(
+        float healthRegen,
+        float currentHealth);
+    public event HealthRegen OnHealthRegen;
     public delegate void PlayerDied();
     public static event PlayerDied OnPlayerDeaths;
-    // Start is called before the first frame update
+    public delegate void PlayerGotDamaged();
+    public event PlayerGotDamaged OnPlayerDamaged;
+
+    Animator _animator;
+    bool _canMoveAfterDamage = false;
+    PlayerCombat _playerCombat;
+    float _noDamageWindowTimer = 0;
+    int _maxHealth;
+
     void Start()
     {
-
         PlayerParameters playerParameters = GetComponent<PlayerParameters>();
         health = playerParameters.health;
-        maxHealth = health;  // This max health later will need to be updated according to the saving point
-        audioSource = GetComponent<AudioSource>();
-        animator = GetComponent<Animator>();
-        playerCombat = GetComponent<PlayerCombat>();
+        _maxHealth = health;
+        _animator = GetComponent<Animator>();
+        _playerCombat = GetComponent<PlayerCombat>();
     }
 
     void Update(){
-        noDamageWindowTimer += Time.deltaTime;
+        _noDamageWindowTimer += Time.deltaTime;
     }
 
-    public void Damage(Transform attackerTransform, AttackTypes attackTypes, int damage){
+    public void Damage(
+        Transform attackerTransform, 
+        AttackTypes attackTypes, 
+        int damage)
+    {
         print("Player received damage");
-        if(playerCombat.IsPerformingSheatAttack()){
+        if(_playerCombat.IsPerformingSheatAttack()){
             print("Damage activated SheatAttack");
-            print(playerCombat.IsPerformingSheatAttack());
-            playerCombat.EnableDamageToEnemiesWithSheatAttack();
+            print(_playerCombat.IsPerformingSheatAttack());
+            _playerCombat.EnableDamageToEnemiesWithSheatAttack();
             return;
         }
         if(!CanBeDamage()){
@@ -52,7 +57,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             return;
         } 
         DamagePlayer(damage);
-        noDamageWindowTimer = 0;
+        _noDamageWindowTimer = 0;
     }
 
     void DamagePlayer(int damage){
@@ -60,16 +65,18 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if(health-damage >= 0){
             print("Damaged");
             health -=damage;
+            OnPlayerDamaged?.Invoke();
         } 
         else{
             print("Dead");
-            if(OnPlayerDeaths!=null) OnPlayerDeaths();
-            health=0;
+            health = 0;
+            OnPlayerDeaths?.Invoke();
+
         }
-        playerCombat.SetIsAttacking(false);
-        canMoveAfterDamage=false;
+        _playerCombat.SetIsAttacking(false);
+        _canMoveAfterDamage=false;
         playerControllerFSM.SendEvent("DAMAGED");
-        animator.SetInteger("Damaged",1);
+        _animator.SetInteger("Damaged",1);
     }
 
     public int GetHealth(){
@@ -77,29 +84,29 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     }
 
     public int GetMaxHealth(){
-        return maxHealth;
+        return _maxHealth;
     }
 
     bool CanBeDamage(){
-        return noDamageWindowTimer >timeNoDamageWindow;
+        return _noDamageWindowTimer >timeNoDamageWindow;
     }
 
     public bool CanMoveAfterDamage(){
-        return canMoveAfterDamage;
+        return _canMoveAfterDamage;
     }
 
     public void SetCanMoveAfterDamage(){
-        canMoveAfterDamage = true;
+        _canMoveAfterDamage = true;
     }
 
     public void IncreaseMaxHealth(float extraHealth){
-        maxHealth += (int)extraHealth;
-        OnHealthIncrease(maxHealth, health, true);
-        health = maxHealth;
+        _maxHealth += (int)extraHealth;
+        OnMaxHealthIncrease?.Invoke(_maxHealth, health);
+        health = _maxHealth;
     }
 
-    public void RegenHealth(){
-        OnHealthIncrease(maxHealth,health, false);
-        health = maxHealth;
+    public void RegenHealth(int regenAmount){
+        OnHealthRegen?.Invoke(regenAmount, health);
+        health += regenAmount;
     }
 }
