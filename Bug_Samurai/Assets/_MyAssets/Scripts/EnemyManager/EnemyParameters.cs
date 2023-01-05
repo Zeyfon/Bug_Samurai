@@ -14,15 +14,13 @@ public class EnemyParameters:MonoBehaviour
     public bool canBeInterruptedByAnything;
     public int health;
     public int attack;
-        
     [Header("Visual Design")]
     public bool isUpdatingVisuals = false;
     public Sprite sprite;
     public Color color;
-
     [Header("Only for Defense Enemy")]
     public bool canBeDamagedFromBehind;
-        
+
     [Header("Testing Purpose")]
     public bool canBeDamaged;
 }
