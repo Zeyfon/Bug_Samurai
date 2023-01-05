@@ -62,7 +62,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5152630633546916119}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1409930005580237446
 GameObject:
@@ -92,11 +92,49 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4541592148756673425}
-  - {fileID: 2974392850629769414}
   - {fileID: 2976006025594989442}
+  - {fileID: 4541592148756673425}
+  - {fileID: 3268118519159975996}
+  - {fileID: 5803023526043293467}
+  - {fileID: 6734099215199151220}
+  - {fileID: 2111254745711687128}
+  - {fileID: 451949177395670532}
+  - {fileID: 7450065762236588912}
+  - {fileID: 2377202373947179702}
+  - {fileID: 5064805307475438850}
   m_Father: {fileID: 4263014547066302609}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2166412738754734311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2111254745711687128}
+  m_Layer: 0
+  m_Name: AOEAttackVFXOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2111254745711687128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2166412738754734311}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.05, y: -0.2, z: -0.09822888}
+  m_LocalScale: {x: 1, y: -1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5152630633546916119}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2899178281492592077
 GameObject:
@@ -197,6 +235,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b537d3a301afb6a44b49dcff358748ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2900417785261084725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6734099215199151220}
+  m_Layer: 0
+  m_Name: RunningAttackVFXOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6734099215199151220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2900417785261084725}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.05, y: -0.2, z: -0.09822888}
+  m_LocalScale: {x: 1, y: -1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5152630633546916119}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3089827747163085874
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +473,7 @@ GameObject:
   - component: {fileID: 4263014547066302610}
   - component: {fileID: 9055836057122212700}
   - component: {fileID: 6325194571530484795}
+  - component: {fileID: 7005076858318870468}
   m_Layer: 7
   m_Name: Boss
   m_TagString: Enemy
@@ -2446,8 +2516,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 406.03125
-        y: 137.03906
+        x: 354.25
+        y: 316.28906
         width: 106
         height: 32
       isBreakpoint: 0
@@ -2458,7 +2528,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: Reset
+        toState: Attacking
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
@@ -3054,22 +3124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce1f6410691a664d8998d2aa0c984f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCollider: {fileID: 7702939299422136539}
-  audioAttack: {fileID: 8300000, guid: 2432cf1603e3951439cbe7ce2276ad1d, type: 3}
-  volumeAttack: 0.35
-  attackSignal: {fileID: 3882701174276009160, guid: 0bed6fdeb3191e0478b5744febdaddb1, type: 3}
-  attackSignalOriginTransform: {fileID: 2976006025594989442}
-  attackVFX: {fileID: 5675062471633878340, guid: 97877d5e87937664ca430bd60107c678, type: 3}
-  attackVFXOriginTransform: {fileID: 4541592148756673425}
-  maxDefenseTime: 2
-  defenseAudio: {fileID: 8300000, guid: e91e06c385d1b1645bca2cef09c8668c, type: 3}
-  defenseVolume: 0.5
-  defenseVFX: {fileID: 2050967202763056129, guid: b80407ae74dc7e9499a6d2a7553d0eef, type: 3}
-  defenseVFXOrigin: {fileID: 2974392850629769414}
-  quantityOfAttacks: 0
-  attackAnimationSpeed: 1
-  hasDefense: 0
-  canBeInterruptedByAnyAttack: 0
+  _attackCollider: {fileID: 7702939299422136539}
   _aoeWaves: {fileID: 4187161287852719187, guid: d6ed85ca3d11eab46bc48e2ae59513f5, type: 3}
 --- !u!114 &4263014547066302610
 MonoBehaviour:
@@ -3083,15 +3138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552511cd580c58d418e3940f7e76d25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyControllerFSM: {fileID: 9204723250173969856}
-  audioGetDamaged: {fileID: 8300000, guid: a17bd737e8d8cc3479e3f82c3a1e468a, type: 3}
-  volumeDamaged: 0.5
-  stunnedTime: 2.5
-  damageVisualTime: 0.3
-  bodyRenderer: {fileID: 7013595933869000557}
-  normalMaterial: {fileID: 2100000, guid: bfa98a6555cbd904193769528edc530d, type: 2}
-  damageMaterial: {fileID: 2100000, guid: 9618c1ccbc7ce284089a4c413f709f39, type: 2}
-  health: 50
+  _enemyControllerFSM: {fileID: 9204723250173969856}
+  _health: 50
+  _stunnedTime: 2
 --- !u!114 &9055836057122212700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3126,6 +3175,157 @@ MonoBehaviour:
   closeAttackRange: 3
   farAttackRange: 3
   runningRange: 10
+--- !u!114 &7005076858318870468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4263014547066302614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed96b23fed60494983fdc989436c841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackSignalVFX: {fileID: 3882701174276009160, guid: 0bed6fdeb3191e0478b5744febdaddb1, type: 3}
+  _attackSignalVFXOrigin: {fileID: 2976006025594989442}
+  _attackSignalSFX: {fileID: 8300000, guid: aacc6def2024f3a4a846623c3144d752, type: 3}
+  _attackSignalSFXVolume: 0.5
+  _attackVFX: {fileID: 0}
+  _attackVFXOrigin: {fileID: 0}
+  _attackSFX: {fileID: 0}
+  _attackSFXVolume: 0.5
+  _comboAttack1VFX: {fileID: 5675062471633878340, guid: 97877d5e87937664ca430bd60107c678, type: 3}
+  _comboAttack1VFXOrigin: {fileID: 4541592148756673425}
+  _comboAttack1SFX: {fileID: 8300000, guid: 2432cf1603e3951439cbe7ce2276ad1d, type: 3}
+  _comboAttack1SFXVolume: 0.5
+  _comboAttack2VFX: {fileID: 5675062471633878340, guid: 97877d5e87937664ca430bd60107c678, type: 3}
+  _comboAttack2VFXOrigin: {fileID: 3268118519159975996}
+  _comboAttack2SFX: {fileID: 8300000, guid: 2432cf1603e3951439cbe7ce2276ad1d, type: 3}
+  _comboAttack2SFXVolume: 0.5
+  _comboAttack3VFX: {fileID: 5675062471633878340, guid: 97877d5e87937664ca430bd60107c678, type: 3}
+  _comboAttack3VFXOrigin: {fileID: 5803023526043293467}
+  _comboAttack3SFX: {fileID: 8300000, guid: 2432cf1603e3951439cbe7ce2276ad1d, type: 3}
+  _comboAttack3SFXVolume: 0.5
+  _runningAttackVFX: {fileID: 5675062471633878340, guid: 97877d5e87937664ca430bd60107c678, type: 3}
+  _runningAttackVFXOrigin: {fileID: 6734099215199151220}
+  _runningAttackSFX: {fileID: 8300000, guid: 2432cf1603e3951439cbe7ce2276ad1d, type: 3}
+  _runningAttackSFXVolume: 0.5
+  _aoeAttackVFX: {fileID: 5675062471633878340, guid: 97877d5e87937664ca430bd60107c678, type: 3}
+  _aoeAttackVFXOrigin: {fileID: 2111254745711687128}
+  _aoeAttackSFX: {fileID: 8300000, guid: 2432cf1603e3951439cbe7ce2276ad1d, type: 3}
+  _aoeAttackSFXVolume: 0.5
+  _defenseVFX: {fileID: 2050967202763056129, guid: b80407ae74dc7e9499a6d2a7553d0eef, type: 3}
+  _defenseVFXOrigin: {fileID: 5064805307475438850}
+  _defenseSFX: {fileID: 8300000, guid: e91e06c385d1b1645bca2cef09c8668c, type: 3}
+  _defenseSFXVolume: 0.5
+  _walkingSFX: {fileID: 8300000, guid: cc5e3e47f0a5c5143a25dfe6f6b3072b, type: 3}
+  _walkingSFXVolume: 0.5
+  _runningSFX: {fileID: 8300000, guid: cf2a2a9bbd4164c499eb669b4fe3899f, type: 3}
+  _runningSFXVolume: 0.5
+  _damagedSFX: {fileID: 8300000, guid: a17bd737e8d8cc3479e3f82c3a1e468a, type: 3}
+  _damagedSFXVolume: 0.5
+  _stunnedSFX: {fileID: 8300000, guid: 24aa429638fdd5849b7a0d60c3bd056c, type: 3}
+  _stunnedSFXVolume: 0.5
+  _diesSFX: {fileID: 8300000, guid: 66ab41cf86ba94d4785d224cfed619dc, type: 3}
+  _diesSFXVolume: 0.5
+  _bodyRenderer: {fileID: 7013595933869000557}
+  _normalMaterial: {fileID: 2100000, guid: bfa98a6555cbd904193769528edc530d, type: 2}
+  _damageMaterial: {fileID: 2100000, guid: 9618c1ccbc7ce284089a4c413f709f39, type: 2}
+  _damageVisualTime: 0.3
+--- !u!1 &4455364114707647112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3268118519159975996}
+  m_Layer: 0
+  m_Name: ComboAttack2VFXOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3268118519159975996
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4455364114707647112}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.05, y: -0.2, z: -0.09822888}
+  m_LocalScale: {x: 1, y: -1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5152630633546916119}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4772669553801545513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5803023526043293467}
+  m_Layer: 0
+  m_Name: ComboAttack3VFXOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5803023526043293467
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4772669553801545513}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.05, y: -0.2, z: -0.09822888}
+  m_LocalScale: {x: 1, y: -1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5152630633546916119}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5128594216616278294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 451949177395670532}
+  m_Layer: 0
+  m_Name: DamageVFXOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &451949177395670532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5128594216616278294}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.05, y: -0.2, z: -0.09822888}
+  m_LocalScale: {x: 1, y: -1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5152630633546916119}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5662385583617418599
 GameObject:
   m_ObjectHideFlags: 0
@@ -3291,7 +3491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4541592148756673425}
   m_Layer: 0
-  m_Name: AttackVFXOrigin
+  m_Name: ComboAttack1VFXOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3310,9 +3510,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5152630633546916119}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8718238993668656913
+--- !u!1 &8763088906832810944
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3320,26 +3520,88 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2974392850629769414}
-  m_Layer: 7
-  m_Name: DefenseVFXOrigin
+  - component: {fileID: 5064805307475438850}
+  m_Layer: 0
+  m_Name: DefenseOriginVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2974392850629769414
+--- !u!4 &5064805307475438850
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8718238993668656913}
+  m_GameObject: {fileID: 8763088906832810944}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.02, y: -0.13, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.8, z: 1}
+  m_LocalPosition: {x: 0.05, y: -0.2, z: -0.09822888}
+  m_LocalScale: {x: 1, y: -1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5152630633546916119}
-  m_RootOrder: 1
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8780885048877983126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2377202373947179702}
+  m_Layer: 0
+  m_Name: StunOriginVFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2377202373947179702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8780885048877983126}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.05, y: -0.2, z: -0.09822888}
+  m_LocalScale: {x: 1, y: -1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5152630633546916119}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8921911148377684238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7450065762236588912}
+  m_Layer: 0
+  m_Name: DiesOriginVFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7450065762236588912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8921911148377684238}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.05, y: -0.2, z: -0.09822888}
+  m_LocalScale: {x: 1, y: -1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5152630633546916119}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

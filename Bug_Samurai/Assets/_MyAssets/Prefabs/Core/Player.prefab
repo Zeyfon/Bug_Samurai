@@ -3390,7 +3390,7 @@ MonoBehaviour:
   sheatAttackPostureChargeReadyVFXOrigin: {fileID: 3903421464727036365}
   sheatAttackPostureChargeReadySFX: {fileID: 8300000, guid: cc5e3e47f0a5c5143a25dfe6f6b3072b, type: 3}
   sheatAttackPostureChargeReadySFXVolume: 0.5
-  sheatAttackPostureChargedLoopVFX: {fileID: 9067312723426285028, guid: 23c042da2a6bf0e4baf3492d51486d82, type: 3}
+  sheatAttackPostureChargedLoopVFX: {fileID: 3520078397037156647, guid: e6ea59b377599d8418fc82a849198702, type: 3}
   sheatAttackPostureChargedLoopOrigin: {fileID: 4469905244146840622}
   sheatAttackPostureChargedLoopSFX: {fileID: 8300000, guid: 99b380e9988ed5043b72a9c2454c6386, type: 3}
   sheatAttackPostureChargedLoopSFXVolume: 0.5

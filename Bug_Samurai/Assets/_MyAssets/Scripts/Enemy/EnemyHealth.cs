@@ -4,59 +4,44 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
-    [SerializeField] PlayMakerFSM enemyControllerFSM;
-    [SerializeField] AudioClip audioGetDamaged;
-    [Range(0,1)]
-    [SerializeField] float volumeDamaged = 0.5f;
+
+    [SerializeField] PlayMakerFSM _enemyControllerFSM;
+    [SerializeField] int _health = 50;
     [Range(0,3)]
-    [SerializeField] float stunnedTime = 2f;
-
-    [Range(0,1)]
-    [SerializeField] float damageVisualTime = 0.5f;
-    [SerializeField] SpriteRenderer bodyRenderer;
-    [SerializeField] Material normalMaterial;
-    [SerializeField] Material damageMaterial;
-    //[SerializeField] EnemyType enemyType;
-    [SerializeField] int health = 50;
-    
-    bool canBeDamaged = true;
-
-
-    AudioSource audioSource;
-    Animator animator;
-
-    float stunTimer = 0;
-    float stunMaxTimer = 0;
+    [SerializeField] float _stunnedTime = 2f;
 
     AttackTypes attackType;
+    EnemyParameters _enemyParameters;
+    //GameObject _player;
+    EnemyFX _enemyFX;
+    Animator _animator;
+    bool _canBeDamaged = true;
+    float _stunTimer = 0;
+    float _stunMaxTimer = 0;
 
-    EnemyParameters parameters;
-    GameObject player;
     void Start()
     {
-        parameters = GetComponent<EnemyParameters>();
-        health = parameters.health;
-        canBeDamaged = parameters.canBeDamaged;
-        SetMaterial(normalMaterial);
-        animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        _enemyParameters = GetComponent<EnemyParameters>();
+        _health = _enemyParameters.health;
+        _canBeDamaged = _enemyParameters.canBeDamaged;
+        //SetMaterial(normalMaterial);
+        _animator = GetComponent<Animator>();
+        //_player = GameObject.FindGameObjectWithTag("Player");
+        _enemyFX = GetComponent<EnemyFX>();
     }
 
     void Update(){
-        stunTimer += Time.deltaTime;
-        IsPlayerInFront(player.transform);
+        _stunTimer += Time.deltaTime;
+        //IsPlayerInFront(_player.transform);
     }
 
-
-    void SetMaterial(Material material){
-        bodyRenderer.material = material;
-    }
-
-    public void Damage(Transform attackerTransform, AttackTypes attackType, int damage)
+    public void Damage(
+        Transform attackerTransform, 
+        AttackTypes attackType, 
+        int damage)
     {
 
-        if (IsStunned() && !GetComponent<EnemyCombat>().GetCanBeInterruptedByAnyAttack())
+        if (IsStunned() && !GetCanBeInterruptedByAnyAttack())
         {
             print("Damage while stunned");
             NoInterruptionDamage();
@@ -79,9 +64,9 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             {
                 print("Defense");
                 GetComponent<EnemyCombat>().StartDefense();
-                enemyControllerFSM.SendEvent("DEFENSE");
+                _enemyControllerFSM.SendEvent("DEFENSE");
             }
-            else if (GetComponent<EnemyCombat>().GetCanBeInterruptedByAnyAttack())
+            else if (GetCanBeInterruptedByAnyAttack())
             {
                 print("Normal Interruption damage");
                 InterruptionDamage();
@@ -100,7 +85,11 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     {   
         bool hasDefense = GetComponent<EnemyCombat>().GetHasDefense();
         //If Enemy is being attacked from behind and can be damaged from behind
-        if(!hasDefense || (hasDefense && parameters.canBeDamagedFromBehind && !IsPlayerInFront(playerTransform))){
+        if(!hasDefense || (
+            hasDefense 
+            && _enemyParameters.canBeDamagedFromBehind 
+            && !IsPlayerInFront(playerTransform)
+            )){
             //Will not defense
             return false;
         }
@@ -113,7 +102,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     private bool IsPlayerInFront(Transform attackerTransform)
     {
-        Vector3 toTarget = (attackerTransform.position - transform.position).normalized;
+        Vector3 toTarget = 
+            (attackerTransform.position - transform.position).normalized;
         //print("To target Vector " + toTarget);
         if (Vector3.Dot(toTarget, transform.right) > 0)
         {
@@ -128,13 +118,13 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     }
 
     void HealthDamage(int damage){
-        if(canBeDamaged){
-            if(health-damage <0)
-                health = 0;
+        if(_canBeDamaged){
+            if(_health-damage <0)
+                _health = 0;
             else{
-                health -= damage;
+                _health -= damage;
             }
-            if(health==0){
+            if(_health==0){
                 Die();
             }
         }
@@ -153,34 +143,24 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     void InterruptionDamage(){
         SheatAttackDamaged();
-        animator.SetInteger("Damage",1);
-        enemyControllerFSM.SendEvent("INTERRUPT");
-        StartCoroutine(VisualDamageCoroutine());
+        _animator.SetInteger("Damage",1);
+        _enemyControllerFSM.SendEvent("INTERRUPT");
+        _enemyFX.VisualDamage();
     }
 
     void NoInterruptionDamage(){
-        PlayDamageSound();
-        StartCoroutine(VisualDamageCoroutine());
-    }
-
-    IEnumerator VisualDamageCoroutine(){
-        SetMaterial(damageMaterial);
-        yield return new WaitForSeconds(damageVisualTime);
-        SetMaterial(normalMaterial);
+        _enemyFX.PlayDamageSFX();
+        _enemyFX.VisualDamage();
     }
 
     public void SheatAttackDamaged(){
-        stunMaxTimer = Time.time + stunnedTime;
+        _stunMaxTimer = Time.time + _stunnedTime;
     }
 
     public bool IsStunned(){
-        stunTimer = Time.time;
+        _stunTimer = Time.time;
         //print("Running time " + stunTimer + " UpperLimit Timer " + stunMaxTimer);
-        return stunTimer<stunMaxTimer;
-    }
-
-    public void PlayDamageSound(){
-        audioSource.PlayOneShot(audioGetDamaged, volumeDamaged);
+        return _stunTimer<_stunMaxTimer;
     }
 
     public bool IsAttackedBySheatAttack(){
@@ -194,6 +174,11 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     }
 
     public int GetHealth(){
-        return health;
+        return _health;
+    }
+
+    public bool GetCanBeInterruptedByAnyAttack()
+    {
+        return _enemyParameters.canBeInterruptedByAnything;
     }
 }

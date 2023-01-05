@@ -4,207 +4,136 @@ using UnityEngine;
 
 public class EnemyCombat : MonoBehaviour
 {
-
     [Header("Attack")]
-    [SerializeField] AttackCollider attackCollider;
-    [SerializeField] AudioClip audioAttack;
-    [Range(0,1)]
-    [SerializeField] float volumeAttack = 0.5f;
-    [SerializeField] GameObject attackSignal;
-    [SerializeField] Transform attackSignalOriginTransform;
-    [SerializeField] GameObject attackVFX;
-    [SerializeField] Transform attackVFXOriginTransform;
-
-    
-    [Header("Defense")]
-    [Range(0,5)]
-    [SerializeField] float maxDefenseTime = 2f;
-
-    [SerializeField] AudioClip defenseAudio;
-    [Range(0,1)]
-    [SerializeField] float defenseVolume = 0.5f;
-
-    [SerializeField] GameObject defenseVFX;
-    [SerializeField] Transform defenseVFXOrigin;
-
-    [Header("Enemy Parameters")]
-    [SerializeField] int quantityOfAttacks = 0;
-    [SerializeReference] float attackAnimationSpeed = 1;
-    [SerializeField] bool hasDefense;
-    [SerializeField] bool canBeInterruptedByAnyAttack;
+    [SerializeField] AttackCollider _attackCollider;  
+    //[Header("Defense")]
+    //[Range(0,5)]
+    //[Header("Enemy Parameters")]
+    //int _quantityOfAttacks = 0;
+    //bool _hasDefense;
+    //bool _canBeInterruptedByAnyAttack;
 
     [Header("AOE Attack Parameters")]
     [SerializeField] GameObject _aoeWaves;
-
-
-    Animator animator;
-    AudioSource audioSource;
-    EnemyMovement movement;
-
-    EnemyParameters parameters;
-
-    int defense = 0;
-    float defenseTime =0;
-
+    Animator _animator;
+    EnemyMovement _movement;
+    EnemyParameters _parameters;
+    EnemyFX _enemyFX;
+    int _defense = 0;
+    float _defenseTime =0;
+    float _attackAnimationSpeed = 1;
+    float _maxDefenseTime = 2f;
 
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
-        
-        audioSource = GetComponent<AudioSource>();
-        movement = GetComponent<EnemyMovement>();
-        parameters = GetComponent<EnemyParameters>();
+        _animator = GetComponent<Animator>();
+        _movement = GetComponent<EnemyMovement>();
+        _parameters = GetComponent<EnemyParameters>();
+        _enemyFX = GetComponent<EnemyFX>();
     }
 
     void Update(){
-        if(defenseTime>0){
-            print(defenseTime);
-            defenseTime-=Time.deltaTime;
-            if(defenseTime<=0){
-                animator.SetInteger("Defense",10);
+        if(_defenseTime>0){
+            //print(_defenseTime);
+            _defenseTime-=Time.deltaTime;
+            if(_defenseTime<=0){
+                _animator.SetInteger("Defense",10);
             }
         }
     }
 
     public void StartDefense(){
-        PlayDefenseSFX();
-        PlayDefenseVFX();
-        defenseTime = maxDefenseTime;
-        if(defense >0){
-            defense = 5;
+        _enemyFX.PlayDefenseSFX();
+        _enemyFX.PlayDefenseVFX();
+        _defenseTime = _maxDefenseTime;
+        if(_defense >0){
+            _defense = 5;
         }
         else{
-            defense =1;
+            _defense =1;
         }
-        animator.SetInteger("Defense",defense);
-        audioSource.PlayOneShot(defenseAudio,defenseVolume);
-    }
-
-    void PlayDefenseSFX(){
-        audioSource.PlayOneShot(defenseAudio, defenseVolume);
-        
-    }
-
-    void PlayDefenseVFX(){
-        GameObject vfx = GameObject.Instantiate(defenseVFX, defenseVFXOrigin.position, Quaternion.identity);
-        vfx.transform.localScale = defenseVFXOrigin.localScale;
-        StartCoroutine(WaitToDestroyGameObject(vfx));
+        _animator.SetInteger("Defense",_defense);
     }
 
     public int GetDefenseInteger(){
-        defense = animator.GetInteger("Defense");
-        return defense; 
+        _defense = _animator.GetInteger("Defense");
+        return _defense; 
     }
 
-
-    // public void StartDefenseTimer(){
-    //     defenseTime = Time.time + maxDefenseTime;
-    // }
     //Used by EnemyControllerFSM
     public void StartAttack(){
-        movement.Stop();
+        _movement.Stop();
         //SingleAttack
-        GetComponent<Animator>().SetFloat("attackAnimSpeedMultiplier", parameters.attackAnimationSpeed);
-        if(parameters.quantityOfAttacks==1){
-            animator.SetInteger("Attack",1);
+        GetComponent<Animator>().SetFloat(
+            "attackAnimSpeedMultiplier", 
+            _parameters.attackAnimationSpeed);
+        if(_parameters.quantityOfAttacks==1){
+            _animator.SetInteger("Attack",1);
         }
         //ThreeAttacksCombo
         else{
-            animator.SetInteger("Attack",50);
+            _animator.SetInteger("Attack",50);
         }
 
     }
     //Used by EnemyController FSM
     public void StartComboAttack()
     {
-        movement.Stop();
-        animator.SetInteger("Attack", 50);
+        _movement.Stop();
+        _animator.SetInteger("Attack", 50);
     }
 
     public void StartRunningAttack()
     {
-        animator.SetInteger("Attack", 70);
+        _animator.SetInteger("Attack", 70);
     }
 
     public bool HasComboAttackEnded()
     {
-        return animator.GetInteger("Attack") == 100;
+        return _animator.GetInteger("Attack") == 100;
     }
 
     public void AttackColliderEnable(){
-        attackCollider.EnableCollider();
+        _attackCollider.EnableCollider();
     }
 
 
     public void AttackColliderDisable(){
         //print("Wants to disable collider");
-        attackCollider.DisableCollider();
+        _attackCollider.DisableCollider();
     }
-
-    public void AttackSound(){
-        audioSource.PlayOneShot(audioAttack, volumeAttack);
-    }
-    
-    public void PlayAttackVFX(){
-        GameObject vfx = GameObject.Instantiate(attackVFX, attackVFXOriginTransform.position, attackVFXOriginTransform.rotation);
-        vfx.transform.localScale = attackVFXOriginTransform.localScale;
-        StartCoroutine(WaitToDestroyGameObject(vfx)); 
-    }
-
-    public void PlayAttackSignal(){
-        GameObject vfx = GameObject.Instantiate(attackSignal, attackSignalOriginTransform.position, attackSignalOriginTransform.rotation);
-        vfx.transform.localScale = attackSignalOriginTransform.localScale;
-        StartCoroutine(WaitToDestroyGameObject(vfx)); 
-    }
-
-    IEnumerator WaitToDestroyGameObject(GameObject gameObject){
-        ParticleSystem particles = gameObject.GetComponent<ParticleSystem>();
-        while(particles.isPlaying){
-            yield return null;
-        }
-        Destroy(gameObject);
-    }
-
 
 
     public void ResetCombatVariables(){
-        defense = 0;
-        defenseTime =0;
-        animator.SetInteger("Defense", defense);
+        _defense = 0;
+        _defenseTime =0;
+        _animator.SetInteger("Defense", _defense);
     }
 
     public void ThreeComboAttack(){
-        animator.SetInteger("Attack",1);
+        _animator.SetInteger("Attack",1);
     }
 
     public int GetAttackIndex(){
-        return animator.GetInteger("Attack");
+        return _animator.GetInteger("Attack");
     }
 
-    public void SetQuantityOfAttacks(int quantityOfAttacks){
-        this.quantityOfAttacks=quantityOfAttacks;
-    }
+    //public void SetQuantityOfAttacks(int quantityOfAttacks){
+    //    this._quantityOfAttacks=quantityOfAttacks;
+    //}
     public void SetAttackAnimationSpeed(float speed){
-        print(speed + " " + attackAnimationSpeed );
-        attackAnimationSpeed = speed;
+        print(speed + " " + _attackAnimationSpeed );
+        _attackAnimationSpeed = speed;
 
-        print(speed + " " + attackAnimationSpeed );
+        print(speed + " " + _attackAnimationSpeed );
     }
 
-    public void SetHasDefense(bool hasDefense){
-        this.hasDefense = hasDefense;
-    }
+    //public void SetHasDefense(bool hasDefense){
+    //    this._hasDefense = hasDefense;
+    //}
     public bool GetHasDefense(){
-        return parameters.hasDefense;
-    }
-
-    public void SetCanBeInterruptedByAnyAttack(bool state){
-        canBeInterruptedByAnyAttack = state;
-    }
-
-    public bool GetCanBeInterruptedByAnyAttack(){
-        return parameters.canBeInterruptedByAnything;
+        return _parameters.hasDefense;
     }
 
 
@@ -212,13 +141,19 @@ public class EnemyCombat : MonoBehaviour
 
     public void StartAOEAttack()
     {
-        animator.SetInteger("Attack", 90);
+        _animator.SetInteger("Attack", 90);
     }
 
     public void CreateAOEObjects()
     {
-        GameObject.Instantiate(_aoeWaves, transform.position, Quaternion.identity);
-        GameObject.Instantiate(_aoeWaves, transform.position, Quaternion.Euler(new Vector3(0,180,0)));
+        GameObject.Instantiate(
+            _aoeWaves, 
+            transform.position, 
+            Quaternion.identity);
+        GameObject.Instantiate(
+            _aoeWaves, 
+            transform.position, 
+            Quaternion.Euler(new Vector3(0,180,0)));
 
     }
 
