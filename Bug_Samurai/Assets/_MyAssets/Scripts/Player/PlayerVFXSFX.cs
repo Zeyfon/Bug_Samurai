@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using System;
 
-public class PlayerVFXSFX : MonoBehaviour
+public class PlayerVFXSFX : EntityFX
 {
     #region Inspector
     [Header("Combo Attack")]
@@ -68,21 +68,12 @@ public class PlayerVFXSFX : MonoBehaviour
     [SerializeField] float DamagedVolume = 0.5f;
     #endregion
 
-    public static event Action OnSheatAttackDeliverDamage;
-
-    AudioSource _audioSource;
-    Animator _animator;
-    // Start is called before the first frame update
-    void Start()
-    {
-        _animator = GetComponent<Animator>();
-        _audioSource = GetComponent<AudioSource>();
-    }
+    protected static event Action OnSheatAttackDeliverDamage;
 
     #region Attack FXs
     // Used by Combo Attack 1 Animation
     public void PlayComboAttack1VFX(){
-        CreateVFXGameObject(combotAttack1VFX,vfx1Transform);
+        base.CreateVFXGameObject(combotAttack1VFX,vfx1Transform);
     }
     // Used by Combo Attack 1 Animation
     public void PlayComboAttack1SFX(){
@@ -92,7 +83,7 @@ public class PlayerVFXSFX : MonoBehaviour
 
     // Used by Combo Attack 2 Animation
     public void PlayComboAttack2VFX(){
-        CreateVFXGameObject(combotAttack2VFX,vfxTransform);
+        base.CreateVFXGameObject(combotAttack2VFX,vfxTransform);
     } 
     // Used by Combo Attack 2 Animation
     public void PlayComboAttack2SFX(){
@@ -102,7 +93,7 @@ public class PlayerVFXSFX : MonoBehaviour
 
     //Used by Sheat Attack Posture Charge Animation
     public void PlaySheatAttackPostureChargeReadyVFX(){
-        CreateVFXGameObject(sheatAttackPostureChargeReadyVFX,sheatAttackPostureChargeReadyVFXOrigin);
+        base.CreateVFXGameObject(sheatAttackPostureChargeReadyVFX,sheatAttackPostureChargeReadyVFXOrigin);
     }
     //Used by Sheat Attack Posture Charge Animation
     public void PlaySheatAttackPostureChargeReadySFX(){
@@ -112,7 +103,7 @@ public class PlayerVFXSFX : MonoBehaviour
 
     //Used by Sheat Attack Posture Charged Loop Animation
     public void PlaySheatAttackPostureChargedLoopVFX(){
-        CreateVFXGameObject(sheatAttackPostureChargedLoopVFX, sheatAttackPostureChargedLoopOrigin);
+        base.CreateVFXGameObject(sheatAttackPostureChargedLoopVFX, sheatAttackPostureChargedLoopOrigin);
     }
     //Used by Sheat Attack Posture Charged Loop Animation
     public void PlaySheatAttackPostureChargedLoopSFX(){
@@ -122,7 +113,7 @@ public class PlayerVFXSFX : MonoBehaviour
 
     //Used by Sheat Attack Animation
     public void PlaySheatAttackPerformedVFX(){
-        CreateVFXGameObject(sheatAttackVFX,sheatAttackVFXOrigin);
+        base.CreateVFXGameObject(sheatAttackVFX,sheatAttackVFXOrigin);
     }
     //Used by Sheat Attack Animation
     public void PlaySheatAttackPerformedSFX(){
@@ -155,10 +146,7 @@ public class PlayerVFXSFX : MonoBehaviour
     //Used by Forwade Evade Animation
     public void PlayForwardEvadeVFX()
     {
-        CreateVFXGameObject(ForwardEvadeVFX, ForwardEvadeVFXOrigin);
-        //GameObject vfx = GameObject.Instantiate(ForwardEvadeVFX, ForwardEvadeVFXOrigin.position, ForwardEvadeVFXOrigin.rotation);
-        //vfx.transform.localScale = ForwardEvadeVFXOrigin.localScale;
-        //StartCoroutine(DestroyObject(vfx));
+        base.CreateVFXGameObject(ForwardEvadeVFX, ForwardEvadeVFXOrigin);
     }
     //Used by Forwade Evade Animation
     public void PlayEvadeFrontalSFX()
@@ -169,13 +157,7 @@ public class PlayerVFXSFX : MonoBehaviour
     //Used by Backward Evade Animation
     public void PlayBackwardEvadeVFX()
     {
-        CreateVFXGameObject(BackwardsEvadeVFX, BackwardsEvadeVFXOrigin);
-        //GameObject vfx = GameObject.Instantiate(
-        //                                        BackwardsEvadeVFX, 
-        //                                        BackwardsEvadeVFXOrigin.position, 
-        //                                        BackwardsEvadeVFXOrigin.rotation);
-        //vfx.transform.localScale = BackwardsEvadeVFXOrigin.localScale;
-        //StartCoroutine(DestroyObject(vfx));
+        base.CreateVFXGameObject(BackwardsEvadeVFX, BackwardsEvadeVFXOrigin);
     }
     //Used by Backward Evade Animation
     public void PlayEvadeBackwardSFX()
@@ -191,19 +173,4 @@ public class PlayerVFXSFX : MonoBehaviour
     }
     #endregion
 
-    void CreateVFXGameObject(GameObject vfxTemplate, Transform originTransform){
-        GameObject vfx = GameObject.Instantiate(
-                                                vfxTemplate, 
-                                                originTransform.position, 
-                                                originTransform.rotation);
-        vfx.transform.localScale = originTransform.localScale;
-        StartCoroutine(DestroyObject(vfx));
-    }
-    IEnumerator DestroyObject(GameObject vfx){
-        ParticleSystem particles = vfx.GetComponent<ParticleSystem>();
-        while(particles.isPlaying){
-            yield return null;
-        }
-        Destroy(vfx);
-    }
 }

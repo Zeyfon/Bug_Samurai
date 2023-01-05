@@ -37,32 +37,32 @@ public class EnemyCombat : MonoBehaviour
     [SerializeField] GameObject _aoeWaves;
 
 
-    Animator animator;
-    AudioSource audioSource;
-    EnemyMovement movement;
+    Animator _animator;
+    AudioSource _audioSource;
+    EnemyMovement _movement;
 
-    EnemyParameters parameters;
+    EnemyParameters _parameters;
 
-    int defense = 0;
-    float defenseTime =0;
+    int _defense = 0;
+    float _defenseTime =0;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
         
-        audioSource = GetComponent<AudioSource>();
-        movement = GetComponent<EnemyMovement>();
-        parameters = GetComponent<EnemyParameters>();
+        _audioSource = GetComponent<AudioSource>();
+        _movement = GetComponent<EnemyMovement>();
+        _parameters = GetComponent<EnemyParameters>();
     }
 
     void Update(){
-        if(defenseTime>0){
-            print(defenseTime);
-            defenseTime-=Time.deltaTime;
-            if(defenseTime<=0){
-                animator.SetInteger("Defense",10);
+        if(_defenseTime>0){
+            //print(_defenseTime);
+            _defenseTime-=Time.deltaTime;
+            if(_defenseTime<=0){
+                _animator.SetInteger("Defense",10);
             }
         }
     }
@@ -70,66 +70,65 @@ public class EnemyCombat : MonoBehaviour
     public void StartDefense(){
         PlayDefenseSFX();
         PlayDefenseVFX();
-        defenseTime = maxDefenseTime;
-        if(defense >0){
-            defense = 5;
+        _defenseTime = maxDefenseTime;
+        if(_defense >0){
+            _defense = 5;
         }
         else{
-            defense =1;
+            _defense =1;
         }
-        animator.SetInteger("Defense",defense);
-        audioSource.PlayOneShot(defenseAudio,defenseVolume);
+        _animator.SetInteger("Defense",_defense);
+        _audioSource.PlayOneShot(defenseAudio,defenseVolume);
     }
 
     void PlayDefenseSFX(){
-        audioSource.PlayOneShot(defenseAudio, defenseVolume);
-        
+        _audioSource.PlayOneShot(defenseAudio, defenseVolume);
     }
 
     void PlayDefenseVFX(){
-        GameObject vfx = GameObject.Instantiate(defenseVFX, defenseVFXOrigin.position, Quaternion.identity);
+        GameObject vfx = GameObject.Instantiate(
+            defenseVFX, 
+            defenseVFXOrigin.position, Quaternion.identity);
         vfx.transform.localScale = defenseVFXOrigin.localScale;
         StartCoroutine(WaitToDestroyGameObject(vfx));
     }
 
     public int GetDefenseInteger(){
-        defense = animator.GetInteger("Defense");
-        return defense; 
+        _defense = _animator.GetInteger("Defense");
+        return _defense; 
     }
 
-
-    // public void StartDefenseTimer(){
-    //     defenseTime = Time.time + maxDefenseTime;
-    // }
     //Used by EnemyControllerFSM
     public void StartAttack(){
-        movement.Stop();
+        _movement.Stop();
         //SingleAttack
-        GetComponent<Animator>().SetFloat("attackAnimSpeedMultiplier", parameters.attackAnimationSpeed);
-        if(parameters.quantityOfAttacks==1){
-            animator.SetInteger("Attack",1);
+        GetComponent<Animator>().SetFloat(
+            "attackAnimSpeedMultiplier", 
+            _parameters.attackAnimationSpeed);
+        if(_parameters.quantityOfAttacks==1){
+            _animator.SetInteger("Attack",1);
         }
         //ThreeAttacksCombo
         else{
-            animator.SetInteger("Attack",50);
+            _animator.SetInteger("Attack",50);
         }
 
     }
     //Used by EnemyController FSM
     public void StartComboAttack()
     {
-        movement.Stop();
-        animator.SetInteger("Attack", 50);
+        _movement.Stop();
+        _animator.SetInteger("Attack", 50);
     }
 
     public void StartRunningAttack()
     {
-        animator.SetInteger("Attack", 70);
+        _animator.SetInteger("Attack", 70);
     }
 
     public bool HasComboAttackEnded()
     {
-        return animator.GetInteger("Attack") == 100;
+        return _animator.GetInteger("Attack") == 100;
     }
 
     public void AttackColliderEnable(){
@@ -143,7 +142,7 @@ public class EnemyCombat : MonoBehaviour
     }
 
     public void AttackSound(){
-        audioSource.PlayOneShot(audioAttack, volumeAttack);
+        _audioSource.PlayOneShot(audioAttack, volumeAttack);
     }
     
     public void PlayAttackVFX(){
@@ -169,17 +168,17 @@ public class EnemyCombat : MonoBehaviour
 
 
     public void ResetCombatVariables(){
-        defense = 0;
-        defenseTime =0;
-        animator.SetInteger("Defense", defense);
+        _defense = 0;
+        _defenseTime =0;
+        _animator.SetInteger("Defense", _defense);
     }
 
     public void ThreeComboAttack(){
-        animator.SetInteger("Attack",1);
+        _animator.SetInteger("Attack",1);
     }
 
     public int GetAttackIndex(){
-        return animator.GetInteger("Attack");
+        return _animator.GetInteger("Attack");
     }
 
     public void SetQuantityOfAttacks(int quantityOfAttacks){
@@ -196,7 +195,7 @@ public class EnemyCombat : MonoBehaviour
         this.hasDefense = hasDefense;
     }
     public bool GetHasDefense(){
-        return parameters.hasDefense;
+        return _parameters.hasDefense;
     }
 
     public void SetCanBeInterruptedByAnyAttack(bool state){
@@ -204,7 +203,7 @@ public class EnemyCombat : MonoBehaviour
     }
 
     public bool GetCanBeInterruptedByAnyAttack(){
-        return parameters.canBeInterruptedByAnything;
+        return _parameters.canBeInterruptedByAnything;
     }
 
 
@@ -212,7 +211,7 @@ public class EnemyCombat : MonoBehaviour
 
     public void StartAOEAttack()
     {
-        animator.SetInteger("Attack", 90);
+        _animator.SetInteger("Attack", 90);
     }
 
     public void CreateAOEObjects()
