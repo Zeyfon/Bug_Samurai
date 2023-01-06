@@ -129,7 +129,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2166412738754734311}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: -0.2, z: -0.09822888}
+  m_LocalPosition: {x: -0.55, y: -1.15, z: -0.09822888}
   m_LocalScale: {x: 1, y: -1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -260,7 +260,7 @@ Transform:
   m_GameObject: {fileID: 2900417785261084725}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.05, y: -0.2, z: -0.09822888}
-  m_LocalScale: {x: 1, y: -1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5152630633546916119}
@@ -3195,23 +3195,23 @@ MonoBehaviour:
   _attackVFXOrigin: {fileID: 0}
   _attackSFX: {fileID: 0}
   _attackSFXVolume: 0.5
-  _comboAttack1VFX: {fileID: 5675062471633878340, guid: 97877d5e87937664ca430bd60107c678, type: 3}
+  _comboAttack1VFX: {fileID: 1462283702018711274, guid: a977d758164395145bb01826d494a9be, type: 3}
   _comboAttack1VFXOrigin: {fileID: 4541592148756673425}
   _comboAttack1SFX: {fileID: 8300000, guid: 2432cf1603e3951439cbe7ce2276ad1d, type: 3}
   _comboAttack1SFXVolume: 0.5
-  _comboAttack2VFX: {fileID: 5675062471633878340, guid: 97877d5e87937664ca430bd60107c678, type: 3}
+  _comboAttack2VFX: {fileID: 956851184923464942, guid: 2caf88cf1c55e58489e87893a96dd7a4, type: 3}
   _comboAttack2VFXOrigin: {fileID: 3268118519159975996}
   _comboAttack2SFX: {fileID: 8300000, guid: 2432cf1603e3951439cbe7ce2276ad1d, type: 3}
   _comboAttack2SFXVolume: 0.5
-  _comboAttack3VFX: {fileID: 5675062471633878340, guid: 97877d5e87937664ca430bd60107c678, type: 3}
+  _comboAttack3VFX: {fileID: 8057750970601848588, guid: 66eab71ca9dad18479d9ef95a07e6fff, type: 3}
   _comboAttack3VFXOrigin: {fileID: 5803023526043293467}
   _comboAttack3SFX: {fileID: 8300000, guid: 2432cf1603e3951439cbe7ce2276ad1d, type: 3}
   _comboAttack3SFXVolume: 0.5
-  _runningAttackVFX: {fileID: 5675062471633878340, guid: 97877d5e87937664ca430bd60107c678, type: 3}
+  _runningAttackVFX: {fileID: 8205096379538595028, guid: 4d606bfab25fb454c9ab760d1003d60a, type: 3}
   _runningAttackVFXOrigin: {fileID: 6734099215199151220}
   _runningAttackSFX: {fileID: 8300000, guid: 2432cf1603e3951439cbe7ce2276ad1d, type: 3}
   _runningAttackSFXVolume: 0.5
-  _aoeAttackVFX: {fileID: 5675062471633878340, guid: 97877d5e87937664ca430bd60107c678, type: 3}
+  _aoeAttackVFX: {fileID: 134407622609432275, guid: 900c6149c7efc95428bed00f405b4f25, type: 3}
   _aoeAttackVFXOrigin: {fileID: 2111254745711687128}
   _aoeAttackSFX: {fileID: 8300000, guid: 2432cf1603e3951439cbe7ce2276ad1d, type: 3}
   _aoeAttackSFXVolume: 0.5
@@ -3219,15 +3219,15 @@ MonoBehaviour:
   _defenseVFXOrigin: {fileID: 5064805307475438850}
   _defenseSFX: {fileID: 8300000, guid: e91e06c385d1b1645bca2cef09c8668c, type: 3}
   _defenseSFXVolume: 0.5
-  _walkingSFX: {fileID: 8300000, guid: cc5e3e47f0a5c5143a25dfe6f6b3072b, type: 3}
+  _walkingSFX: {fileID: 8300000, guid: ac657cb7c37482f4db024ea8fb9cb4f5, type: 3}
   _walkingSFXVolume: 0.5
-  _runningSFX: {fileID: 8300000, guid: cf2a2a9bbd4164c499eb669b4fe3899f, type: 3}
+  _runningSFX: {fileID: 8300000, guid: 922ea7405319362429a32e8f38226ef9, type: 3}
   _runningSFXVolume: 0.5
   _damagedSFX: {fileID: 8300000, guid: a17bd737e8d8cc3479e3f82c3a1e468a, type: 3}
   _damagedSFXVolume: 0.5
-  _stunnedSFX: {fileID: 8300000, guid: 24aa429638fdd5849b7a0d60c3bd056c, type: 3}
+  _stunnedSFX: {fileID: 8300000, guid: db5e93f64929dfa4e85125bb345800e3, type: 3}
   _stunnedSFXVolume: 0.5
-  _diesSFX: {fileID: 8300000, guid: 66ab41cf86ba94d4785d224cfed619dc, type: 3}
+  _diesSFX: {fileID: 8300000, guid: 90169559dcabde54ab4fc0c50ea89c22, type: 3}
   _diesSFXVolume: 0.5
   _bodyRenderer: {fileID: 7013595933869000557}
   _normalMaterial: {fileID: 2100000, guid: bfa98a6555cbd904193769528edc530d, type: 2}
@@ -3258,7 +3258,7 @@ Transform:
   m_GameObject: {fileID: 4455364114707647112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.05, y: -0.2, z: -0.09822888}
-  m_LocalScale: {x: 1, y: -1, z: 1}
+  m_LocalScale: {x: 1, y: -0.21296875, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5152630633546916119}
@@ -3319,7 +3319,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5128594216616278294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: -0.2, z: -0.09822888}
+  m_LocalPosition: {x: -0.18, y: -0.23, z: -0.09822888}
   m_LocalScale: {x: 1, y: -1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3506,7 +3506,7 @@ Transform:
   m_GameObject: {fileID: 8126974509323138724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.05, y: -0.2, z: -0.09822888}
-  m_LocalScale: {x: 1, y: -1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5152630633546916119}
@@ -3536,7 +3536,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8763088906832810944}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: -0.2, z: -0.09822888}
+  m_LocalPosition: {x: 0.44, y: -0.2, z: -0.09822888}
   m_LocalScale: {x: 1, y: -1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3567,7 +3567,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8780885048877983126}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: -0.2, z: -0.09822888}
+  m_LocalPosition: {x: -0.23, y: -0.32, z: -0.09822888}
   m_LocalScale: {x: 1, y: -1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3598,7 +3598,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8921911148377684238}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: -0.2, z: -0.09822888}
+  m_LocalPosition: {x: -0.15, y: -1.09, z: -0.09822888}
   m_LocalScale: {x: 1, y: -1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
