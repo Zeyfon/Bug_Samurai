@@ -13,8 +13,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     EnemyFX _enemyFX;
     Animator _animator;
     bool _canBeDamaged = true;
-    float _stunTimer = 0;
-    float _stunMaxTimer = 0;
+    //float _stunTimer = 0;
+    //float _stunMaxTimer = 0;
 
     void Start()
     {
@@ -26,7 +26,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     }
     void Update()
     {
-        _stunTimer += Time.deltaTime;
+        //_stunTimer += Time.deltaTime;
     }
 
     void SetInitialHealth()
@@ -40,7 +40,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         int damage)
     {
 
-        if (IsStunned() /*&& !GetCanBeInterruptedByAnyAttack()*/)
+        if (IStunnedEnded() /*&& !GetCanBeInterruptedByAnyAttack()*/)
         {
             print("Damage while stunned");
             NoInterruption();
@@ -141,9 +141,23 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     }
     void Interruption()
     {
-        SheatAttackDamaged();
-        _animator.SetInteger("Damage",1);
+        //SheatAttackDamaged();
+        _animator.SetInteger("Damage",70);
         _enemyControllerFSM.SendEvent("INTERRUPT");
+        StartCoroutine(InterruptionTimer());
+    }
+
+    IEnumerator InterruptionTimer()
+    {
+        float stunTimer = 0;
+        while (stunTimer < _stunnedTime)
+        {
+            stunTimer += Time.deltaTime;
+            print("Stun Time " + stunTimer);
+            yield return new WaitForEndOfFrame();
+        }
+        _animator.SetInteger("Damage", 75);
+        yield return null;
     }
     void NoInterruption()
     {
@@ -152,13 +166,12 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     }
     public void SheatAttackDamaged()
     {
-        _stunMaxTimer = Time.time + _stunnedTime;
+        //_stunMaxTimer = Time.time + _stunnedTime;
     }
 
-    public bool IsStunned()
+    public bool IStunnedEnded()
     {
-        _stunTimer = Time.time;
-        return _stunTimer<_stunMaxTimer;
+        return _animator.GetInteger("Damage") == 100;
     }
     public bool IsAttackedBySheatAttack()
     {
@@ -177,6 +190,6 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     }
     public void ResetHealthVariables()
     {
-
+        _animator.SetInteger("Damage", 0);
     }
 }
