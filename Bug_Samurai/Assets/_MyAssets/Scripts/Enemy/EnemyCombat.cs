@@ -6,13 +6,6 @@ public class EnemyCombat : MonoBehaviour
 {
     [Header("Attack")]
     [SerializeField] AttackCollider _attackCollider;  
-    //[Header("Defense")]
-    //[Range(0,5)]
-    //[Header("Enemy Parameters")]
-    //int _quantityOfAttacks = 0;
-    //bool _hasDefense;
-    //bool _canBeInterruptedByAnyAttack;
-
     [Header("AOE Attack Parameters")]
     [SerializeField] GameObject _aoeWaves;
     Animator _animator;
@@ -32,18 +25,17 @@ public class EnemyCombat : MonoBehaviour
         _parameters = GetComponent<EnemyParameters>();
         _enemyFX = GetComponent<EnemyFX>();
     }
-
-    void Update(){
+    void Update()
+    {
         if(_defenseTime>0){
-            //print(_defenseTime);
             _defenseTime-=Time.deltaTime;
             if(_defenseTime<=0){
                 _animator.SetInteger("Defense",10);
             }
         }
     }
-
-    public void StartDefense(){
+    public void StartDefense()
+    {
         _enemyFX.PlayDefenseSFX();
         _enemyFX.PlayDefenseVFX();
         _defenseTime = _maxDefenseTime;
@@ -55,14 +47,14 @@ public class EnemyCombat : MonoBehaviour
         }
         _animator.SetInteger("Defense",_defense);
     }
-
-    public int GetDefenseInteger(){
+    public int GetDefenseInteger()
+    {
         _defense = _animator.GetInteger("Defense");
         return _defense; 
     }
-
     //Used by EnemyControllerFSM
-    public void StartAttack(){
+    public void StartAttack()
+    {
         _movement.Stop();
         //SingleAttack
         GetComponent<Animator>().SetFloat(
@@ -83,67 +75,50 @@ public class EnemyCombat : MonoBehaviour
         _movement.Stop();
         _animator.SetInteger("Attack", 50);
     }
-
     public void StartRunningAttack()
     {
         _animator.SetInteger("Attack", 70);
     }
-
     public bool HasComboAttackEnded()
     {
         return _animator.GetInteger("Attack") == 100;
     }
-
-    public void AttackColliderEnable(){
+    public void AttackColliderEnable()
+    {
         _attackCollider.EnableCollider();
     }
-
-
-    public void AttackColliderDisable(){
-        //print("Wants to disable collider");
+    public void AttackColliderDisable()
+    {
         _attackCollider.DisableCollider();
     }
-
-
-    public void ResetCombatVariables(){
+    public void ResetCombatVariables()
+    {
         _defense = 0;
         _defenseTime =0;
         _animator.SetInteger("Defense", _defense);
     }
-
-    public void ThreeComboAttack(){
+    public void ThreeComboAttack()
+    {
         _animator.SetInteger("Attack",1);
     }
-
-    public int GetAttackIndex(){
+    public int GetAttackIndex()
+    {
         return _animator.GetInteger("Attack");
     }
-
-    //public void SetQuantityOfAttacks(int quantityOfAttacks){
-    //    this._quantityOfAttacks=quantityOfAttacks;
-    //}
-    public void SetAttackAnimationSpeed(float speed){
-        print(speed + " " + _attackAnimationSpeed );
+    public void SetAttackAnimationSpeed(float speed)
+    {
         _attackAnimationSpeed = speed;
-
-        print(speed + " " + _attackAnimationSpeed );
     }
-
-    //public void SetHasDefense(bool hasDefense){
-    //    this._hasDefense = hasDefense;
-    //}
-    public bool GetHasDefense(){
+    public bool GetHasDefense()
+    {
         return _parameters.hasDefense;
     }
 
-
     #region AOE Attack
-
     public void StartAOEAttack()
     {
         _animator.SetInteger("Attack", 90);
     }
-
     public void CreateAOEObjects()
     {
         GameObject.Instantiate(
@@ -154,8 +129,6 @@ public class EnemyCombat : MonoBehaviour
             _aoeWaves, 
             transform.position, 
             Quaternion.Euler(new Vector3(0,180,0)));
-
     }
-
     #endregion
 }

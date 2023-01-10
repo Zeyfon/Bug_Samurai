@@ -46,7 +46,7 @@ public class BossAOEAttack : MonoBehaviour
             yield return new WaitForFixedUpdate();
             //_distance = (transform.position - _initialPositionX).sqrMagnitude;
             _distance = Mathf.Abs(transform.position.x - _initialPositionX);
-            print("Distance from origin is :" + _distance);
+            //print("Distance from origin is :" + _distance);
         }
         AudioSource audioSource = GetComponent<AudioSource>();
         audioSource.Stop();

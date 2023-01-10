@@ -139,7 +139,7 @@ public class PlayerCombat : MonoBehaviour
 
     //Used by PlayerControllerFSM
     public void PerformSheatAttack(){
-        print("Perform Sheat Attack");
+        //print("Perform Sheat Attack");
         animator.SetInteger("Attack",60);
         //SetIsPerformingSheatAttack(true);
     }

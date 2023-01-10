@@ -17,9 +17,14 @@ public class AttackCollider : MonoBehaviour
         //print("Disable Collider");
         GetComponent<BoxCollider2D>().enabled = false;
     }
-    private void OnTriggerStay2D(Collider2D other) {
+    private void OnTriggerStay2D(Collider2D other){
+        print("Enemy looking to hit " + other.name);
         if(other.CompareTag("Player")){
-            other.GetComponent<IDamageable>().Damage(transform.parent.parent, AttackTypes.NormalAttack, GetComponentInParent<EnemyParameters>().attack);
+            print(gameObject.name + " detected player");
+            other.GetComponent<IDamageable>().Damage(
+                transform.parent.parent, 
+                AttackTypes.NormalAttack, 
+                GetComponentInParent<EnemyParameters>().attack);
             GetComponent<BoxCollider2D>().enabled=false;
         }
     }

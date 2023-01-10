@@ -45,15 +45,14 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         AttackTypes attackTypes, 
         int damage)
     {
-        print("Player received damage");
+        //print("Player received damage");
         if(_playerCombat.IsPerformingSheatAttack()){
-            print("Damage activated SheatAttack");
-            print(_playerCombat.IsPerformingSheatAttack());
+            print("Sheat Attack connected with enemy attack");
             _playerCombat.EnableDamageToEnemiesWithSheatAttack();
             return;
         }
         if(!CanBeDamage()){
-            print("Cannot be damaged");
+            //print("Cannot be damaged");
             return;
         } 
         DamagePlayer(damage);
@@ -61,14 +60,14 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     }
 
     void DamagePlayer(int damage){
-        print("Player got damaged. Damage:  " + damage);
+        //print("Player got damaged. Damage:  " + damage);
         if(health-damage >= 0){
-            print("Damaged");
+            //print("Damaged");
             health -=damage;
             OnPlayerDamaged?.Invoke();
         } 
         else{
-            print("Dead");
+            //print("Dead");
             health = 0;
             OnPlayerDeaths?.Invoke();
 

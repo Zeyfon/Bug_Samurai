@@ -12,7 +12,7 @@ public class Interaction : MonoBehaviour
 
 
     private void OnTriggerEnter2D(Collider2D other) {
-        print("Interactable detected: " + other.gameObject.name);
+        //print("Interactable detected: " + other.gameObject.name);
         if(other.CompareTag("RegenStation")){
             interactableCollider = other;
             //print("Player entered regen station");

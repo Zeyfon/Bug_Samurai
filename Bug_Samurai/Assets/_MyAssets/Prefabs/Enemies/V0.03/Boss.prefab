@@ -543,8 +543,8 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &4348607679873020835
 Animator:
@@ -686,7 +686,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 83.30469
-        y: 132.21875
+        y: 276.21875
         width: 100
         height: 32
       isBreakpoint: 0
@@ -770,7 +770,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 69.41406
-        y: 472.15625
+        y: 616.15625
         width: 138
         height: 48
       isBreakpoint: 0
@@ -1039,7 +1039,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 64.97656
-        y: 585.5469
+        y: 729.5469
         width: 148
         height: 32
       isBreakpoint: 0
@@ -1147,7 +1147,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 81.66406
-        y: 207.26562
+        y: 351.26562
         width: 126
         height: 32
       isBreakpoint: 0
@@ -1267,7 +1267,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 542.40625
-        y: 597.5547
+        y: 741.5547
         width: 118
         height: 32
       isBreakpoint: 0
@@ -1389,7 +1389,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 903.4297
-        y: 109.63281
+        y: 253.63281
         width: 100
         height: 32
       isBreakpoint: 0
@@ -1501,7 +1501,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 925.5703
-        y: 380.46094
+        y: 524.46094
         width: 161
         height: 32
       isBreakpoint: 0
@@ -1609,7 +1609,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 632.8672
-        y: 301.03125
+        y: 445.03125
         width: 105
         height: 32
       isBreakpoint: 0
@@ -1731,7 +1731,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 636.85156
-        y: 92.984375
+        y: 236.98438
         width: 129
         height: 32
       isBreakpoint: 0
@@ -1862,7 +1862,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 424.6328
-        y: 214.71094
+        y: 358.71094
         width: 100
         height: 32
       isBreakpoint: 0
@@ -2034,7 +2034,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 341.96875
-        y: 454.59375
+        y: 598.59375
         width: 120
         height: 32
       isBreakpoint: 0
@@ -2253,7 +2253,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 337.7422
-        y: 540.21875
+        y: 684.21875
         width: 137
         height: 32
       isBreakpoint: 0
@@ -2361,7 +2361,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 71.13281
-        y: 360.91406
+        y: 504.91406
         width: 145
         height: 48
       isBreakpoint: 0
@@ -2517,7 +2517,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 354.25
-        y: 316.28906
+        y: 460.28906
         width: 106
         height: 32
       isBreakpoint: 0
@@ -2625,7 +2625,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 78.75781
-        y: 285.53906
+        y: 429.53906
         width: 106
         height: 48
       isBreakpoint: 0
@@ -2791,6 +2791,9 @@ MonoBehaviour:
     - name: RUNTOPLAYER2
       isSystemEvent: 0
       isGlobal: 0
+    - name: DEAD
+      isSystemEvent: 0
+      isGlobal: 0
     globalTransitions:
     - fsmEvent:
         name: INTERRUPT
@@ -2868,7 +2871,7 @@ MonoBehaviour:
         tooltip: 
         showInInspector: 1
         networkSync: 0
-        value: 2
+        value: 1.5
       - useVariable: 1
         name: MaxWalkingTime
         tooltip: 
@@ -3098,7 +3101,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   color: {r: 0, g: 0, b: 0, a: 0}
   canBeDamagedFromBehind: 0
-  canBeDamaged: 0
+  canBeDamaged: 1
 --- !u!114 &6652043800639665629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3139,7 +3142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyControllerFSM: {fileID: 9204723250173969856}
-  _health: 50
+  _health: 400
   _stunnedTime: 2
 --- !u!114 &9055836057122212700
 MonoBehaviour:
@@ -3172,7 +3175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297097474de15d04ca69d182906c2037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  closeAttackRange: 3
+  closeAttackRange: 2
   farAttackRange: 3
   runningRange: 10
 --- !u!114 &7005076858318870468
@@ -3427,7 +3430,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5796214951991705339
 Transform:
   m_ObjectHideFlags: 0
