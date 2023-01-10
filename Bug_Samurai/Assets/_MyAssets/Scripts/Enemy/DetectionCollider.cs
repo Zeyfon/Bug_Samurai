@@ -29,7 +29,7 @@ public class DetectionCollider : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
 
         if(other.CompareTag("Player")){
-            print(other.gameObject.name);
+            //print(other.gameObject.name);
             isPlayerDetected = true;
         }
 

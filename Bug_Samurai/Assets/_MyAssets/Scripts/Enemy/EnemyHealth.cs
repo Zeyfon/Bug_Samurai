@@ -1,18 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
-
     [SerializeField] PlayMakerFSM _enemyControllerFSM;
     [SerializeField] int _health = 50;
     [Range(0,3)]
     [SerializeField] float _stunnedTime = 2f;
 
-    AttackTypes attackType;
+    readonly AttackTypes _attackType;
     EnemyParameters _enemyParameters;
-    //GameObject _player;
     EnemyFX _enemyFX;
     Animator _animator;
     bool _canBeDamaged = true;
@@ -22,31 +19,32 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     void Start()
     {
         _enemyParameters = GetComponent<EnemyParameters>();
-        _health = _enemyParameters.health;
+        SetInitialHealth();
         _canBeDamaged = _enemyParameters.canBeDamaged;
-        //SetMaterial(normalMaterial);
         _animator = GetComponent<Animator>();
-        //_player = GameObject.FindGameObjectWithTag("Player");
         _enemyFX = GetComponent<EnemyFX>();
     }
-
-    void Update(){
+    void Update()
+    {
         _stunTimer += Time.deltaTime;
-        //IsPlayerInFront(_player.transform);
     }
 
+    void SetInitialHealth()
+    {
+        if (_enemyParameters.health > _health)
+            _health = _enemyParameters.health;
+    }
     public void Damage(
         Transform attackerTransform, 
         AttackTypes attackType, 
         int damage)
     {
 
-        if (IsStunned() && !GetCanBeInterruptedByAnyAttack())
+        if (IsStunned() /*&& !GetCanBeInterruptedByAnyAttack()*/)
         {
             print("Damage while stunned");
-            NoInterruptionDamage();
+            NoInterruption();
             HealthDamage(damage);
-            //break;
             return;
         }
         //Recevies a Special Attack
@@ -54,7 +52,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         {
             print("Special Attack Damage");
             //enemyControllerFSM.SendEvent("SPECIAL_ATTACK");
-            InterruptionDamage();
+            Interruption();
             HealthDamage(damage);
         }
         //Receives a Normal Attack
@@ -69,18 +67,17 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             else if (GetCanBeInterruptedByAnyAttack())
             {
                 print("Normal Interruption damage");
-                InterruptionDamage();
+                Interruption();
                 HealthDamage(damage);
             }
             else
             {
                 print("Simple No Interruption Damage");
-                NoInterruptionDamage();
+                NoInterruption();
                 HealthDamage(damage);
             }
         }
     }
-
     private bool IsDefending(Transform playerTransform)
     {   
         bool hasDefense = GetComponent<EnemyCombat>().GetHasDefense();
@@ -99,7 +96,6 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             return true;
         }
     }
-
     private bool IsPlayerInFront(Transform attackerTransform)
     {
         Vector3 toTarget = 
@@ -116,9 +112,9 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             return false;
         }
     }
-
-    void HealthDamage(int damage){
-        if(_canBeDamaged){
+    void HealthDamage(int damage)
+    {
+        if (_canBeDamaged){
             if(_health-damage <0)
                 _health = 0;
             else{
@@ -130,55 +126,57 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         }
 
     }
-
-    void Die(){
+    void Die()
+    {
+        print("Enemy Dies");
         StartCoroutine(DieCoroutine());
-
     }
-
-    IEnumerator DieCoroutine(){
-        yield return new WaitForSeconds(0.4f);
-        gameObject.SetActive(false);
+    IEnumerator DieCoroutine()
+    {
+        print(gameObject.name + " dies");
+        gameObject.layer = LayerMask.NameToLayer("EnemyGhost");
+        _enemyControllerFSM.enabled = false;
+        _animator.SetInteger("Damage", 95);
+        yield return null;
     }
-
-    void InterruptionDamage(){
+    void Interruption()
+    {
         SheatAttackDamaged();
         _animator.SetInteger("Damage",1);
         _enemyControllerFSM.SendEvent("INTERRUPT");
-        _enemyFX.VisualDamage();
     }
-
-    void NoInterruptionDamage(){
+    void NoInterruption()
+    {
         _enemyFX.PlayDamageSFX();
         _enemyFX.VisualDamage();
     }
-
-    public void SheatAttackDamaged(){
+    public void SheatAttackDamaged()
+    {
         _stunMaxTimer = Time.time + _stunnedTime;
     }
 
-    public bool IsStunned(){
+    public bool IsStunned()
+    {
         _stunTimer = Time.time;
-        //print("Running time " + stunTimer + " UpperLimit Timer " + stunMaxTimer);
         return _stunTimer<_stunMaxTimer;
     }
-
-    public bool IsAttackedBySheatAttack(){
-        if(attackType == AttackTypes.SpecialAttack)
+    public bool IsAttackedBySheatAttack()
+    {
+        if(_attackType == AttackTypes.SpecialAttack)
             return true;
         else
             return false;
     }
-    public void ResetHealthVariables(){
-        
-    }
-
-    public int GetHealth(){
+    public int GetHealth()
+    {
         return _health;
     }
-
     public bool GetCanBeInterruptedByAnyAttack()
     {
         return _enemyParameters.canBeInterruptedByAnything;
+    }
+    public void ResetHealthVariables()
+    {
+
     }
 }
