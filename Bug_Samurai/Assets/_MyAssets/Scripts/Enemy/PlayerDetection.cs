@@ -8,17 +8,7 @@ public class PlayerDetection : MonoBehaviour
     [SerializeField] float closeAttackRange = 3f;
     [SerializeField] float farAttackRange = 3f;
     [SerializeField] float runningRange = 10f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] float aoeAttackRange = 5f;
 
     public bool IsTargetTooFarAway(GameObject target)
     {
@@ -45,4 +35,9 @@ public class PlayerDetection : MonoBehaviour
         return GetDistanceToTarget(target.transform) < runningRange;
     }
 
+
+    public bool IsPlayerInRangeForAOE(GameObject target)
+    {
+        return GetDistanceToTarget(target.transform) < aoeAttackRange;
+    }
 }

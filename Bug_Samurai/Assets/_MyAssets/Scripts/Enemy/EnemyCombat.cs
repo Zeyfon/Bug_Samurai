@@ -96,6 +96,7 @@ public class EnemyCombat : MonoBehaviour
         _defense = 0;
         _defenseTime =0;
         _animator.SetInteger("Defense", _defense);
+        _animator.SetInteger("Attack", 0);
     }
     public void ThreeComboAttack()
     {

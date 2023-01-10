@@ -43,7 +43,6 @@ public class EnemyDamagedBehavior : StateMachineBehaviour
     // OnStateMachineExit is called when exiting a state machine via its Exit Node
     override public void OnStateMachineExit(Animator animator, int stateMachinePathHash)
     {
-      animator.SetInteger("Damage",0);
-      animator.SetInteger("Attack",0);
+        animator.SetInteger("Damage", 100);
     }
 }
